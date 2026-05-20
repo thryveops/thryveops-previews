@@ -18,7 +18,7 @@ const menuItems = [
     name: "Shepherd's Pie",
     price: "$17",
     desc: "Slow-braised lamb in a Guinness gravy under a roast garlic mashed potato crust. The reason regulars keep coming back.",
-    img: "https://images.unsplash.com/photo-1633524892820-d36ed4d4ae93?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80",
   },
   {
     name: "Fish & Chips",
@@ -48,7 +48,7 @@ const menuItems = [
     name: "Guinness, Properly Poured",
     price: "$8",
     desc: "Two-part pour. 119.5-second rest. Shamrock if the bartender's in the mood. The only way to drink it.",
-    img: "https://images.unsplash.com/photo-1577678055016-22e7fea84e76?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1436076863939-06870fe779c2?w=800&q=80",
   },
 ];
 
@@ -95,10 +95,10 @@ const reviews = [
 ];
 
 const igPhotos = [
-  "https://images.unsplash.com/photo-1577678055016-22e7fea84e76?w=400&q=80",
+  "https://images.unsplash.com/photo-1436076863939-06870fe779c2?w=400&q=80",
   "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=400&q=80",
   "https://images.unsplash.com/photo-1546195643-70f48f9c5b87?w=400&q=80",
-  "https://images.unsplash.com/photo-1633524892820-d36ed4d4ae93?w=400&q=80",
+  "https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80",
   "https://images.unsplash.com/photo-1606851094291-6efae152bb87?w=400&q=80",
   "https://images.unsplash.com/photo-1574096079513-d8259312b785?w=400&q=80",
 ];
