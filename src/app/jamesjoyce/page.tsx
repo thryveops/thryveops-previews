@@ -18,19 +18,19 @@ const menuItems = [
     name: "Shepherd's Pie",
     price: "$17",
     desc: "Slow-braised lamb in a Guinness gravy under a roast garlic mashed potato crust. The reason regulars keep coming back.",
-    img: "https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1595666548990-788e19dc3885?w=800&q=80",
   },
   {
     name: "Fish & Chips",
     price: "$18",
     desc: "Beer-battered cod, hand-cut chips, malt vinegar, mushy peas. Just like in Dublin — only better, because you're already on vacation.",
-    img: "https://images.unsplash.com/photo-1606851094291-6efae152bb87?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1722105344016-0df8537c1799?w=800&q=80",
   },
   {
     name: "Bangers & Mash",
     price: "$16",
     desc: "Imported Irish bangers, scallion mash, and onion gravy. Comfort food done the way your grandmother (the Irish one) used to make it.",
-    img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1552913903-2cffa1962dc7?w=800&q=80",
   },
   {
     name: "The Joyce Burger",
@@ -42,13 +42,13 @@ const menuItems = [
     name: "Corned Beef Reuben",
     price: "$14",
     desc: 'Slow-cured corned beef, Swiss, sauerkraut, Russian dressing, grilled rye. The lunchtime answer to "what should I order here?"',
-    img: "https://images.unsplash.com/photo-1571066811602-716837d681de?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1553909489-cd47e0907980?w=800&q=80",
   },
   {
     name: "Guinness, Properly Poured",
     price: "$8",
     desc: "Two-part pour. 119.5-second rest. Shamrock if the bartender's in the mood. The only way to drink it.",
-    img: "https://images.unsplash.com/photo-1436076863939-06870fe779c2?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1563396983631-2f8cf576bb36?w=800&q=80",
   },
 ];
 
@@ -95,11 +95,11 @@ const reviews = [
 ];
 
 const igPhotos = [
-  "https://images.unsplash.com/photo-1436076863939-06870fe779c2?w=400&q=80",
+  "https://images.unsplash.com/photo-1563396983631-2f8cf576bb36?w=400&q=80",
   "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=400&q=80",
   "https://images.unsplash.com/photo-1546195643-70f48f9c5b87?w=400&q=80",
-  "https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80",
-  "https://images.unsplash.com/photo-1606851094291-6efae152bb87?w=400&q=80",
+  "https://images.unsplash.com/photo-1595666548990-788e19dc3885?w=400&q=80",
+  "https://images.unsplash.com/photo-1722105344016-0df8537c1799?w=400&q=80",
   "https://images.unsplash.com/photo-1574096079513-d8259312b785?w=400&q=80",
 ];
 
