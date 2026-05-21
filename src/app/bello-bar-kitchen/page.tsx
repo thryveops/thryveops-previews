@@ -324,6 +324,73 @@ const css = `
   .bello .b-hero-headline { animation: b-rise .9s cubic-bezier(.16,1,.3,1) .3s  both; }
   .bello .b-hero-sub      { animation: b-rise .9s cubic-bezier(.16,1,.3,1) .45s both; }
   .bello .b-hero-actions  { animation: b-rise .8s cubic-bezier(.16,1,.3,1) .6s  both; }
+
+  /* ─── MOBILE ─────────────────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+
+    /* NAV */
+    .bello .b-nav { padding: 1.2rem 1.5rem; }
+    .bello .b-nav-links { display: none; }
+    .bello .b-nav-cta { padding: .55rem 1.1rem; font-size: .65rem; }
+
+    /* HERO */
+    .bello .b-hero { padding: 0 1.5rem 11rem; min-height: 100svh; }
+    .bello .b-hero-hours-bar {
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding: 1.1rem 1.5rem; gap: 0;
+    }
+    .bello .b-hero-hours-item {
+      padding: .85rem .5rem; border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .bello .b-hero-hours-item:nth-child(2n) { border-right: none; }
+    .bello .b-hero-hours-item:nth-child(3),
+    .bello .b-hero-hours-item:nth-child(4) { border-bottom: none; }
+    .bello .b-hero-actions { flex-direction: column; align-items: flex-start; gap: .75rem; }
+    .bello .b-btn-primary,
+    .bello .b-btn-outline { width: 100%; justify-content: center; padding: 1rem 1.5rem; }
+
+    /* SECTIONS */
+    .bello .b-section { padding: 4rem 1.5rem; }
+
+    /* ABOUT */
+    .bello .b-about-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .bello .b-about-photos { height: 340px; grid-template-rows: 1fr; grid-template-columns: 1fr 1fr; }
+
+    /* EXPERIENCE */
+    .bello .b-experience-header { flex-direction: column; align-items: flex-start; gap: 1.25rem; margin-bottom: 2.5rem; }
+    .bello .b-experience-cards { grid-template-columns: 1fr; }
+    .bello .b-exp-card { padding: 2.25rem 1.5rem; }
+
+    /* HAPPY HOUR */
+    .bello .b-happy-hour { padding: 5rem 1.5rem; }
+
+    /* MENU */
+    .bello .b-menu-header { flex-direction: column; align-items: flex-start; gap: 1.25rem; margin-bottom: 2.5rem; }
+    .bello .b-menu-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+    /* SOCIAL PROOF / STATS */
+    .bello .b-stats-row { flex-wrap: wrap; }
+    .bello .b-stat-block { flex: 1 1 50%; padding: 2.5rem 1rem; border-bottom: 1px solid var(--border); }
+    .bello .b-stat-block:nth-child(2n) { border-right: none; }
+    .bello .b-stat-block:nth-child(3),
+    .bello .b-stat-block:nth-child(4) { border-bottom: none; }
+    .bello .b-reviews-grid { grid-template-columns: 1fr; }
+    .bello .b-review-card { padding: 2rem 1.5rem; }
+
+    /* PRIVATE EVENTS */
+    .bello .b-private-events { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+
+    /* LOCATION */
+    .bello .b-location { grid-template-columns: 1fr; }
+    .bello .b-location-info { padding: 4rem 1.5rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .bello .b-location-map iframe { min-height: 300px; }
+
+    /* FOOTER */
+    .bello .b-footer { padding: 4rem 1.5rem 2.5rem; }
+    .bello .b-footer-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .bello .b-footer-bottom { flex-direction: column; gap: .75rem; text-align: center; }
+  }
 `;
 
 export default function BelloBarKitchenPreview() {
