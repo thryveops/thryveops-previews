@@ -20,6 +20,7 @@ export default function Home() {
           Tampa · May 2026
         </p>
         <ul className="divide-y divide-neutral-200 border-y border-neutral-200">
+          <PreviewLink href="/little-tina-cafe" name="Little Tina Café" status="ready" />
           <PreviewLink href="/jamesjoyce" name="James Joyce Irish Pub" status="ready" />
           <PreviewLink href="/laterrazza" name="La Terrazza" status="draft" />
           <PreviewLink href="/salrosa" name="Sal Rosa" status="draft" />
