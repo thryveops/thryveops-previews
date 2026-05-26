@@ -241,7 +241,6 @@ export default function FamiliarFacesBarberShop() {
           </div>
           <div className="flex flex-wrap items-center justify-between gap-3 pt-6">
             <span className="text-white/30 text-xs">© 2026 Familiar Faces Barber Shop · Columbia, MD</span>
-            <Link href="/" className="text-white/30 text-xs hover:text-white/60">← All previews</Link>
           </div>
         </div>
       </footer>

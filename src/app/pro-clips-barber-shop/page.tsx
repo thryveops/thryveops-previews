@@ -324,9 +324,6 @@ export default function Page() {
         </div>
       </footer>
 
-      <div className="py-6 text-center text-xs text-gray-400 bg-white">
-        <Link href="/" className="hover:underline">← All previews</Link>
-      </div>
     </div>
   );
 }

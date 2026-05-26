@@ -664,9 +664,6 @@ export default function JamesJoycePreview() {
             © 2026 James Joyce Irish Pub & Eatery · Concept mockup by Thryve
             Operations
           </span>
-          <Link href="/" className="hover:text-white/80 underline-offset-4">
-            ← All previews
-          </Link>
         </div>
       </footer>
     </div>

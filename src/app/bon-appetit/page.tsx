@@ -412,7 +412,6 @@ export default function BonAppetitPreview() {
         </div>
         <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/10 text-xs text-white/40 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
           <span>© 2026 Bon Appetit Bakery & Cafe. Concept mockup by Thryve Operations.</span>
-          <Link href="/" className="hover:text-white/80">← All previews</Link>
         </div>
       </footer>
     </div>

@@ -33,12 +33,6 @@ export function ComingSoon({
         <p className="text-sm text-neutral-500 mb-10">
           We&apos;ll share the live preview as soon as it&apos;s ready.
         </p>
-        <Link
-          href="/"
-          className="text-sm text-neutral-600 hover:text-neutral-900 underline underline-offset-4"
-        >
-          ← All previews
-        </Link>
         <p className="text-xs text-neutral-400 mt-12">
           thryveops.com · hello@thryveops.com
         </p>

@@ -271,7 +271,6 @@ export default function PrecisionVisionLawns() {
           </div>
           <div className="border-t border-white/8 pt-6 flex flex-wrap justify-between gap-3">
             <span className="text-white/25 text-xs">© 2026 Precision Vision Lawns LLC · Ellicott City, MD</span>
-            <Link href="/" className="text-white/25 text-xs hover:text-white/50">← All previews</Link>
           </div>
         </div>
       </footer>

@@ -242,7 +242,6 @@ export default function HouseOfBarbers() {
           </div>
           <div className="border-t border-[#1A2942] pt-8 flex flex-wrap items-center justify-between gap-3">
             <p className="text-xs" style={{ color: "#2A3A4A" }}>© 2026 House of Barbers. All rights reserved.</p>
-            <Link href="/" className="text-xs hover:text-gray-400" style={{ color: "#2A3A4A" }}>← All previews</Link>
           </div>
         </div>
       </footer>

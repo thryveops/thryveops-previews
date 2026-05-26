@@ -259,7 +259,6 @@ export default function CeramicProAtomicAutoSalon() {
           </div>
           <div className="border-t border-white/6 pt-6 flex flex-wrap justify-between gap-3">
             <span className="text-white/20 text-xs">© 2026 Atomic Auto Salon · Columbia, MD · Ceramic Pro Elite Dealer</span>
-            <Link href="/" className="text-white/20 text-xs hover:text-white/50">← All previews</Link>
           </div>
         </div>
       </footer>

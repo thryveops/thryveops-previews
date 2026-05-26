@@ -285,9 +285,6 @@ export default function AutoObssessionsCarCare() {
           <div className="border-t border-white/10 mt-8 pt-8 text-center text-gray-500 text-xs">
             &copy; 2026 Auto Obsessions Car Care. All rights reserved.
           </div>
-          <div className="text-center mt-4">
-            <Link href="/" className="text-gray-500 text-xs hover:text-gray-300">← All previews</Link>
-          </div>
         </div>
       </footer>
 

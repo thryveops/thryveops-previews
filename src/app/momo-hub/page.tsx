@@ -289,9 +289,6 @@ export default function MomoHub() {
           </div>
         </div>
         <p className="max-w-6xl mx-auto mt-6 text-[10px] tracking-widest uppercase text-white/30">Mockup by Thryve Operations · thryveops.com · @thryveops · hello@thryveops.com</p>
-        <div className="max-w-6xl mx-auto mt-6">
-          <Link href="/" className="text-[11px] tracking-widest uppercase text-white/30 hover:text-white/50">← All previews</Link>
-        </div>
       </footer>
     </div>
   )

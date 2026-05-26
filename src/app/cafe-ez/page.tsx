@@ -429,7 +429,6 @@ export default function CafeEZPreview() {
             <a href="https://instagram.com/cafeez_md" className="hover:text-white">Instagram</a>
             <a href="https://facebook.com/CafeEZEllicottCity" className="hover:text-white">Facebook</a>
             <a href="https://www.doordash.com/store/cafe-ez-ellicott-city-991038/" className="hover:text-white">DoorDash</a>
-            <Link href="/" className="hover:text-white">← All previews</Link>
           </div>
         </div>
       </footer>
