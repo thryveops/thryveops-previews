@@ -1,132 +1,251 @@
 import Image from "next/image";
-import Link from "next/link";
 
-export const metadata = { title: "Familiar Faces Barber Shop — Columbia, MD" };
+export const metadata = {
+  title: "Familiar Faces Barber Shop — Columbia, MD",
+  description: "Columbia's neighborhood shop. Familiar Faces Barber Shop — where every client becomes a regular. Book your cut today.",
+};
 
-const ACCENT = "#1A2942";
-const MAROON = "#7A1F2B";
-const PAPER = "#FAFAF7";
-const INK = "#0F1620";
-const GOLD = "#C8A96E";
+// ─── Brand constants ──────────────────────────────────────────────────────────
+const NAME         = "FAMILIAR FACES";
+const TAGLINE      = "Columbia's neighborhood shop where every client becomes a regular.";
+const CITY         = "Columbia, MD";
+const PHONE        = "(410) 816-6449";
+const PHONE_RAW    = "4108166449";
+const BOOKING_URL  = "https://booksy.com";
+const IG_HANDLE    = "@familiarfacescolumbia";
+const IG_URL       = "https://instagram.com/familiarfacescolumbia";
+const RATING       = "4.7";
+const REVIEW_COUNT = "109";
+const EST          = "Columbia's Neighborhood Shop";
 
-export default function FamiliarFacesBarberShop() {
+// Accent — copper; swap this single constant to re-theme for a different shop
+const ACCENT       = "#C47A45";
+const ACCENT_LIGHT = "#D48E5A";
+const BG1          = "#0A0A0A";
+const BG2          = "#111111";
+const BG3          = "#1A1A1A";
+const BORDER       = "#2A2A2A";
+const T2           = "#A0A0A0";
+const T3           = "#606060";
+
+const SERVICES = [
+  { name: "Classic Cut",  price: "$26", dur: "30 min", desc: "Clean scissor or clipper cut tailored to your style. The foundation of a great look.", popular: false },
+  { name: "Fade",         price: "$32", dur: "35 min", desc: "Low, mid, or high fade with sharp edges and a seamless blend.",                         popular: true  },
+  { name: "Beard Trim",   price: "$16", dur: "20 min", desc: "Shaped, trimmed, and lined with a straight razor edge for a clean finish.",             popular: false },
+  { name: "Kids Cut",     price: "$20", dur: "30 min", desc: "Patient barbers for the little ones. Under 12 welcome, no rush.",                       popular: false },
+  { name: "Cut + Beard",  price: "$42", dur: "50 min", desc: "Full combo — haircut plus beard shape and straight razor cleanup in one visit.",        popular: false },
+  { name: "Shape Up",     price: "$15", dur: "15 min", desc: "Quick edge-up and lineup refresh. Back looking sharp between cuts.",                    popular: false },
+];
+
+const TEAM = [
+  { name: "Darius", role: "Head Barber",   spec: "Fades, tapers & custom styling · 12+ yrs",     bio: "Darius built his name one client at a time. Patient, precise, and the reason half the shop's regulars started showing up.", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80" },
+  { name: "Marcus", role: "Senior Barber", spec: "Skin fades & straight razor detail work",       bio: "Clean fades and an eye for detail that makes the difference. Marcus doesn't rush — every cut gets the full treatment.",      img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" },
+  { name: "Tre",    role: "Barber",        spec: "Full menu, sharp lineups, quick turnaround",    bio: "Tre handles the full menu with efficiency and consistency. Fast without cutting corners — lineups that hold up all week.",    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80" },
+];
+
+const REVIEWS = [
+  { text: "This is my neighborhood spot. Been going for three years and Darius knows my cut without me saying a word. That's what familiarity feels like.", name: "James R.", sub: "Regular" },
+  { text: "Brought my two boys and they were both taken care of with patience. My youngest is usually a nightmare in the barber chair — not here.", name: "Alicia T.", sub: "Kids Cut" },
+  { text: "Consistent every single time. I moved across town and still make the drive to Familiar Faces. There's no replacing a barber you trust.", name: "Kevin S.", sub: "Regular" },
+  { text: "Darius and Marcus are both excellent. Clean shop, great music, and they don't rush you. Best cut value in Columbia, hands down.", name: "Andre L.", sub: "Fade" },
+];
+
+const GALLERY = [
+  "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=700&q=80",
+  "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=700&q=80",
+  "https://images.unsplash.com/photo-1567894340315-735d7c361db0?w=700&q=80",
+  "https://images.unsplash.com/photo-1553415923-6c09d59a3b6a?w=700&q=80",
+  "https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=700&q=80",
+  "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=700&q=80",
+];
+
+const HOURS = [
+  { day: "Tuesday – Friday", time: "9:30 AM – 7:00 PM", closed: false },
+  { day: "Saturday",          time: "8:00 AM – 5:00 PM", closed: false },
+  { day: "Sunday – Monday",   time: "Closed",             closed: true  },
+];
+
+const PILLARS = [
+  { title: "Community First",     desc: "A neighborhood shop where clients become regulars and regulars become family." },
+  { title: "4.7 Stars · 109",    desc: "109 reviews and counting. Word-of-mouth reputation built one cut at a time." },
+  { title: "Trusted by Families", desc: "Kids cuts, adult fades — Columbia families have trusted us for years." },
+];
+
+export default function Page() {
   return (
-    <div style={{ background: PAPER, color: INK }}>
+    <div style={{ background: BG1, color: "#fff", fontFamily: "var(--font-inter)" }}>
+      <style>{`
+        @keyframes bs-shimmer { from { background-position: -200% center; } to { background-position: 200% center; } }
+        .bs-shimmer {
+          background: linear-gradient(90deg, ${ACCENT}, ${ACCENT_LIGHT}, #fff, ${ACCENT_LIGHT}, ${ACCENT});
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: bs-shimmer 4s linear infinite;
+        }
+        .bs-svc:hover  { background-color: ${BG2}; border-left-color: ${ACCENT} !important; }
+        .bs-tc:hover   { border-color: ${ACCENT} !important; }
+        .bs-tp         { filter: grayscale(100%); transition: filter .5s, transform .5s; }
+        .bs-tc:hover .bs-tp { filter: grayscale(0); transform: scale(1.04); }
+        .bs-go         { opacity: 0; transition: opacity .3s; }
+        .bs-gi:hover .bs-go { opacity: 1; }
+        .bs-gi img     { transition: transform .5s; }
+        .bs-gi:hover img { transform: scale(1.08); }
+      `}</style>
+
+      {/* FLOATING BOOK BUTTON */}
+      <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 text-white text-[11px] font-bold tracking-[0.2em] uppercase px-6 py-3.5 shadow-2xl transition-opacity hover:opacity-90"
+        style={{ background: ACCENT }}>
+        Book Now
+      </a>
 
       {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-10" style={{ background: ACCENT, height: 68 }}>
-        <a href="#" className="font-display text-2xl text-white tracking-[0.08em]">
-          FAMILIAR <span style={{ color: GOLD }}>FACES</span>
-        </a>
-        <div className="hidden md:flex items-center gap-8">
-          <a href="#services" className="text-white/75 hover:text-white text-xs font-medium tracking-[0.12em] uppercase">Services</a>
-          <a href="#team" className="text-white/75 hover:text-white text-xs font-medium tracking-[0.12em] uppercase">Team</a>
-          <a href="#visit" className="text-white/75 hover:text-white text-xs font-medium tracking-[0.12em] uppercase">Visit</a>
-          <a href="https://booksy.com" target="_blank" rel="noopener noreferrer" className="text-white font-semibold text-xs px-5 py-2.5 rounded-sm tracking-[0.08em]" style={{ background: MAROON }}>Book Now</a>
+      <header className="fixed top-0 left-0 right-0 z-40" style={{ background: "rgba(10,10,10,0.93)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${BORDER}` }}>
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between" style={{ height: 72 }}>
+          <a href="#" style={{ textDecoration: "none" }}>
+            <span className="text-white text-2xl tracking-widest block" style={{ fontFamily: "var(--font-bebas-neue)", lineHeight: 1 }}>{NAME}</span>
+            <span className="block text-[9px] tracking-[0.3em] uppercase -mt-0.5" style={{ color: ACCENT }}>Barbershop</span>
+          </a>
+          <nav className="hidden md:flex items-center gap-8">
+            {(["#services","#team","#gallery","#visit"] as const).map((href, i) => (
+              <a key={href} href={href} className="text-xs tracking-[0.2em] uppercase transition-colors hover:text-white" style={{ color: T2 }}>
+                {["Services","Team","Gallery","Visit"][i]}
+              </a>
+            ))}
+          </nav>
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+            className="text-white text-[11px] font-bold tracking-[0.2em] uppercase px-6 py-3 transition-opacity hover:opacity-90"
+            style={{ background: ACCENT }}>
+            Book Now
+          </a>
         </div>
-        <a href="https://booksy.com" target="_blank" rel="noopener noreferrer" className="md:hidden text-white font-semibold text-xs px-4 py-2 rounded-sm" style={{ background: MAROON }}>Book</a>
-      </nav>
+      </header>
 
       {/* HERO */}
-      <section className="relative flex items-center overflow-hidden" style={{ height: "100vh", minHeight: 600 }}>
+      <section className="relative w-full flex items-center justify-center overflow-hidden" style={{ minHeight: "100vh" }}>
         <div className="absolute inset-0">
-          <Image fill sizes="100vw" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1800&q=80" alt="Barber at work" className="object-cover" />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(105deg,rgba(10,16,28,0.88) 0%,rgba(10,16,28,0.55) 55%,rgba(10,16,28,0.2) 100%)" }} />
+          <Image fill sizes="100vw" src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1920&q=80" alt="Familiar Faces Barber Shop" className="object-cover" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom,rgba(10,10,10,.72) 0%,rgba(10,10,10,.48) 50%,rgba(10,10,10,.88) 100%)" }} />
+          <div className="absolute inset-0" style={{ background: "rgba(10,10,10,.3)" }} />
         </div>
-        <div className="relative z-10 max-w-[700px] px-10 ml-[6vw]" style={{ marginTop: 68 }}>
-          <div className="inline-flex items-center gap-2 text-white text-xs font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-sm mb-5" style={{ background: MAROON }}>
-            <span className="text-yellow-300">★★★★★</span> 4.7 · 109 Google Reviews
-          </div>
-          <h1 className="font-display text-white leading-[0.95] mb-5" style={{ fontSize: "clamp(3.5rem,8vw,6.5rem)", letterSpacing: "0.03em" }}>
-            YOUR NEIGHBORHOOD<br /><span style={{ color: GOLD }}>BARBERSHOP</span>
-          </h1>
-          <p className="text-white/78 text-base leading-[1.6] max-w-[520px] mb-8">
-            Familiar Faces. Columbia&apos;s community barbershop. 4.7 stars, 109 reviews, and a chair waiting for you.
+        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto" style={{ paddingTop: 100 }}>
+          <p className="text-xs tracking-[0.35em] uppercase font-medium mb-6" style={{ color: ACCENT }}>
+            Neighborhood Barbershop · {CITY}
           </p>
-          <div className="flex gap-4 flex-wrap">
-            <a href="https://booksy.com" target="_blank" rel="noopener noreferrer" className="text-white font-bold text-xs px-8 py-3.5 rounded-sm tracking-[0.1em] uppercase" style={{ background: MAROON }}>Book an Appointment</a>
-            <a href="tel:4108166449" className="text-white font-semibold text-xs px-8 py-3.5 rounded-sm tracking-[0.1em] uppercase border-2 border-white/50">Call (410) 816-6449</a>
+          <h1 className="bs-shimmer leading-none" style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "clamp(3.5rem,14vw,10rem)", letterSpacing: "0.04em" }}>
+            {NAME}
+          </h1>
+          <p className="mt-5 text-sm md:text-base tracking-widest uppercase" style={{ color: T2 }}>{EST}</p>
+          <p className="mt-3 text-base md:text-lg max-w-xl mx-auto leading-relaxed" style={{ color: T2 }}>{TAGLINE}</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+              className="text-white text-xs font-bold tracking-[0.25em] uppercase px-10 py-4 transition-opacity hover:opacity-90"
+              style={{ background: ACCENT }}>
+              Book Your Cut
+            </a>
+            <a href="#team"
+              className="border text-white text-xs font-medium tracking-[0.25em] uppercase px-10 py-4 transition-all hover:bg-white/10"
+              style={{ borderColor: "rgba(255,255,255,.35)" }}>
+              Meet The Team
+            </a>
           </div>
+          <div className="mt-14 flex items-center justify-center gap-8 flex-wrap">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-white">{RATING} ★</div>
+              <div className="text-[10px] tracking-widest uppercase mt-1" style={{ color: T3 }}>{REVIEW_COUNT} Reviews</div>
+            </div>
+            <div style={{ width: 1, height: 32, background: BORDER }} />
+            <div className="text-center">
+              <div className="text-2xl font-bold text-white">3</div>
+              <div className="text-[10px] tracking-widest uppercase mt-1" style={{ color: T3 }}>Expert Barbers</div>
+            </div>
+            <div style={{ width: 1, height: 32, background: BORDER }} />
+            <div className="text-center">
+              <div className="text-2xl font-bold text-white">Howard Co.</div>
+              <div className="text-[10px] tracking-widest uppercase mt-1" style={{ color: T3 }}>Maryland</div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+          <div className="w-px h-12" style={{ background: `linear-gradient(to bottom,${ACCENT},transparent)` }} />
+          <p className="text-[10px] tracking-[0.3em] uppercase" style={{ color: T3 }}>Scroll</p>
+        </div>
+      </section>
+
+      {/* VALUE PROP */}
+      <section style={{ background: BG2, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3">
+          {PILLARS.map((p, i) => (
+            <div key={p.title} className="flex flex-col items-center text-center px-8 py-12"
+              style={{ borderRight: i < 2 ? `1px solid ${BORDER}` : undefined }}>
+              <h3 className="text-white font-semibold text-lg tracking-wide mb-3">{p.title}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: T2 }}>{p.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="bg-white" style={{ padding: "5rem 2.5rem" }}>
-        <div className="max-w-6xl mx-auto">
-          <p className="text-xs font-bold tracking-[0.2em] uppercase mb-2" style={{ color: MAROON }}>What We Offer</p>
-          <h2 className="font-display leading-none mb-3" style={{ fontSize: "clamp(2.2rem,5vw,3.5rem)", color: ACCENT, letterSpacing: "0.04em" }}>Services &amp; Pricing</h2>
-          <p className="text-gray-500 text-sm leading-[1.65] max-w-[560px] mb-12">Straight talk on what things cost. No surprises when you sit down.</p>
-          <div className="grid md:grid-cols-4 gap-px bg-gray-200 border border-gray-200 rounded-md overflow-hidden">
-            {[
-              { num: "01", name: "Classic Cut", price: "$28", dur: "30 min", desc: "Scissor or clipper cut, clean lines, finished with a hot towel neck shave." },
-              { num: "02", name: "Fade", price: "$33", dur: "35 min", desc: "Skin, low, mid, or high fade — tight blend, clean taper, precise edgework." },
-              { num: "03", name: "Beard Trim & Shape", price: "$18", dur: "20 min", desc: "Outline, shape, and detail. Straight razor lines on the edges." },
-              { num: "04", name: "Kids Cut", price: "$22", dur: "30 min", desc: "Patient, calm, and clean. For kids 12 and under." },
-            ].map((s) => (
-              <div key={s.num} className="bg-white p-9 relative">
-                <div className="font-display text-3xl mb-2 leading-none text-gray-200">{s.num}</div>
-                <div className="font-display text-2xl mb-2 leading-none" style={{ color: ACCENT, letterSpacing: "0.04em" }}>{s.name}</div>
-                <div className="flex items-center gap-3 mb-2.5">
-                  <span className="text-xl font-bold" style={{ color: MAROON }}>{s.price}</span>
-                  <span className="text-xs text-gray-400 font-medium bg-gray-100 px-2 py-0.5 rounded-sm">{s.dur}</span>
-                </div>
-                <p className="text-gray-500 text-xs leading-[1.5]">{s.desc}</p>
+      <section id="services" className="px-4 py-24" style={{ background: BG1 }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs tracking-[0.35em] uppercase font-medium mb-4" style={{ color: ACCENT }}>What We Offer</p>
+            <h2 className="leading-none" style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "clamp(3rem,8vw,6rem)", letterSpacing: "0.04em" }}>The Menu</h2>
+            <p className="mt-4 text-sm leading-relaxed max-w-xl mx-auto" style={{ color: T2 }}>Straightforward services, fair prices. Every cut done with care and consistency.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: BORDER }}>
+            {SERVICES.map((s) => (
+              <div key={s.name} className="bs-svc relative p-8 h-full transition-all duration-300"
+                style={{ background: BG1, borderLeft: "2px solid transparent" }}>
+                {s.popular && (
+                  <span className="absolute top-4 right-4 text-[10px] tracking-[0.2em] uppercase px-2 py-0.5 border"
+                    style={{ color: ACCENT, borderColor: ACCENT }}>Popular</span>
+                )}
+                <div className="text-3xl font-bold mb-2" style={{ fontFamily: "var(--font-bebas-neue)", color: ACCENT, letterSpacing: "0.04em" }}>{s.price}</div>
+                <h3 className="text-white font-semibold text-lg mb-1">{s.name}</h3>
+                <p className="text-xs mb-3" style={{ color: T3 }}>{s.dur}</p>
+                <p className="text-sm leading-relaxed" style={{ color: T2 }}>{s.desc}</p>
               </div>
             ))}
           </div>
-          <div className="mt-8 text-center">
-            <a href="https://booksy.com" target="_blank" rel="noopener noreferrer" className="inline-block text-white font-bold text-xs px-10 py-4 rounded-sm tracking-[0.1em] uppercase" style={{ background: ACCENT }}>Book Your Cut</a>
+          <div className="text-center mt-12">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+              className="text-xs tracking-[0.25em] uppercase inline-flex items-center gap-2 transition-colors hover:opacity-70"
+              style={{ color: ACCENT }}>
+              View All Services &amp; Book Online
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+            </a>
           </div>
         </div>
       </section>
 
-      {/* STORY */}
-      <div className="grid md:grid-cols-2 min-h-[480px]">
-        <div className="relative min-h-[420px]">
-          <Image fill sizes="50vw" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=900&q=80" alt="Inside Familiar Faces Barber Shop" className="object-cover" />
-        </div>
-        <div className="flex flex-col justify-center py-16 px-14" style={{ background: ACCENT }}>
-          <p className="text-xs font-bold tracking-[0.2em] uppercase mb-2" style={{ color: GOLD }}>Our Story</p>
-          <h2 className="font-display text-white leading-none mb-5" style={{ fontSize: "clamp(2rem,4vw,3rem)", letterSpacing: "0.04em" }}>More Than a Haircut</h2>
-          <p className="text-white/75 text-sm leading-[1.7] mb-4">
-            Familiar Faces isn&apos;t just a barbershop — it&apos;s where the neighborhood checks in. You run into people you know. You get a chair that remembers your taper. You leave looking right and feeling good about it.
-          </p>
-          <p className="text-white/75 text-sm leading-[1.7] mb-6">
-            109 reviews built entirely on reputation, not marketing. Columbia&apos;s community barbershop — and the chair is waiting.
-          </p>
-          <div className="flex gap-10 pt-6 border-t border-white/10">
-            {[{ val: "4.7★", label: "Google Rating" }, { val: "109", label: "Reviews" }, { val: "3", label: "Expert Barbers" }].map((s) => (
-              <div key={s.label}>
-                <div className="font-display text-[2.5rem] leading-none" style={{ color: GOLD }}>{s.val}</div>
-                <div className="text-white/50 text-xs uppercase tracking-[0.15em] font-medium mt-1">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* TEAM */}
-      <section id="team" style={{ background: PAPER, padding: "5rem 2.5rem" }}>
-        <div className="max-w-6xl mx-auto">
-          <p className="text-xs font-bold tracking-[0.2em] uppercase mb-2" style={{ color: MAROON }}>The Barbers</p>
-          <h2 className="font-display leading-none mb-3" style={{ fontSize: "clamp(2.2rem,5vw,3.5rem)", color: ACCENT, letterSpacing: "0.04em" }}>Meet the Team</h2>
-          <p className="text-gray-500 text-sm leading-[1.65] max-w-[560px] mb-12">Every barber at Familiar Faces takes the craft seriously. Book the one you want, return to the one you trust.</p>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { name: "Darius", role: "Head Barber", bio: "Fades, tapers, and skin work. 8+ years behind the chair.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" },
-              { name: "Marcus", role: "Senior Barber", bio: "Classic cuts, beard shaping, and kids' cuts. Known for keeping the little ones calm.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80" },
-              { name: "Tre", role: "Barber", bio: "Sharp lines, clean fades, detail-focused from start to finish.", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80" },
-            ].map((m) => (
-              <div key={m.name} className="overflow-hidden rounded-sm bg-white shadow-sm">
-                <div className="relative h-[320px]">
-                  <Image fill sizes="33vw" src={m.img} alt={m.name} className="object-cover object-top" />
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top,rgba(10,16,28,0.7) 0%,transparent 50%)" }} />
+      <section id="team" className="px-4 py-24" style={{ background: BG2, borderTop: `1px solid ${BORDER}` }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs tracking-[0.35em] uppercase font-medium mb-4" style={{ color: ACCENT }}>The People Behind It</p>
+            <h2 className="leading-none" style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "clamp(3rem,8vw,6rem)", letterSpacing: "0.04em" }}>The Barbers</h2>
+            <p className="mt-4 text-sm leading-relaxed max-w-xl mx-auto" style={{ color: T2 }}>Real people, real skill. The kind of barbers you come back to.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {TEAM.map((m) => (
+              <div key={m.name} className="bs-tc relative overflow-hidden border transition-colors duration-300"
+                style={{ background: BG3, borderColor: BORDER }}>
+                <div className="relative overflow-hidden" style={{ aspectRatio: "3/4" }}>
+                  <Image fill sizes="(max-width:768px) 100vw, 33vw" src={m.img} alt={m.name} className="bs-tp object-cover" />
                 </div>
                 <div className="p-6">
-                  <div className="font-display text-2xl leading-none mb-1" style={{ color: ACCENT, letterSpacing: "0.04em" }}>{m.name}</div>
-                  <div className="text-xs font-semibold uppercase tracking-[0.15em] mb-3" style={{ color: MAROON }}>{m.role}</div>
-                  <p className="text-gray-500 text-xs leading-[1.55] mb-4">{m.bio}</p>
-                  <a href="https://booksy.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-[0.08em] border-b pb-px" style={{ color: ACCENT, borderColor: MAROON }}>Book {m.name} →</a>
+                  <p className="text-xs tracking-[0.2em] uppercase mb-1" style={{ color: ACCENT }}>{m.role}</p>
+                  <h3 className="text-white text-xl font-semibold mb-1">{m.name}</h3>
+                  <p className="text-sm mb-2" style={{ color: T2 }}>{m.spec}</p>
+                  <p className="text-xs leading-relaxed mb-5" style={{ color: T3 }}>{m.bio}</p>
+                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+                    className="inline-block border text-xs tracking-[0.2em] uppercase px-5 py-2.5 transition-all hover:opacity-80"
+                    style={{ borderColor: ACCENT, color: ACCENT }}>
+                    Book {m.name}
+                  </a>
                 </div>
               </div>
             ))}
@@ -135,112 +254,192 @@ export default function FamiliarFacesBarberShop() {
       </section>
 
       {/* REVIEWS */}
-      <section style={{ background: "#0F1620", padding: "5rem 2.5rem" }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-xs font-bold tracking-[0.2em] uppercase mb-2" style={{ color: GOLD }}>What People Say</p>
-            <h2 className="font-display text-white leading-none mb-4" style={{ fontSize: "clamp(2.2rem,5vw,3.5rem)", letterSpacing: "0.04em" }}>The Neighborhood Speaks</h2>
-            <div className="inline-flex items-center gap-3 border border-white/10 px-5 py-2.5 rounded-sm bg-white/5">
-              <span className="font-display text-yellow-300 leading-none" style={{ fontSize: "2rem" }}>4.7★</span>
-              <span className="text-white/45 text-xs uppercase tracking-[0.1em]">109 Google Reviews</span>
+      <section className="px-4 py-24" style={{ background: BG1, borderTop: `1px solid ${BORDER}` }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <svg className="w-8 h-8" viewBox="0 0 24 24">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              <div className="text-left">
+                <div className="flex items-center gap-2">
+                  <span className="text-white text-2xl font-bold">{RATING}</span>
+                  <span style={{ color: ACCENT }}>★★★★★</span>
+                </div>
+                <p className="text-[10px] tracking-widest uppercase" style={{ color: T3 }}>{REVIEW_COUNT} Google Reviews</p>
+              </div>
             </div>
+            <h2 className="leading-none" style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "clamp(2.5rem,6vw,5rem)", letterSpacing: "0.04em" }}>What Clients Say</h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { text: '"Best shop in Columbia. Darius is the man — my fade has been consistent for two years straight. I don\'t go anywhere else."', author: "— Matt C." },
-              { text: '"Great vibes, great cuts. My son won\'t go anywhere else — Marcus keeps him laughing the whole time and the cut is always clean."', author: "— Joe T." },
-              { text: '"Community feel you can\'t get at the chains. These barbers know your name. They know your fade. It\'s exactly what a barbershop should be."', author: "— Josiah R." },
-            ].map((r) => (
-              <div key={r.author} className="p-8 rounded-sm border border-white/8 bg-white/5">
-                <div className="text-yellow-300 text-base mb-4">★★★★★</div>
-                <p className="text-white/80 text-sm leading-[1.65] italic mb-5">{r.text}</p>
-                <div className="text-xs font-bold text-white/45 uppercase tracking-[0.12em]">{r.author}</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: BORDER }}>
+            {REVIEWS.map((r) => (
+              <div key={r.name} className="p-7" style={{ background: BG1 }}>
+                <div className="flex gap-0.5 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style={{ color: ACCENT }}>
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-sm leading-relaxed mb-5" style={{ color: T2 }}>&ldquo;{r.text}&rdquo;</p>
+                <p className="text-white text-sm font-medium">{r.name}</p>
+                <p className="text-xs mt-0.5" style={{ color: T3 }}>{r.sub}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* VISIT */}
-      <div id="visit" className="grid md:grid-cols-2 min-h-[420px]">
-        <div className="flex flex-col justify-center bg-white py-16 px-14">
-          <p className="text-xs font-bold tracking-[0.2em] uppercase mb-2" style={{ color: MAROON }}>Find Us</p>
-          <h2 className="font-display leading-none mb-6" style={{ fontSize: "clamp(2.2rem,5vw,3.5rem)", color: ACCENT, letterSpacing: "0.04em" }}>Come In</h2>
-          <div className="space-y-6">
-            <div>
-              <div className="text-xs font-bold tracking-[0.15em] uppercase mb-1" style={{ color: MAROON }}>Address</div>
-              <div className="text-sm leading-[1.5]" style={{ color: INK }}>6325 Woodside Ct #200<br />Columbia, MD 21046</div>
-            </div>
-            <div>
-              <div className="text-xs font-bold tracking-[0.15em] uppercase mb-1" style={{ color: MAROON }}>Hours</div>
-              <div className="text-sm leading-[1.5]" style={{ color: INK }}>Mon–Fri &nbsp; 9:00 am – 7:00 pm<br />Saturday &nbsp; 8:00 am – 5:00 pm<br />Sunday &nbsp; Closed</div>
-            </div>
-            <div>
-              <div className="text-xs font-bold tracking-[0.15em] uppercase mb-1" style={{ color: MAROON }}>Phone</div>
-              <a href="tel:4108166449" className="text-sm" style={{ color: INK }}>(410) 816-6449</a>
-            </div>
+      {/* GALLERY */}
+      <section id="gallery" className="px-4 py-24" style={{ background: BG2, borderTop: `1px solid ${BORDER}` }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs tracking-[0.35em] uppercase font-medium mb-4" style={{ color: ACCENT }}>The Work</p>
+            <h2 className="leading-none" style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "clamp(3rem,8vw,6rem)", letterSpacing: "0.04em" }}>Fresh From The Chair</h2>
+            <p className="mt-4 text-sm" style={{ color: T2 }}>The cuts speak for themselves.</p>
           </div>
-          <div className="mt-6">
-            <a href="https://booksy.com" target="_blank" rel="noopener noreferrer" className="inline-block text-white font-bold text-xs px-7 py-3.5 tracking-[0.1em] uppercase" style={{ background: MAROON }}>Book Online Now</a>
-          </div>
-        </div>
-        <div className="relative min-h-[380px]">
-          <Image fill sizes="50vw" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=900&q=80" alt="Barbershop exterior" className="object-cover" />
-        </div>
-      </div>
-
-      {/* INSTAGRAM */}
-      <section style={{ background: PAPER, padding: "5rem 2.5rem" }}>
-        <div className="max-w-6xl mx-auto">
-          <p className="text-xs font-bold tracking-[0.2em] uppercase mb-2" style={{ color: MAROON }}>Follow Along</p>
-          <h2 className="font-display leading-none mb-3" style={{ fontSize: "clamp(2.2rem,5vw,3.5rem)", color: ACCENT, letterSpacing: "0.04em" }}>@familiarfacescolumbia</h2>
-          <p className="text-gray-500 text-sm leading-[1.65] max-w-[560px] mb-10">Fresh cuts, familiar faces. Follow us on Instagram for daily reveals.</p>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-1">
-            {[
-              "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&q=80",
-              "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=400&q=80",
-              "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
-              "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
-              "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80",
-              "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&q=80",
-            ].map((src, i) => (
-              <a key={i} href="https://instagram.com/familiarfacescolumbia" target="_blank" rel="noopener noreferrer" className="aspect-square overflow-hidden relative block">
-                <Image fill sizes="(max-width:768px) 33vw, 16vw" src={src} alt="Barbershop" className="object-cover hover:scale-105 transition-transform duration-300" />
-              </a>
+          <div className="columns-2 md:columns-3 gap-3 space-y-3">
+            {GALLERY.map((src, i) => (
+              <div key={i} className="bs-gi relative overflow-hidden break-inside-avoid cursor-pointer"
+                style={{ aspectRatio: "1/1", background: BG3 }}>
+                <Image fill sizes="(max-width:768px) 50vw, 33vw" src={src} alt={`Cut ${i + 1}`} className="object-cover" />
+                <div className="bs-go absolute inset-0 flex items-center justify-center" style={{ background: `${ACCENT}CC` }}>
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </div>
+              </div>
             ))}
           </div>
-          <div className="mt-6 text-center">
-            <a href="https://instagram.com/familiarfacescolumbia" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold tracking-[0.08em]" style={{ color: ACCENT }}>@familiarfacescolumbia</a>
+          <div className="text-center mt-12">
+            <a href={IG_URL} target="_blank" rel="noopener noreferrer"
+              className="text-xs tracking-[0.25em] uppercase inline-flex items-center gap-2 hover:opacity-70 transition-opacity"
+              style={{ color: ACCENT }}>
+              Follow {IG_HANDLE} on Instagram
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+            </a>
           </div>
         </div>
       </section>
 
+      {/* LOCATION & HOURS */}
+      <section id="visit" className="px-4 py-24" style={{ background: BG1, borderTop: `1px solid ${BORDER}` }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs tracking-[0.35em] uppercase font-medium mb-4" style={{ color: ACCENT }}>Find Us</p>
+            <h2 className="leading-none" style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "clamp(3rem,8vw,6rem)", letterSpacing: "0.04em" }}>Location &amp; Hours</h2>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 border" style={{ borderColor: BORDER }}>
+            <div className="relative min-h-[400px]" style={{ background: BG3 }}>
+              <Image fill sizes="(max-width:1024px) 100vw, 50vw" src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=900&q=80" alt="Familiar Faces interior" className="object-cover" />
+              <div className="absolute inset-0" style={{ background: "rgba(10,10,10,.35)" }} />
+            </div>
+            <div className="p-8 lg:p-12 border-t lg:border-t-0 lg:border-l" style={{ background: BG2, borderColor: BORDER }}>
+              <div className="mb-8">
+                <p className="text-xs tracking-[0.25em] uppercase font-medium mb-3" style={{ color: ACCENT }}>Address</p>
+                <p className="text-white text-lg leading-relaxed">6325 Woodside Ct #200<br />Columbia, MD 21046</p>
+                <a href="https://maps.google.com/?q=Familiar+Faces+Barber+Shop+Columbia+MD" target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-4 text-xs tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
+                  style={{ color: ACCENT }}>
+                  Get Directions
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+                </a>
+              </div>
+              <div className="mb-8">
+                <p className="text-xs tracking-[0.25em] uppercase font-medium mb-3" style={{ color: ACCENT }}>Hours</p>
+                <div className="space-y-2">
+                  {HOURS.map((h) => (
+                    <div key={h.day} className="flex justify-between items-center">
+                      <span className="text-sm" style={{ color: T2 }}>{h.day}</span>
+                      <span className="text-sm" style={{ color: h.closed ? T3 : "#fff" }}>{h.time}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <p className="text-xs tracking-[0.25em] uppercase font-medium mb-3" style={{ color: ACCENT }}>Contact</p>
+                <a href={`tel:${PHONE_RAW}`} className="block text-sm hover:text-white transition-colors mb-4" style={{ color: T2 }}>{PHONE}</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+                  className="inline-block text-white text-xs font-bold tracking-[0.2em] uppercase px-6 py-3 transition-opacity hover:opacity-90"
+                  style={{ background: ACCENT }}>
+                  Book an Appointment
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="relative overflow-hidden" style={{ background: BG1, padding: "8rem 1rem", borderTop: `1px solid ${BORDER}` }}>
+        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: `linear-gradient(to right,transparent,${ACCENT},transparent)`, opacity: .5 }} />
+        <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: `linear-gradient(to right,transparent,${ACCENT},transparent)`, opacity: .5 }} />
+        <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none" aria-hidden>
+          <span style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "8vw", color: "rgba(255,255,255,.025)", letterSpacing: "0.05em", whiteSpace: "nowrap" }}>FAMILIAR FACES</span>
+        </div>
+        <div className="relative max-w-4xl mx-auto text-center px-4">
+          <p className="text-xs tracking-[0.35em] uppercase font-medium mb-6" style={{ color: ACCENT }}>Ready?</p>
+          <h2 className="leading-none text-white mb-6" style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "clamp(3rem,10vw,7rem)", letterSpacing: "0.04em" }}>
+            Your Barber Is Waiting.
+          </h2>
+          <p className="text-lg md:text-xl mb-12 max-w-xl mx-auto leading-relaxed" style={{ color: T2 }}>
+            Walk in a stranger. Come back a regular.
+          </p>
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+            className="inline-block text-white text-sm font-bold tracking-[0.25em] uppercase px-14 py-5 transition-opacity hover:opacity-90"
+            style={{ background: ACCENT, boxShadow: `0 4px 40px ${ACCENT}44` }}>
+            Book Your Appointment
+          </a>
+        </div>
+      </section>
+
       {/* FOOTER */}
-      <footer style={{ background: ACCENT, padding: "3.5rem 2.5rem" }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-12 pb-8 border-b border-white/8">
+      <footer style={{ background: BG2, borderTop: `2px solid ${ACCENT}55` }}>
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
-              <div className="font-display text-2xl text-white tracking-[0.08em] mb-3">FAMILIAR <span style={{ color: GOLD }}>FACES</span></div>
-              <p className="text-white/50 text-xs leading-[1.65] max-w-[300px]">Columbia&apos;s community barbershop. 6325 Woodside Ct #200, Columbia, MD 21046. Every chair. Every barber. Every cut — done right.</p>
+              <span className="text-white text-3xl tracking-widest block" style={{ fontFamily: "var(--font-bebas-neue)", lineHeight: 1 }}>{NAME}</span>
+              <span className="block text-[9px] tracking-[0.3em] uppercase mb-4" style={{ color: ACCENT }}>Barbershop</span>
+              <p className="text-sm leading-relaxed max-w-xs" style={{ color: T2 }}>Columbia&apos;s neighborhood shop. Where strangers become regulars and regulars become family.</p>
+              <a href={IG_URL} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 mt-6 text-xs tracking-[0.15em] uppercase hover:opacity-80 transition-opacity"
+                style={{ color: T2 }}>
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                {IG_HANDLE}
+              </a>
             </div>
             <div>
-              <div className="text-xs font-bold tracking-[0.18em] uppercase text-white/35 mb-4">Navigate</div>
-              <ul className="space-y-2">
-                {[["#services", "Services"], ["#team", "Team"], ["#visit", "Visit Us"], ["https://booksy.com", "Book Online"]].map(([href, label]) => (
-                  <li key={label}><a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} className="text-white/55 text-xs hover:text-white transition-colors">{label}</a></li>
+              <h3 className="text-xs tracking-[0.25em] uppercase font-medium mb-6" style={{ color: ACCENT }}>Quick Links</h3>
+              <ul className="space-y-3">
+                {[["#services","Services"],["#team","Team"],["#gallery","Gallery"],["#visit","Visit Us"],[BOOKING_URL,"Book Now"]].map(([href,label]) => (
+                  <li key={label}>
+                    <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="text-sm hover:text-white transition-colors" style={{ color: T2 }}>{label}</a>
+                  </li>
                 ))}
               </ul>
             </div>
             <div>
-              <div className="text-xs font-bold tracking-[0.18em] uppercase text-white/35 mb-4">Contact</div>
-              <ul className="space-y-2">
-                <li><a href="tel:4108166449" className="text-white/55 text-xs hover:text-white transition-colors">(410) 816-6449</a></li>
-                <li><span className="text-white/55 text-xs">@familiarfacescolumbia</span></li>
-              </ul>
+              <h3 className="text-xs tracking-[0.25em] uppercase font-medium mb-6" style={{ color: ACCENT }}>Find Us</h3>
+              <div className="space-y-3">
+                <p className="text-sm leading-relaxed" style={{ color: T2 }}>6325 Woodside Ct #200<br />Columbia, MD 21046</p>
+                <a href={`tel:${PHONE_RAW}`} className="block text-sm hover:text-white transition-colors" style={{ color: T2 }}>{PHONE}</a>
+                <div className="pt-2 space-y-1.5">
+                  {HOURS.map((h) => (
+                    <div key={h.day} className="flex justify-between text-xs" style={{ color: h.closed ? T3 : T2 }}>
+                      <span>{h.day}</span><span>{h.time}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-          <div className="flex flex-wrap items-center justify-between gap-3 pt-6">
-            <span className="text-white/30 text-xs">© 2026 Familiar Faces Barber Shop · Columbia, MD</span>
+          <div className="mt-12 pt-8 border-t flex flex-col sm:flex-row justify-between items-center gap-4" style={{ borderColor: BORDER }}>
+            <p className="text-xs" style={{ color: T3 }}>&copy; 2026 Familiar Faces Barber Shop. All rights reserved.</p>
+            <p className="text-xs" style={{ color: T3 }}>Concept by <span style={{ color: ACCENT }}>Thryve Operations</span></p>
           </div>
         </div>
       </footer>

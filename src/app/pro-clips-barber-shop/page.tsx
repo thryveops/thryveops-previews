@@ -1,325 +1,446 @@
 import Image from "next/image";
-import Link from "next/link";
 
 export const metadata = {
   title: "Pro Clips Barber Shop — Columbia, MD",
   description: "Twenty years on Snowden River Pkwy. Pro Clips Barber Shop — the barbers Columbia actually trusts. Book online at Booksy.",
 };
 
-const ACCENT = "#1A2942";
-const MAROON = "#7A1F2B";
-const PAPER = "#FAFAF7";
+// ─── Brand constants ──────────────────────────────────────────────────────────
+const NAME        = "PRO CLIPS";
+const TAGLINE     = "Twenty years on Snowden River Pkwy. The barbers Columbia actually trusts.";
+const CITY        = "Columbia, MD";
+const PHONE       = "(410) 290-5434";
+const PHONE_RAW   = "4102905434";
+const BOOKING_URL = "https://booksy.com";
+const IG_HANDLE   = "@proclips_columbia";
+const IG_URL      = "https://instagram.com/proclips_columbia";
+const RATING      = "4.5";
+const REVIEW_COUNT = "139";
+const EST         = "Est. 2002";
 
-const team = [
-  { name: "Marcus", role: "Head Barber · 15+ Years", bio: "Fades, tapers, and lineups. Been behind the chair at Pro Clips long enough to have cut the same client at 10 and again at 25.", src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" },
-  { name: "Devon", role: "Senior Barber", bio: "Precise edges, clean fades, and a straight razor finish that makes the difference between a good cut and a great one.", src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" },
-  { name: "Jaylen", role: "Barber", bio: "Handles the full service menu with strong technical skills and a sharp eye for detail on every lineup.", src: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80" },
+// Accent — maroon; swap this single constant to re-theme for a different shop
+const ACCENT       = "#9B2335";
+const ACCENT_LIGHT = "#B52A3E";
+const BG1          = "#0A0A0A";
+const BG2          = "#111111";
+const BG3          = "#1A1A1A";
+const BORDER       = "#2A2A2A";
+const T2           = "#A0A0A0";
+const T3           = "#606060";
+
+const SERVICES = [
+  { name: "Classic Cut",     price: "$28", dur: "30 min", desc: "Scissor or clipper cut, finished clean. The standard, done right.", popular: false },
+  { name: "Fade",            price: "$33", dur: "35 min", desc: "Low, mid, or high fade with a clean lineup and crisp edges.",     popular: true  },
+  { name: "Beard Trim",      price: "$18", dur: "20 min", desc: "Shape, line, and trim. Straight razor finish on the edges.",      popular: false },
+  { name: "Kids Cut",        price: "$22", dur: "30 min", desc: "Patient with the young ones. 12 and under welcome.",             popular: false },
+  { name: "Cut + Beard",     price: "$45", dur: "50 min", desc: "Full combo — haircut with beard shape and straight razor cleanup.", popular: false },
+  { name: "Hot Towel Shave", price: "$30", dur: "30 min", desc: "Traditional straight razor shave with hot towel treatment.",     popular: false },
 ];
 
-const reviews = [
-  { quote: "Been going here since high school. Never missed. Marcus knows exactly what I want without me saying anything.", name: "DeShawn W.", sub: "Regular Client" },
-  { quote: "Pro Clips is the real deal. No gimmicks, just good cuts at a fair price. Been coming for years and it's always consistent.", name: "Tony M.", sub: "Regular Client" },
-  { quote: "Brought my son for his first fade. Patient, professional, nailed it. He's been asking to go back every week since.", name: "Marcus B.", sub: "Kids Cut" },
+const TEAM = [
+  { name: "Marcus", role: "Head Barber", spec: "Fades, tapers & lineups · 15+ yrs", bio: "Been behind the chair at Pro Clips long enough to have cut the same client at 10 and again at 25.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" },
+  { name: "Devon",  role: "Senior Barber", spec: "Precision edges & straight razor finishes", bio: "Clean fades and a straight razor finish that makes the difference between a good cut and a great one.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80" },
+  { name: "Jaylen", role: "Barber", spec: "Full service menu, sharp eye for detail", bio: "Handles the full service menu with strong technical skills and a sharp eye on every lineup.", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80" },
 ];
 
-const igPhotos = [
-  "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&q=80",
-  "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=400&q=80",
-  "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&q=80",
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
-  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
-  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80",
+const REVIEWS = [
+  { text: "Been going here since high school. Never missed. Marcus knows exactly what I want without me saying anything.", name: "DeShawn W.", sub: "Regular" },
+  { text: "Pro Clips is the real deal. No gimmicks, just good cuts at a fair price. Been coming for years and it's always consistent.", name: "Tony M.", sub: "Regular" },
+  { text: "Brought my son for his first fade. Patient, professional, nailed it. He's been asking to go back every week since.", name: "Marcus B.", sub: "Kids Cut" },
+  { text: "Best fades in Columbia, no debate. Walk in looking rough, walk out looking right. That's the promise and they deliver.", name: "Jordan P.", sub: "Regular" },
+];
+
+const GALLERY = [
+  "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=700&q=80",
+  "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=700&q=80",
+  "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=700&q=80",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=80",
+  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=700&q=80",
+  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=700&q=80",
+];
+
+const HOURS = [
+  { day: "Monday – Friday", time: "9:00 AM – 7:00 PM", closed: false },
+  { day: "Saturday",        time: "8:00 AM – 5:00 PM", closed: false },
+  { day: "Sunday",          time: "Closed",             closed: true  },
+];
+
+const PILLARS = [
+  { title: "Precision Cuts",   desc: "Every line, every fade — dialed in and finished clean." },
+  { title: "Client-First",     desc: "We listen. You leave looking exactly how you envisioned." },
+  { title: "Since 2002",       desc: "Twenty years of fades, lineups, and Columbia community." },
 ];
 
 export default function Page() {
   return (
-    <div style={{ backgroundColor: PAPER, color: "#0F1620" }}>
+    <div style={{ background: BG1, color: "#fff", fontFamily: "var(--font-inter)" }}>
+      <style>{`
+        @keyframes bs-shimmer { from { background-position: -200% center; } to { background-position: 200% center; } }
+        .bs-shimmer {
+          background: linear-gradient(90deg, ${ACCENT}, ${ACCENT_LIGHT}, #fff, ${ACCENT_LIGHT}, ${ACCENT});
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: bs-shimmer 4s linear infinite;
+        }
+        .bs-svc:hover  { background-color: ${BG2}; border-left-color: ${ACCENT} !important; }
+        .bs-tc:hover   { border-color: ${ACCENT} !important; }
+        .bs-tp         { filter: grayscale(100%); transition: filter .5s, transform .5s; }
+        .bs-tc:hover .bs-tp { filter: grayscale(0); transform: scale(1.04); }
+        .bs-go         { opacity: 0; transition: opacity .3s; }
+        .bs-gi:hover .bs-go { opacity: 1; }
+        .bs-gi img     { transition: transform .5s; }
+        .bs-gi:hover img { transform: scale(1.08); }
+      `}</style>
+
+      {/* FLOATING BOOK BUTTON */}
+      <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 text-white text-[11px] font-bold tracking-[0.2em] uppercase px-6 py-3.5 shadow-2xl transition-opacity hover:opacity-90"
+        style={{ background: ACCENT }}>
+        Book Now
+      </a>
 
       {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-50 h-16 shadow-lg" style={{ backgroundColor: ACCENT }}>
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-full">
-          <a href="#" className="font-display text-2xl text-white tracking-widest">PRO CLIPS</a>
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#services" className="text-gray-300 hover:text-white text-sm font-medium transition-colors">Services</a>
-            <a href="#team" className="text-gray-300 hover:text-white text-sm font-medium transition-colors">Team</a>
-            <a href="#visit" className="text-gray-300 hover:text-white text-sm font-medium transition-colors">Visit</a>
-            <a href="https://booksy.com" target="_blank" className="text-white text-sm font-semibold px-5 py-2 rounded hover:opacity-90 transition-opacity" style={{ backgroundColor: MAROON }}>Book Now</a>
-          </div>
-          <a href="https://booksy.com" target="_blank" className="md:hidden text-white text-sm font-semibold px-4 py-2 rounded" style={{ backgroundColor: MAROON }}>Book</a>
+      <header className="fixed top-0 left-0 right-0 z-40" style={{ background: "rgba(10,10,10,0.93)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${BORDER}` }}>
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between" style={{ height: 72 }}>
+          <a href="#" style={{ textDecoration: "none" }}>
+            <span className="text-white text-2xl tracking-widest block" style={{ fontFamily: "var(--font-bebas-neue)", lineHeight: 1 }}>{NAME}</span>
+            <span className="block text-[9px] tracking-[0.3em] uppercase -mt-0.5" style={{ color: ACCENT }}>Barbershop</span>
+          </a>
+          <nav className="hidden md:flex items-center gap-8">
+            {(["#services","#team","#gallery","#visit"] as const).map((href, i) => (
+              <a key={href} href={href} className="text-xs tracking-[0.2em] uppercase transition-colors hover:text-white" style={{ color: T2 }}>
+                {["Services","Team","Gallery","Visit"][i]}
+              </a>
+            ))}
+          </nav>
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+            className="text-white text-[11px] font-bold tracking-[0.2em] uppercase px-6 py-3 transition-opacity hover:opacity-90"
+            style={{ background: ACCENT }}>
+            Book Now
+          </a>
         </div>
-      </nav>
+      </header>
 
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+      <section className="relative w-full flex items-center justify-center overflow-hidden" style={{ minHeight: "100vh" }}>
         <div className="absolute inset-0">
-          <Image fill sizes="100vw" className="object-cover" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1800&q=80" alt="Barber shop" />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(15,22,32,0.90) 0%, rgba(15,22,32,0.60) 60%, rgba(15,22,32,0.40) 100%)" }} />
+          <Image fill sizes="100vw" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1920&q=80" alt="Pro Clips Barber Shop" className="object-cover" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom,rgba(10,10,10,.72) 0%,rgba(10,10,10,.48) 50%,rgba(10,10,10,.88) 100%)" }} />
+          <div className="absolute inset-0" style={{ background: "rgba(10,10,10,.3)" }} />
         </div>
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <div className="inline-block text-white text-xs font-semibold tracking-widest px-4 py-1.5 mb-6 uppercase" style={{ backgroundColor: MAROON }}>
-            Est. 2002 · Snowden River Pkwy, Columbia
-          </div>
-          <h1 className="font-display text-8xl md:text-9xl text-white tracking-widest leading-none mb-6">PRO CLIPS</h1>
-          <p className="text-gray-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Twenty years on Snowden River Pkwy. The barbers Columbia actually trusts.
+        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto" style={{ paddingTop: 100 }}>
+          <p className="text-xs tracking-[0.35em] uppercase font-medium mb-6" style={{ color: ACCENT }}>
+            Precision Barbershop · {CITY}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="https://booksy.com" target="_blank" className="text-white font-semibold px-8 py-4 rounded text-base hover:opacity-90 transition-opacity w-full sm:w-auto" style={{ backgroundColor: MAROON }}>
-              Book an Appointment
+          <h1 className="bs-shimmer leading-none" style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "clamp(5rem,18vw,13rem)", letterSpacing: "0.04em" }}>
+            {NAME}
+          </h1>
+          <p className="mt-5 text-sm md:text-base tracking-widest uppercase" style={{ color: T2 }}>{EST}</p>
+          <p className="mt-3 text-base md:text-lg max-w-xl mx-auto leading-relaxed" style={{ color: T2 }}>{TAGLINE}</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+              className="text-white text-xs font-bold tracking-[0.25em] uppercase px-10 py-4 transition-opacity hover:opacity-90"
+              style={{ background: ACCENT }}>
+              Book Your Cut
             </a>
-            <a href="tel:4102905434" className="border-2 border-white text-white font-semibold px-8 py-4 rounded text-base hover:bg-white hover:text-[#1A2942] transition-all w-full sm:w-auto">
-              Call (410) 290-5434
+            <a href="#team"
+              className="border text-white text-xs font-medium tracking-[0.25em] uppercase px-10 py-4 transition-all hover:bg-white/10"
+              style={{ borderColor: "rgba(255,255,255,.35)" }}>
+              Meet The Team
             </a>
           </div>
-          <div className="mt-12 flex items-center justify-center gap-8 text-gray-300 text-sm flex-wrap">
-            <div className="flex items-center gap-2">
-              <span className="text-amber-400 font-bold">4.5 ★</span>
-              <span>139 Reviews</span>
+          <div className="mt-14 flex items-center justify-center gap-8 flex-wrap">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-white">{RATING} ★</div>
+              <div className="text-[10px] tracking-widest uppercase mt-1" style={{ color: T3 }}>{REVIEW_COUNT} Reviews</div>
             </div>
-            <div className="w-px h-4 bg-gray-600 hidden sm:block" />
-            <div>In Business Since 2002</div>
-            <div className="w-px h-4 bg-gray-600 hidden sm:block" />
-            <div className="hidden sm:block">Howard County, MD</div>
+            <div style={{ width: 1, height: 32, background: BORDER }} />
+            <div className="text-center">
+              <div className="text-2xl font-bold text-white">20+</div>
+              <div className="text-[10px] tracking-widest uppercase mt-1" style={{ color: T3 }}>Years Open</div>
+            </div>
+            <div style={{ width: 1, height: 32, background: BORDER }} />
+            <div className="text-center">
+              <div className="text-2xl font-bold text-white">Howard Co.</div>
+              <div className="text-[10px] tracking-widest uppercase mt-1" style={{ color: T3 }}>Maryland</div>
+            </div>
           </div>
+        </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+          <div className="w-px h-12" style={{ background: `linear-gradient(to bottom,${ACCENT},transparent)` }} />
+          <p className="text-[10px] tracking-[0.3em] uppercase" style={{ color: T3 }}>Scroll</p>
+        </div>
+      </section>
+
+      {/* VALUE PROP */}
+      <section style={{ background: BG2, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3">
+          {PILLARS.map((p, i) => (
+            <div key={p.title} className="flex flex-col items-center text-center px-8 py-12"
+              style={{ borderRight: i < 2 ? `1px solid ${BORDER}` : undefined }}>
+              <h3 className="text-white font-semibold text-lg tracking-wide mb-3">{p.title}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: T2 }}>{p.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="services" className="px-4 py-24" style={{ background: BG1 }}>
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <p className="font-semibold text-sm tracking-widest uppercase mb-3" style={{ color: MAROON }}>What We Offer</p>
-            <h2 className="font-display text-6xl tracking-wide" style={{ color: ACCENT }}>SERVICES</h2>
+            <p className="text-xs tracking-[0.35em] uppercase font-medium mb-4" style={{ color: ACCENT }}>What We Offer</p>
+            <h2 className="leading-none" style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "clamp(3rem,8vw,6rem)", letterSpacing: "0.04em" }}>The Menu</h2>
+            <p className="mt-4 text-sm leading-relaxed max-w-xl mx-auto" style={{ color: T2 }}>Premium services, honest prices. Every cut backed by years of precision training.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-            {/* Classic Cut */}
-            <div className="border border-gray-100 rounded-xl p-8 hover:shadow-lg transition-shadow text-center">
-              <div className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-5" style={{ backgroundColor: ACCENT }}>
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" />
-                </svg>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: BORDER }}>
+            {SERVICES.map((s) => (
+              <div key={s.name} className="bs-svc relative p-8 h-full transition-all duration-300"
+                style={{ background: BG1, borderLeft: "2px solid transparent" }}>
+                {s.popular && (
+                  <span className="absolute top-4 right-4 text-[10px] tracking-[0.2em] uppercase px-2 py-0.5 border"
+                    style={{ color: ACCENT, borderColor: ACCENT }}>Popular</span>
+                )}
+                <div className="text-3xl font-bold mb-2" style={{ fontFamily: "var(--font-bebas-neue)", color: ACCENT, letterSpacing: "0.04em" }}>{s.price}</div>
+                <h3 className="text-white font-semibold text-lg mb-1">{s.name}</h3>
+                <p className="text-xs mb-3" style={{ color: T3 }}>{s.dur}</p>
+                <p className="text-sm leading-relaxed" style={{ color: T2 }}>{s.desc}</p>
               </div>
-              <h3 className="font-display text-2xl tracking-wide mb-2" style={{ color: ACCENT }}>Classic Cut</h3>
-              <p className="text-gray-500 text-sm mb-6">Scissor or clipper cut, finished clean. The standard done right.</p>
-              <div className="text-3xl font-bold mb-1" style={{ color: ACCENT }}>$28</div>
-              <div className="text-gray-400 text-xs mb-5">~30 min</div>
-              <a href="https://booksy.com" target="_blank" className="inline-block text-white text-sm font-semibold px-6 py-2.5 rounded hover:opacity-90 transition-opacity" style={{ backgroundColor: ACCENT }}>Book</a>
-            </div>
-
-            {/* Fade — Most Booked */}
-            <div className="rounded-xl p-8 hover:shadow-lg transition-shadow text-center relative overflow-hidden" style={{ border: `2px solid ${MAROON}` }}>
-              <div className="absolute top-4 right-4 text-white text-xs font-bold px-3 py-1 rounded-full" style={{ backgroundColor: MAROON }}>Most Booked</div>
-              <div className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-5" style={{ backgroundColor: MAROON }}>
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                </svg>
-              </div>
-              <h3 className="font-display text-2xl tracking-wide mb-2" style={{ color: ACCENT }}>Fade</h3>
-              <p className="text-gray-500 text-sm mb-6">Low, mid, or high fade with a clean lineup and crisp edges.</p>
-              <div className="text-3xl font-bold mb-1" style={{ color: ACCENT }}>$33</div>
-              <div className="text-gray-400 text-xs mb-5">~35 min</div>
-              <a href="https://booksy.com" target="_blank" className="inline-block text-white text-sm font-semibold px-6 py-2.5 rounded hover:opacity-90 transition-opacity" style={{ backgroundColor: MAROON }}>Book</a>
-            </div>
-
-            {/* Beard Trim */}
-            <div className="border border-gray-100 rounded-xl p-8 hover:shadow-lg transition-shadow text-center">
-              <div className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-5" style={{ backgroundColor: ACCENT }}>
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
-              <h3 className="font-display text-2xl tracking-wide mb-2" style={{ color: ACCENT }}>Beard Trim</h3>
-              <p className="text-gray-500 text-sm mb-6">Shape, line, and trim. Straight razor finish on the edges.</p>
-              <div className="text-3xl font-bold mb-1" style={{ color: ACCENT }}>$18</div>
-              <div className="text-gray-400 text-xs mb-5">~20 min</div>
-              <a href="https://booksy.com" target="_blank" className="inline-block text-white text-sm font-semibold px-6 py-2.5 rounded hover:opacity-90 transition-opacity" style={{ backgroundColor: ACCENT }}>Book</a>
-            </div>
-
-            {/* Kids Cut */}
-            <div className="border border-gray-100 rounded-xl p-8 hover:shadow-lg transition-shadow text-center">
-              <div className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-5" style={{ backgroundColor: ACCENT }}>
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </div>
-              <h3 className="font-display text-2xl tracking-wide mb-2" style={{ color: ACCENT }}>Kids Cut</h3>
-              <p className="text-gray-500 text-sm mb-6">Patient with the young ones. 12 and under welcome at the chair.</p>
-              <div className="text-3xl font-bold mb-1" style={{ color: ACCENT }}>$22</div>
-              <div className="text-gray-400 text-xs mb-5">~30 min</div>
-              <a href="https://booksy.com" target="_blank" className="inline-block text-white text-sm font-semibold px-6 py-2.5 rounded hover:opacity-90 transition-opacity" style={{ backgroundColor: ACCENT }}>Book</a>
-            </div>
-
+            ))}
           </div>
           <div className="text-center mt-12">
-            <a href="https://booksy.com" target="_blank" className="inline-block text-white font-semibold px-10 py-4 rounded-lg text-base hover:opacity-90 transition-opacity" style={{ backgroundColor: ACCENT }}>
-              View All Barbers & Book on Booksy
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+              className="text-xs tracking-[0.25em] uppercase inline-flex items-center gap-2 transition-colors hover:opacity-70"
+              style={{ color: ACCENT }}>
+              View All Services &amp; Book Online
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
             </a>
           </div>
         </div>
       </section>
 
       {/* TEAM */}
-      <section id="team" className="py-24" style={{ backgroundColor: PAPER }}>
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="team" className="px-4 py-24" style={{ background: BG2, borderTop: `1px solid ${BORDER}` }}>
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <p className="font-semibold text-sm tracking-widest uppercase mb-3" style={{ color: MAROON }}>The Chairs</p>
-            <h2 className="font-display text-6xl tracking-wide" style={{ color: ACCENT }}>THE TEAM</h2>
+            <p className="text-xs tracking-[0.35em] uppercase font-medium mb-4" style={{ color: ACCENT }}>The Craft</p>
+            <h2 className="leading-none" style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "clamp(3rem,8vw,6rem)", letterSpacing: "0.04em" }}>The Barbers</h2>
+            <p className="mt-4 text-sm leading-relaxed max-w-xl mx-auto" style={{ color: T2 }}>Skilled hands. Sharp eyes. Zero compromises.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {team.map((m) => (
-              <div key={m.name} className="text-center">
-                <div className="relative w-52 h-52 mx-auto mb-6 rounded-full overflow-hidden" style={{ border: `4px solid ${MAROON}` }}>
-                  <Image fill sizes="208px" className="object-cover" src={m.src} alt={m.name} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {TEAM.map((m) => (
+              <div key={m.name} className="bs-tc relative overflow-hidden border transition-colors duration-300"
+                style={{ background: BG3, borderColor: BORDER }}>
+                <div className="relative overflow-hidden" style={{ aspectRatio: "3/4" }}>
+                  <Image fill sizes="(max-width:768px) 100vw, 33vw" src={m.img} alt={m.name} className="bs-tp object-cover" />
+                  <div className="absolute inset-0 border-2 border-transparent transition-colors duration-300" style={{ borderColor: "transparent" }} />
                 </div>
-                <h3 className="font-display text-2xl tracking-wide" style={{ color: ACCENT }}>{m.name}</h3>
-                <p className="font-medium text-sm mt-1 mb-3" style={{ color: MAROON }}>{m.role}</p>
-                <p className="text-gray-500 text-sm max-w-xs mx-auto mb-5">{m.bio}</p>
-                <a href="https://booksy.com" target="_blank" className="inline-block border-2 text-sm font-semibold px-6 py-2 rounded hover:text-white transition-all" style={{ borderColor: MAROON, color: MAROON }}>
-                  Book with {m.name}
-                </a>
+                <div className="p-6">
+                  <p className="text-xs tracking-[0.2em] uppercase mb-1" style={{ color: ACCENT }}>{m.role}</p>
+                  <h3 className="text-white text-xl font-semibold mb-1">{m.name}</h3>
+                  <p className="text-sm mb-2" style={{ color: T2 }}>{m.spec}</p>
+                  <p className="text-xs leading-relaxed mb-5" style={{ color: T3 }}>{m.bio}</p>
+                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+                    className="inline-block border text-xs tracking-[0.2em] uppercase px-5 py-2.5 transition-all hover:opacity-80"
+                    style={{ borderColor: ACCENT, color: ACCENT }}>
+                    Book {m.name}
+                  </a>
+                </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* STORY */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1 relative rounded-xl overflow-hidden shadow-xl min-h-[480px]">
-              <Image fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=900&q=80" alt="Pro Clips interior" />
-            </div>
-            <div className="order-1 lg:order-2">
-              <p className="font-semibold text-sm tracking-widest uppercase mb-4" style={{ color: MAROON }}>Our Story</p>
-              <h2 className="font-display text-6xl tracking-wide leading-tight mb-8" style={{ color: ACCENT }}>SINCE 2002</h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                Pro Clips opened when most of our regulars were still in school. Two decades of fades, lineups, straight razor finishes, and kids climbing into the chair for the first time.
-              </p>
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                The shop is the same. The clients just bring their kids now.
-              </p>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                139 reviews at 4.5 stars is what consistency looks like over time. We're on Snowden River Pkwy where we've always been.
-              </p>
-              <div className="mt-10 flex items-center gap-8">
-                <div className="text-center">
-                  <div className="font-display text-5xl" style={{ color: ACCENT }}>20+</div>
-                  <div className="text-gray-500 text-xs uppercase tracking-wide mt-1">Years Open</div>
-                </div>
-                <div className="w-px h-12 bg-gray-200" />
-                <div className="text-center">
-                  <div className="font-display text-5xl" style={{ color: ACCENT }}>139</div>
-                  <div className="text-gray-500 text-xs uppercase tracking-wide mt-1">Google Reviews</div>
-                </div>
-                <div className="w-px h-12 bg-gray-200" />
-                <div className="text-center">
-                  <div className="font-display text-5xl" style={{ color: ACCENT }}>4.5</div>
-                  <div className="text-gray-500 text-xs uppercase tracking-wide mt-1">Star Rating</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
       {/* REVIEWS */}
-      <section className="py-24" style={{ backgroundColor: ACCENT }}>
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="px-4 py-24" style={{ background: BG1, borderTop: `1px solid ${BORDER}` }}>
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <span className="font-display text-6xl text-white">4.5</span>
-              <div>
-                <div className="text-amber-400 text-2xl">★★★★½</div>
-                <div className="text-gray-400 text-xs">139 Google reviews</div>
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <svg className="w-8 h-8" viewBox="0 0 24 24">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              <div className="text-left">
+                <div className="flex items-center gap-2">
+                  <span className="text-white text-2xl font-bold">{RATING}</span>
+                  <span style={{ color: ACCENT }}>★★★★★</span>
+                </div>
+                <p className="text-[10px] tracking-widest uppercase" style={{ color: T3 }}>{REVIEW_COUNT} Google Reviews</p>
               </div>
             </div>
-            <h2 className="font-display text-5xl text-white tracking-wide">WHAT CLIENTS SAY</h2>
+            <h2 className="leading-none" style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "clamp(2.5rem,6vw,5rem)", letterSpacing: "0.04em" }}>What Clients Say</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {reviews.map((r) => (
-              <div key={r.name} className="rounded-xl p-8 border border-white/10 bg-white/10">
-                <div className="text-amber-400 text-lg mb-4">★★★★★</div>
-                <p className="text-gray-200 text-base leading-relaxed mb-6">&ldquo;{r.quote}&rdquo;</p>
-                <div className="text-white font-semibold text-sm">{r.name}</div>
-                <div className="text-gray-400 text-xs">{r.sub}</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: BORDER }}>
+            {REVIEWS.map((r) => (
+              <div key={r.name} className="p-7" style={{ background: BG1 }}>
+                <div className="flex gap-0.5 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style={{ color: ACCENT }}>
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-sm leading-relaxed mb-5" style={{ color: T2 }}>&ldquo;{r.text}&rdquo;</p>
+                <p className="text-white text-sm font-medium">{r.name}</p>
+                <p className="text-xs mt-0.5" style={{ color: T3 }}>{r.sub}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* VISIT */}
-      <section id="visit" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* GALLERY */}
+      <section id="gallery" className="px-4 py-24" style={{ background: BG2, borderTop: `1px solid ${BORDER}` }}>
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <p className="font-semibold text-sm tracking-widest uppercase mb-3" style={{ color: MAROON }}>Find Us</p>
-            <h2 className="font-display text-6xl tracking-wide" style={{ color: ACCENT }}>VISIT</h2>
+            <p className="text-xs tracking-[0.35em] uppercase font-medium mb-4" style={{ color: ACCENT }}>The Work</p>
+            <h2 className="leading-none" style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "clamp(3rem,8vw,6rem)", letterSpacing: "0.04em" }}>Fresh From The Chair</h2>
+            <p className="mt-4 text-sm" style={{ color: T2 }}>Every cut tells a story. This is our portfolio.</p>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative rounded-xl overflow-hidden shadow-xl h-[360px]">
-              <Image fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=900&q=80" alt="Pro Clips barber shop" />
-            </div>
-            <div className="space-y-8">
-              <div>
-                <h3 className="font-semibold text-sm tracking-widest uppercase mb-2" style={{ color: ACCENT }}>Address</h3>
-                <p className="text-gray-700 text-lg">9400 Snowden River Pkwy STE 108<br />Columbia, MD 21045</p>
+          <div className="columns-2 md:columns-3 gap-3 space-y-3">
+            {GALLERY.map((src, i) => (
+              <div key={i} className="bs-gi relative overflow-hidden break-inside-avoid cursor-pointer"
+                style={{ aspectRatio: "1/1", background: BG3 }}>
+                <Image fill sizes="(max-width:768px) 50vw, 33vw" src={src} alt={`Cut ${i + 1}`} className="object-cover" />
+                <div className="bs-go absolute inset-0 flex items-center justify-center" style={{ background: `${ACCENT}CC` }}>
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </div>
               </div>
-              <div>
-                <h3 className="font-semibold text-sm tracking-widest uppercase mb-2" style={{ color: ACCENT }}>Hours</h3>
-                <div className="space-y-1 text-gray-700">
-                  <div className="flex gap-4"><span className="w-28">Mon – Fri</span><span>9:00 am – 7:00 pm</span></div>
-                  <div className="flex gap-4"><span className="w-28">Saturday</span><span>8:00 am – 5:00 pm</span></div>
-                  <div className="flex gap-4"><span className="w-28">Sunday</span><span className="text-gray-400">Closed</span></div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <a href={IG_URL} target="_blank" rel="noopener noreferrer"
+              className="text-xs tracking-[0.25em] uppercase inline-flex items-center gap-2 hover:opacity-70 transition-opacity"
+              style={{ color: ACCENT }}>
+              Follow {IG_HANDLE} on Instagram
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* LOCATION & HOURS */}
+      <section id="visit" className="px-4 py-24" style={{ background: BG1, borderTop: `1px solid ${BORDER}` }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs tracking-[0.35em] uppercase font-medium mb-4" style={{ color: ACCENT }}>Find Us</p>
+            <h2 className="leading-none" style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "clamp(3rem,8vw,6rem)", letterSpacing: "0.04em" }}>Location &amp; Hours</h2>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 border" style={{ borderColor: BORDER }}>
+            <div className="relative min-h-[400px]" style={{ background: BG3 }}>
+              <Image fill sizes="(max-width:1024px) 100vw, 50vw" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=900&q=80" alt="Pro Clips interior" className="object-cover" />
+              <div className="absolute inset-0" style={{ background: "rgba(10,10,10,.35)" }} />
+            </div>
+            <div className="p-8 lg:p-12 border-t lg:border-t-0 lg:border-l" style={{ background: BG2, borderColor: BORDER }}>
+              <div className="mb-8">
+                <p className="text-xs tracking-[0.25em] uppercase font-medium mb-3" style={{ color: ACCENT }}>Address</p>
+                <p className="text-white text-lg leading-relaxed">9400 Snowden River Pkwy STE 108<br />Columbia, MD 21045</p>
+                <a href={`https://maps.google.com/?q=Pro+Clips+Barber+Shop+Columbia+MD`} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-4 text-xs tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
+                  style={{ color: ACCENT }}>
+                  Get Directions
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+                </a>
+              </div>
+              <div className="mb-8">
+                <p className="text-xs tracking-[0.25em] uppercase font-medium mb-3" style={{ color: ACCENT }}>Hours</p>
+                <div className="space-y-2">
+                  {HOURS.map((h) => (
+                    <div key={h.day} className="flex justify-between items-center">
+                      <span className="text-sm" style={{ color: T2 }}>{h.day}</span>
+                      <span className="text-sm" style={{ color: h.closed ? T3 : "#fff" }}>{h.time}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
               <div>
-                <h3 className="font-semibold text-sm tracking-widest uppercase mb-2" style={{ color: ACCENT }}>Phone</h3>
-                <a href="tel:4102905434" className="font-bold text-xl hover:underline" style={{ color: MAROON }}>(410) 290-5434</a>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href="https://booksy.com" target="_blank" className="inline-block text-white font-semibold px-8 py-4 rounded hover:opacity-90 transition-opacity text-center" style={{ backgroundColor: MAROON }}>Book on Booksy</a>
-                <a href="tel:4102905434" className="inline-block border-2 font-semibold px-8 py-4 rounded hover:bg-[#1A2942] hover:text-white transition-all text-center" style={{ borderColor: ACCENT, color: ACCENT }}>Call Us</a>
+                <p className="text-xs tracking-[0.25em] uppercase font-medium mb-3" style={{ color: ACCENT }}>Contact</p>
+                <a href={`tel:${PHONE_RAW}`} className="block text-sm hover:text-white transition-colors mb-4" style={{ color: T2 }}>{PHONE}</a>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+                  className="inline-block text-white text-xs font-bold tracking-[0.2em] uppercase px-6 py-3 transition-opacity hover:opacity-90"
+                  style={{ background: ACCENT }}>
+                  Book an Appointment
+                </a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* INSTAGRAM */}
-      <section className="py-24" style={{ backgroundColor: PAPER }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <p className="font-semibold text-sm tracking-widest uppercase mb-3" style={{ color: MAROON }}>Follow Along</p>
-            <h2 className="font-display text-5xl tracking-wide" style={{ color: ACCENT }}>@proclips_columbia</h2>
-          </div>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
-            {igPhotos.map((src, i) => (
-              <a key={i} href="https://instagram.com" target="_blank" className="aspect-square overflow-hidden rounded-lg relative block">
-                <Image fill sizes="(max-width:768px) 33vw, 16vw" className="object-cover hover:scale-105 transition-transform duration-300" src={src} alt={`Pro Clips ${i + 1}`} />
-              </a>
-            ))}
-          </div>
+      {/* FINAL CTA */}
+      <section className="px-4 relative overflow-hidden" style={{ background: BG1, padding: "8rem 1rem", borderTop: `1px solid ${BORDER}` }}>
+        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: `linear-gradient(to right,transparent,${ACCENT},transparent)`, opacity: .5 }} />
+        <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: `linear-gradient(to right,transparent,${ACCENT},transparent)`, opacity: .5 }} />
+        <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none" aria-hidden>
+          <span style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "18vw", color: "rgba(255,255,255,.025)", letterSpacing: "0.05em", whiteSpace: "nowrap" }}>{NAME}</span>
+        </div>
+        <div className="relative max-w-4xl mx-auto text-center">
+          <p className="text-xs tracking-[0.35em] uppercase font-medium mb-6" style={{ color: ACCENT }}>Ready?</p>
+          <h2 className="leading-none text-white mb-6" style={{ fontFamily: "var(--font-bebas-neue)", fontSize: "clamp(3rem,10vw,7rem)", letterSpacing: "0.04em" }}>
+            Ready to Look Your Best?
+          </h2>
+          <p className="text-lg md:text-xl mb-12 max-w-xl mx-auto leading-relaxed" style={{ color: T2 }}>
+            Walk in confident. Leave looking sharp.
+          </p>
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+            className="inline-block text-white text-sm font-bold tracking-[0.25em] uppercase px-14 py-5 transition-opacity hover:opacity-90"
+            style={{ background: ACCENT, boxShadow: `0 4px 40px ${ACCENT}44` }}>
+            Book Your Appointment
+          </a>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="py-12" style={{ backgroundColor: ACCENT }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+      <footer style={{ background: BG2, borderTop: `2px solid ${ACCENT}55` }}>
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
-              <div className="font-display text-3xl text-white tracking-widest mb-1">PRO CLIPS</div>
-              <div className="text-gray-400 text-sm">9400 Snowden River Pkwy STE 108 · Columbia, MD 21045</div>
-              <div className="text-gray-500 text-xs mt-1">Established 2002</div>
+              <span className="text-white text-3xl tracking-widest block" style={{ fontFamily: "var(--font-bebas-neue)", lineHeight: 1 }}>{NAME}</span>
+              <span className="block text-[9px] tracking-[0.3em] uppercase mb-4" style={{ color: ACCENT }}>Barbershop</span>
+              <p className="text-sm leading-relaxed max-w-xs" style={{ color: T2 }}>{CITY}&apos;s trusted shop. Precision cuts, clean fades, honest prices.</p>
+              <a href={IG_URL} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 mt-6 text-xs tracking-[0.15em] uppercase hover:opacity-80 transition-opacity"
+                style={{ color: T2 }}>
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                {IG_HANDLE}
+              </a>
             </div>
-            <div className="flex flex-col items-center md:items-end gap-2">
-              <a href="tel:4102905434" className="text-amber-400 font-bold text-lg hover:underline">(410) 290-5434</a>
-              <a href="https://booksy.com" target="_blank" className="inline-block text-white text-sm font-semibold px-5 py-2 rounded hover:opacity-90 transition-opacity" style={{ backgroundColor: MAROON }}>Book on Booksy</a>
+            <div>
+              <h3 className="text-xs tracking-[0.25em] uppercase font-medium mb-6" style={{ color: ACCENT }}>Quick Links</h3>
+              <ul className="space-y-3">
+                {[["#services","Services"],["#team","Team"],["#gallery","Gallery"],["#visit","Visit Us"],[BOOKING_URL,"Book Now"]].map(([href,label]) => (
+                  <li key={label}>
+                    <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="text-sm hover:text-white transition-colors" style={{ color: T2 }}>{label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xs tracking-[0.25em] uppercase font-medium mb-6" style={{ color: ACCENT }}>Find Us</h3>
+              <div className="space-y-3">
+                <p className="text-sm leading-relaxed" style={{ color: T2 }}>9400 Snowden River Pkwy STE 108<br />Columbia, MD 21045</p>
+                <a href={`tel:${PHONE_RAW}`} className="block text-sm hover:text-white transition-colors" style={{ color: T2 }}>{PHONE}</a>
+                <div className="pt-2 space-y-1.5">
+                  {HOURS.map((h) => (
+                    <div key={h.day} className="flex justify-between text-xs" style={{ color: h.closed ? T3 : T2 }}>
+                      <span>{h.day}</span><span>{h.time}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-          <div className="border-t border-white/10 mt-8 pt-8 text-center text-gray-500 text-xs">
-            &copy; 2026 Pro Clips Barber Shop. All rights reserved.
+          <div className="mt-12 pt-8 border-t flex flex-col sm:flex-row justify-between items-center gap-4" style={{ borderColor: BORDER }}>
+            <p className="text-xs" style={{ color: T3 }}>&copy; 2026 Pro Clips Barber Shop. All rights reserved.</p>
+            <p className="text-xs" style={{ color: T3 }}>Concept by <span style={{ color: ACCENT }}>Thryve Operations</span></p>
           </div>
         </div>
       </footer>
