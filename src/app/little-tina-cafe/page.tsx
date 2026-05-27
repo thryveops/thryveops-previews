@@ -24,6 +24,7 @@ export default function LittleTinaPreview() {
           border: "none",
           display: "block",
         }}
+        allow="autoplay"
         allowFullScreen
       />
     </div>
