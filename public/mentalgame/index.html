@@ -718,23 +718,34 @@ body::after {
   .hp-content { padding:0 24px; }
   .hp-h1 { font-size:clamp(40px,9vw,64px); }
   .hp-sub { display:none; }
-  .hp-actions { gap:12px; }
+  .hp-actions { gap:12px; flex-direction:column; align-items:flex-start; }
+  .btn-red { width:100%; justify-content:center; }
 
   .panel-header { padding:0 20px; }
   .sec { padding:60px 20px 80px; }
   .rv-layout { grid-template-columns:1fr; gap:40px; }
   .rv-sidebar-col { position:static; }
+  .rv-row { grid-template-columns:44px 1fr auto; gap:10px; }
+  .rv-num { font-size:28px; }
+  .rv-featured { transform:none; }
   .about-layout { grid-template-columns:1fr; gap:40px; }
   .photo-stack { height:340px; }
-  .board { padding:32px 20px; }
+  .board { padding:32px 20px; transform:none; }
   .board-tape.tl { left:32px; } .board-tape.tr { right:32px; }
+  .rank-row { grid-template-columns:40px 1fr auto; gap:12px; }
+  .rank-n { font-size:28px; }
+  .rank-n.top { font-size:34px; }
+  .rank-name { font-size:17px; }
+  .sticky-note { display:none; }
   .dc-inner { flex-direction:column; align-items:flex-start; gap:28px; }
   .dc-sec { padding:60px 20px; }
   .dc-contact { padding:52px 20px 40px; }
   .dc-foot { padding:20px 20px 28px; }
+  .btn-discord { width:100%; justify-content:center; }
   .iv-grid { grid-template-columns:1fr; }
   .iv-card.featured { grid-column:span 1; aspect-ratio:16/9; }
-  .stats-row { gap:24px; }
+  .stats-row { gap:16px; }
+  .stat-n { font-size:28px; }
 }
 
 @media (prefers-reduced-motion:reduce) {
