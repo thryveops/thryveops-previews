@@ -245,16 +245,8 @@ export default function LaTerrazzaPreview() {
           <div className="text-center mt-14">
             <a
               href="#reserve"
-              className="inline-block px-8 py-3 rounded-full font-semibold border-[1.5px] transition hover:text-white hover:border-current"
+              className="inline-block px-8 py-3 rounded-full font-semibold border-[1.5px] transition hover:bg-[#1F1410] hover:text-[#FAF6EE]"
               style={{ borderColor: INK, color: INK }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background = INK;
-                (e.currentTarget as HTMLAnchorElement).style.color = CREAM;
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
-                (e.currentTarget as HTMLAnchorElement).style.color = INK;
-              }}
             >
               View Full Menu &amp; Wine List
             </a>
