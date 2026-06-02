@@ -75,7 +75,7 @@ const menuSections = [
   {
     label: "Craft Beer Tap House",
     color: PINK,
-    img: "https://images.unsplash.com/photo-1577678055016-22e7fea84e76?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1563396983631-2f8cf576bb36?w=800&q=80",
     items: [
       { name: "Florida Craft Draft", price: "$7–9", desc: "Local taps rotating weekly. Ask the board what's fresh." },
       { name: "Regional Draft", price: "$6–8", desc: "Southeast favorites and national craft alongside the locals." },
@@ -137,7 +137,7 @@ const igPhotos = [
   "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=80",
   "https://images.unsplash.com/photo-1497636577773-f1231844b336?w=400&q=80",
   "https://images.unsplash.com/photo-1472552944129-b035e9ea3744?w=400&q=80",
-  "https://images.unsplash.com/photo-1577678055016-22e7fea84e76?w=400&q=80",
+  "https://images.unsplash.com/photo-1563396983631-2f8cf576bb36?w=400&q=80",
   "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=400&q=80",
 ];
 
