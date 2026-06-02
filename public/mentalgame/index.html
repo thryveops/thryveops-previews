@@ -2092,56 +2092,107 @@ function triggerStatCountUp(){
 })();
 
 (function injectPaperTextures(){
-  const seeds = [42, 77, 13, 8, 24, 56, 99];
+  const seeds   = [42, 77, 13, 8, 24, 56, 99];
+  const isMobile = window.innerWidth <= 768 || ('ontouchstart' in window && window.innerWidth <= 1024);
+  const TILE_H  = 900; // max tile height on mobile — well under iOS SVG filter render limit
 
-  document.querySelectorAll('.section-panel .sec').forEach((sec, i) => {
-    const seed = seeds[i % seeds.length];
-    const u    = `_pt${i}`;
-
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('class', 'paper-texture-svg');
-    svg.setAttribute('aria-hidden', 'true');
-    svg.setAttribute('focusable', 'false');
-
-    svg.innerHTML = `
+  /* Build the SVG filter + layer markup for a given tile region.
+     x0/y0 are the top-left corner in SVG user space; w/h are the tile dimensions.
+     The viewBox on the parent SVG shifts the coordinate origin so feTurbulence
+     samples from (x0, y0) in the global noise field, making tiles seamless. */
+  function buildInner(seed, u, x0, y0, w, h) {
+    return `
 <defs>
-  <!-- Warp filter: displaces ruled lines so they bend at crease points -->
   <filter id="w${u}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
     <feTurbulence type="turbulence" baseFrequency="0.006 0.01" numOctaves="3" seed="${seed}" result="n"/>
     <feDisplacementMap in="SourceGraphic" in2="n" scale="11" xChannelSelector="R" yChannelSelector="G"/>
   </filter>
-
-  <!-- Shadow filter: same noise → diffuse lighting → crease valley shadows -->
   <filter id="sh${u}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
     <feTurbulence type="turbulence" baseFrequency="0.006 0.01" numOctaves="3" seed="${seed}" result="n"/>
     <feColorMatrix type="saturate" values="0" in="n" result="g"/>
     <feDiffuseLighting in="g" lighting-color="#ffffff" surfaceScale="14" diffuseConstant="0.7" result="lit">
       <feDistantLight azimuth="42" elevation="20"/>
     </feDiffuseLighting>
-    <!-- Compress output to [0.6, 1.0]: bright = paper unchanged, dark = shadow crease -->
     <feComponentTransfer in="lit">
       <feFuncR type="linear" slope="0.40" intercept="0.60"/>
       <feFuncG type="linear" slope="0.40" intercept="0.60"/>
       <feFuncB type="linear" slope="0.40" intercept="0.60"/>
     </feComponentTransfer>
   </filter>
-
-  <!-- Ruled line pattern: 1px blue stripe every 28px, wide enough to fill any panel -->
   <pattern id="rl${u}" x="0" y="0" width="9999" height="28" patternUnits="userSpaceOnUse">
     <line x1="0" y1="27.5" x2="9999" y2="27.5" stroke="rgba(80,120,200,0.22)" stroke-width="1"/>
   </pattern>
 </defs>
+<rect x="${x0}" y="${y0}" width="${w}" height="${h}" fill="white" filter="url(#sh${u})"/>
+<rect x="${x0}" y="${y0}" width="${w}" height="${h}" fill="url(#rl${u})" filter="url(#w${u})"/>
+<line x1="53" y1="${y0}" x2="53" y2="${y0 + h}" stroke="rgba(210,75,75,0.28)" stroke-width="1.5"/>`;
+  }
 
-<!-- Layer 1: crumple shadow — white rect lit by fold topology, multiply-blended onto paper -->
+  document.querySelectorAll('.section-panel .sec').forEach((sec, i) => {
+    const seed = seeds[i % seeds.length];
+    const u    = `_pt${i}`;
+    const secH = sec.scrollHeight;
+    const secW = window.innerWidth;
+
+    if (isMobile && secH > TILE_H) {
+      /* Section too tall for iOS SVG filter — inject tiled SVGs.
+         Each tile has a viewBox y-offset so feTurbulence samples the correct
+         slice of the same continuous noise field. Tiles are seamless. */
+      const numTiles = Math.ceil(secH / TILE_H);
+      const frag = document.createDocumentFragment();
+
+      for (let t = 0; t < numTiles; t++) {
+        const tileY = t * TILE_H;
+        const tileH = Math.min(TILE_H, secH - tileY);
+        const ut    = `${u}_${t}`;
+
+        const tile = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        tile.setAttribute('class', 'paper-texture-svg');
+        tile.setAttribute('aria-hidden', 'true');
+        tile.setAttribute('focusable', 'false');
+        tile.setAttribute('viewBox', `0 ${tileY} ${secW} ${tileH}`);
+        tile.setAttribute('preserveAspectRatio', 'none');
+        /* Override the CSS inset:0 so each tile sits at its correct vertical slot */
+        tile.style.top    = `${tileY}px`;
+        tile.style.height = `${tileH}px`;
+        tile.style.bottom = 'auto';
+        tile.innerHTML = buildInner(seed, ut, 0, tileY, secW, tileH);
+        frag.appendChild(tile);
+      }
+      sec.insertBefore(frag, sec.firstChild);
+    } else {
+      /* Desktop and short mobile sections: single full-height SVG (original) */
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('class', 'paper-texture-svg');
+      svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('focusable', 'false');
+      svg.innerHTML = `
+<defs>
+  <filter id="w${u}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+    <feTurbulence type="turbulence" baseFrequency="0.006 0.01" numOctaves="3" seed="${seed}" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="11" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="sh${u}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+    <feTurbulence type="turbulence" baseFrequency="0.006 0.01" numOctaves="3" seed="${seed}" result="n"/>
+    <feColorMatrix type="saturate" values="0" in="n" result="g"/>
+    <feDiffuseLighting in="g" lighting-color="#ffffff" surfaceScale="14" diffuseConstant="0.7" result="lit">
+      <feDistantLight azimuth="42" elevation="20"/>
+    </feDiffuseLighting>
+    <feComponentTransfer in="lit">
+      <feFuncR type="linear" slope="0.40" intercept="0.60"/>
+      <feFuncG type="linear" slope="0.40" intercept="0.60"/>
+      <feFuncB type="linear" slope="0.40" intercept="0.60"/>
+    </feComponentTransfer>
+  </filter>
+  <pattern id="rl${u}" x="0" y="0" width="9999" height="28" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="27.5" x2="9999" y2="27.5" stroke="rgba(80,120,200,0.22)" stroke-width="1"/>
+  </pattern>
+</defs>
 <rect width="100%" height="100%" fill="white" filter="url(#sh${u})"/>
-
-<!-- Layer 2: ruled lines displaced by same topology — lines physically bend at folds -->
 <rect width="100%" height="100%" fill="url(#rl${u})" filter="url(#w${u})"/>
-
-<!-- Layer 3: red margin line — static, not distorted (printed ink stays straight) -->
 <line x1="53" y1="0" x2="53" y2="100%" stroke="rgba(210,75,75,0.28)" stroke-width="1.5"/>`;
-
-    sec.insertAdjacentElement('afterbegin', svg);
+      sec.insertAdjacentElement('afterbegin', svg);
+    }
   });
 })();
 </script>
