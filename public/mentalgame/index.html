@@ -467,6 +467,24 @@ body::after {
   .iv-grid { grid-template-columns:1fr; gap:20px; }
 }
 
+#panel-interviews .sec { padding-bottom: 40px; }
+#panel-interviews .iv-cards-section {
+  background: var(--black);
+  padding: 48px 52px 100px;
+}
+#panel-interviews .iv-cards-section .btn-line {
+  color: rgba(255,255,255,.55) !important;
+  border-bottom-color: rgba(255,255,255,.22) !important;
+}
+#panel-interviews .iv-cards-section .btn-line:hover {
+  color: rgba(255,255,255,.9) !important;
+  border-bottom-color: rgba(255,255,255,.7) !important;
+}
+@media(max-width:768px){
+  #panel-interviews .sec { padding-bottom: 32px; }
+  #panel-interviews .iv-cards-section { padding: 32px 18px 72px; }
+}
+
 /* ════════════════════════════════
    REVIEWS PANEL
 ════════════════════════════════ */
@@ -1136,7 +1154,7 @@ body::after {
     <span class="panel-wordmark">Mental Game</span>
   </header>
 
-  <section class="sec" style="background:var(--black);">
+  <section class="sec">
     <div class="sec-label rv">
       <span class="sec-label-num">01</span>
       <span class="sec-label-tag">Interviews</span>
@@ -1144,7 +1162,9 @@ body::after {
     <h2 class="sec-title rv d1">Just How.</h2>
     <p class="iv-subhead rv d1" style="font-size:11px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--red);margin-top:10px;">Hear it from them</p>
     <div class="rule"></div>
+  </section>
 
+  <div class="iv-cards-section">
     <div class="iv-grid rv d2">
 
       <!-- Nardo$ Reign — premiere episode -->
@@ -1326,7 +1346,7 @@ body::after {
         <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
       </a>
     </div>
-  </section>
+  </div>
 </div><!-- /#panel-interviews -->
 
 
