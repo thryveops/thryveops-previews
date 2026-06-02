@@ -11,6 +11,9 @@ export async function GET() {
   html = html.replace(/url\('(?!https?:|\/|data:)([^']+)'\)/g, `url('${BASE}$1')`);
   html = html.replace(/url\("(?!https?:|\/|data:)([^"]+)"\)/g, `url("${BASE}$1")`);
 
+  // Rewrite JS playlist video paths (relative strings won't resolve correctly without trailing slash)
+  html = html.replace(/'videos\//g, `'${BASE}videos/`);
+
   // Rewrite src="" and href="" attributes for known asset filenames
   for (const asset of ASSETS) {
     html = html.replaceAll(`src="${asset}"`, `src="${BASE}${asset}"`);

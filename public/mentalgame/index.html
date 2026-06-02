@@ -1761,8 +1761,11 @@ body::after {
     return {el, start:s, dur:d};
   }).filter(Boolean);
 
+  /* skip expensive SVG displacement filter on mobile — GPU can't handle full-viewport warp at 60fps */
+  const isMobile = window.innerWidth <= 768 || ('ontouchstart' in window && window.innerWidth <= 1024);
+
   /* ── apply crumple to entire loader background + initial state ── */
-  loader.style.filter    = 'url(#crumpleFilter)';
+  if(!isMobile) loader.style.filter = 'url(#crumpleFilter)';
   loader.style.transform = 'scale(0.88) rotate(-2.5deg)';
 
   /* ── main tick ── */
@@ -1770,9 +1773,9 @@ body::after {
     const el  = now - start;
     const gT  = clamp(el/DUR, 0, 1);
 
-    /* paper crumple: displacement 95→0 over first 2600ms */
+    /* paper crumple: displacement 95→0 over first 2600ms (desktop only) */
     const cT = eOut3(clamp(el/2600, 0, 1));
-    if(crumple) crumple.setAttribute('scale', (95*(1-cT)).toFixed(1));
+    if(crumple && !isMobile) crumple.setAttribute('scale', (95*(1-cT)).toFixed(1));
 
     /* loader expand + settle */
     const xT = eOut2(clamp(el/2200, 0, 1));
@@ -1812,7 +1815,7 @@ body::after {
         p.style.fill             = CREAM;
         p.style.opacity          = '1';
       });
-      loader.style.filter = 'none';
+      if(!isMobile) loader.style.filter = 'none';
 
       setTimeout(()=>{
         loader.style.transform = '';
