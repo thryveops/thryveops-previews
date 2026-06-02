@@ -467,29 +467,6 @@ body::after {
   .iv-grid { grid-template-columns:1fr; gap:20px; }
 }
 
-/* Mobile: SVG displacement filter silently fails on iOS for sections taller than ~2000px.
-   Apply a CSS-only paper background directly on the .sec as a seamless full-height fallback.
-   On desktop the JS crumple SVG still renders on top of this and looks the same as before. */
-@media(max-width:768px){
-  #panel-interviews .sec {
-    background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.09'/%3E%3C/svg%3E"),
-      repeating-linear-gradient(
-        transparent, transparent 27px,
-        rgba(80,120,200,0.18) 27px, rgba(80,120,200,0.18) 28px
-      ) !important;
-    background-size: 200px 200px, auto !important;
-  }
-  #panel-interviews .sec::after {
-    content: '';
-    position: absolute;
-    top: 0; bottom: 0; left: 20px;
-    width: 1.5px;
-    background: rgba(210,75,75,0.28);
-    pointer-events: none;
-    z-index: 0;
-  }
-}
 
 /* ════════════════════════════════
    REVIEWS PANEL
@@ -1160,7 +1137,7 @@ body::after {
     <span class="panel-wordmark">Mental Game</span>
   </header>
 
-  <section class="sec">
+  <section class="sec" style="background:var(--black);">
     <div class="sec-label rv">
       <span class="sec-label-num">01</span>
       <span class="sec-label-tag">Interviews</span>
