@@ -467,51 +467,28 @@ body::after {
   .iv-grid { grid-template-columns:1fr; gap:20px; }
 }
 
-#panel-interviews .sec { padding-bottom: 40px; }
-
-/* Card section: CSS-only paper that tiles at any height (no SVG filter limits on mobile) */
-#panel-interviews .iv-cards-section {
-  background-color: #F9F8F5;
-  background-image: repeating-linear-gradient(
-    transparent, transparent 27px,
-    rgba(80,120,200,0.17) 27px, rgba(80,120,200,0.17) 28px
-  );
-  padding: 48px 52px 100px;
-  position: relative;
-}
-/* Paper grain tile */
-#panel-interviews .iv-cards-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-}
-/* Red margin line */
-#panel-interviews .iv-cards-section::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0; left: 53px;
-  width: 1.5px;
-  background: rgba(210,75,75,0.28);
-  pointer-events: none;
-  z-index: 0;
-}
-#panel-interviews .iv-cards-section .iv-grid,
-#panel-interviews .iv-cards-section .iv-more { position: relative; z-index: 1; }
-#panel-interviews .iv-cards-section .btn-line {
-  color: rgba(0,0,0,.55) !important;
-  border-bottom-color: rgba(0,0,0,.22) !important;
-}
-#panel-interviews .iv-cards-section .btn-line:hover {
-  color: var(--black) !important;
-  border-bottom-color: var(--black) !important;
-}
+/* Mobile: SVG displacement filter silently fails on iOS for sections taller than ~2000px.
+   Apply a CSS-only paper background directly on the .sec as a seamless full-height fallback.
+   On desktop the JS crumple SVG still renders on top of this and looks the same as before. */
 @media(max-width:768px){
-  #panel-interviews .sec { padding-bottom: 32px; }
-  #panel-interviews .iv-cards-section { padding: 32px 18px 72px; }
-  #panel-interviews .iv-cards-section::after { left: 20px; }
+  #panel-interviews .sec {
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.09'/%3E%3C/svg%3E"),
+      repeating-linear-gradient(
+        transparent, transparent 27px,
+        rgba(80,120,200,0.18) 27px, rgba(80,120,200,0.18) 28px
+      ) !important;
+    background-size: 200px 200px, auto !important;
+  }
+  #panel-interviews .sec::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 20px;
+    width: 1.5px;
+    background: rgba(210,75,75,0.28);
+    pointer-events: none;
+    z-index: 0;
+  }
 }
 
 /* ════════════════════════════════
@@ -1191,9 +1168,7 @@ body::after {
     <h2 class="sec-title rv d1">Just How.</h2>
     <p class="iv-subhead rv d1" style="font-size:11px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--red);margin-top:10px;">Hear it from them</p>
     <div class="rule"></div>
-  </section>
 
-  <div class="iv-cards-section">
     <div class="iv-grid rv d2">
 
       <!-- Nardo$ Reign — premiere episode -->
@@ -1375,7 +1350,7 @@ body::after {
         <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
       </a>
     </div>
-  </div>
+  </section>
 </div><!-- /#panel-interviews -->
 
 
