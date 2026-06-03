@@ -82,7 +82,7 @@ const coaches = [
   {
     name:  "Cisco Rivera",
     role:  "Boxing Coach · Conditioning",
-    bio:   "Francisco "Cisco" Rivera specializes in boxing conditioning and sparring prep. Leads Thursday 5pm conditioning sessions and Wednesday 7pm technique classes. The coach to see when you're ready to step it up.",
+    bio:   "Francisco \"Cisco\" Rivera specializes in boxing conditioning and sparring prep. Leads Thursday 5pm conditioning sessions and Wednesday 7pm technique classes. The coach to see when you’re ready to step it up.",
     img:   "https://images.unsplash.com/photo-1581009137042-c552e485697a?w=600&q=80",
     cta:   "Train with Cisco",
     featured: false,

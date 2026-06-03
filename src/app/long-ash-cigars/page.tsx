@@ -223,10 +223,7 @@ export default function MockupPage() {
               <a
                 key={href}
                 href={href}
-                className="transition-colors"
-                style={{ color: "rgba(245,240,232,0.7)" }}
-                onMouseEnter={(e) => ((e.target as HTMLAnchorElement).style.color = ACCENT)}
-                onMouseLeave={(e) => ((e.target as HTMLAnchorElement).style.color = "rgba(245,240,232,0.7)")}
+                className="transition-colors text-[rgba(245,240,232,0.7)] hover:text-[#C9A84C]"
               >
                 {label}
               </a>
@@ -801,7 +798,6 @@ export default function MockupPage() {
             </p>
             <form
               className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-              onSubmit={(e) => e.preventDefault()}
             >
               <input
                 type="email"
@@ -810,7 +806,7 @@ export default function MockupPage() {
                 style={{ background: WOOD, border: `1px solid ${BORDER_C}`, color: CREAM }}
               />
               <button
-                type="submit"
+                type="button"
                 className="px-6 py-3 rounded-full text-sm font-semibold transition hover:brightness-110 whitespace-nowrap"
                 style={{ background: ACCENT, color: MAHOGANY }}
               >

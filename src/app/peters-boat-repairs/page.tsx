@@ -278,14 +278,7 @@ export default function MockupPage() {
             {services.map((svc) => (
               <div
                 key={svc.name}
-                className="group bg-gray-50 rounded-xl p-7 flex gap-5 border-l-4 border-transparent transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
-                style={{ "--tw-border-opacity": "0" } as React.CSSProperties}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLDivElement).style.borderLeftColor = ACCENT)
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLDivElement).style.borderLeftColor = "transparent")
-                }
+                className="group bg-gray-50 rounded-xl p-7 flex gap-5 border-l-4 border-transparent hover:border-l-[#F97316] transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
               >
                 <div
                   className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center"

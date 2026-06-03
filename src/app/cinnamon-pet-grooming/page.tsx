@@ -361,20 +361,7 @@ export default function MockupPage() {
             {services.map((svc) => (
               <div
                 key={svc.nameEn}
-                className="rounded-xl p-5 md:p-6 transition-all duration-200"
-                style={{
-                  background: "white",
-                  border: `1px solid ${RULE}`,
-                  borderLeft: `3px solid transparent`,
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.borderLeftColor = ACCENT;
-                  (e.currentTarget as HTMLDivElement).style.background = ACCENT_LIGHT;
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.borderLeftColor = "transparent";
-                  (e.currentTarget as HTMLDivElement).style.background = "white";
-                }}
+                className="rounded-xl p-5 md:p-6 transition-all duration-200 bg-white hover:bg-[#F5EBE0] border border-[#E8D8C8] border-l-[3px] border-l-transparent hover:border-l-[#C4622D]"
               >
                 <div className="flex flex-col md:flex-row md:items-center gap-4">
                   {/* Left: name + description */}
