@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mental Game — Music × Mental Health</title>
+<title>MentalGame — Music × Mental Health</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Permanent+Marker&family=Kalam:wght@400;700&family=Righteous&family=Poppins:wght@300;400;500;600;700&family=Libre+Bodoni:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -939,6 +939,24 @@ body::after {
   .btn-red { width:100%; justify-content:center; }
 }
 
+/* Gold metallic shimmer for Top 5 heading */
+@keyframes goldShimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+.board-head-gold {
+  background: linear-gradient(90deg,
+    #8b6914 0%, #c9960c 15%, #ffd700 28%,
+    #fff0a0 40%, #ffd700 52%, #c9960c 65%,
+    #8b6914 80%, #c9960c 90%, #ffd700 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 2.8s linear infinite;
+}
+
 @media (prefers-reduced-motion:reduce) {
   *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; }
 }
@@ -968,7 +986,7 @@ body::after {
   <div class="ld-creases" id="ldCreases"></div>
 
   <div class="ld-logo-wrap">
-    <svg id="ldSvg" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" role="img" aria-label="Mental Game logo">
+    <svg id="ldSvg" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" role="img" aria-label="MentalGame logo">
 
       <g id="brain">
         <path id="brain-1" d="M 256,157 C 236,160 215,168 198,180 C 190,186 181,197 179,203 C 177,206 175,209 171,213 C 163,221 159,227 156,236 C 153,246 152,256 154,264 C 155,267 156,272 156,274 C 156,283 165,296 177,302 C 184,305 184,305 204,306 C 224,306 224,306 229,310 C 238,316 241,317 252,317 C 263,317 268,316 275,310 C 281,305 282,301 281,274 C 281,252 280,251 278,246 C 274,239 269,234 264,231 C 258,228 246,228 243,230 C 231,240 230,240 227,237 C 224,234 225,230 230,225 C 235,219 242,217 252,217 C 260,217 261,217 268,220 C 276,224 276,224 278,222 C 280,219 280,218 281,199 C 283,164 283,160 279,158 C 276,156 267,156 256,157 M 267,177 C 271,180 269,183 262,185 C 258,187 255,188 252,192 C 247,197 247,197 242,197 C 231,195 227,195 222,198 C 217,202 215,205 214,214 C 213,222 209,226 203,226 C 191,226 179,242 180,256 C 181,264 185,269 195,273 C 203,278 205,280 202,284 C 199,288 183,283 176,276 C 168,266 166,250 172,238 C 177,227 188,218 199,215 C 201,215 202,213 204,207 C 208,194 211,190 219,186 C 224,184 237,183 239,185 C 240,187 243,186 246,182 C 253,176 262,173 267,177 M 258,254 C 258,255 257,258 256,261 C 254,265 253,269 253,271 C 253,277 257,285 262,289 C 264,290 265,292 265,294 C 265,302 254,300 249,291 C 241,277 232,271 221,271 C 217,271 214,270 213,270 C 211,268 212,264 215,261 C 217,259 217,259 224,260 C 241,261 242,261 246,256 C 250,251 251,251 254,251 C 257,251 258,252 258,254"/>
@@ -1020,9 +1038,9 @@ body::after {
 
   <!-- TOP NAV -->
   <header id="topnav" aria-label="Main navigation">
-    <a href="/" class="tn-logo" aria-label="Mental Game — home">
-      <img src="mental_game.svg" alt="Mental Game logo">
-      <span class="tn-logo-text">Mental Game</span>
+    <a href="/" class="tn-logo" aria-label="MentalGame — home">
+      <img src="mental_game.svg" alt="MentalGame logo">
+      <span class="tn-logo-text">MentalGame</span>
     </a>
 
     <nav class="tn-nav" id="tnNav" aria-label="Sections">
@@ -1063,7 +1081,7 @@ body::after {
 
     <!-- Brand -->
     <div class="hp-brand">
-      <h1 class="hp-title">Mental Game</h1>
+      <h1 class="hp-title">MentalGame</h1>
       <p class="hp-tagline">Music × Mental Health</p>
     </div>
 
@@ -1134,7 +1152,7 @@ body::after {
       Back
     </button>
     <span class="panel-section-label">Interviews</span>
-    <span class="panel-wordmark">Mental Game</span>
+    <span class="panel-wordmark">MentalGame</span>
   </header>
 
   <section class="sec" style="background:var(--black);">
@@ -1142,108 +1160,32 @@ body::after {
       <span class="sec-label-num">01</span>
       <span class="sec-label-tag">Interviews</span>
     </div>
-    <h2 class="sec-title rv d1">Just How.</h2>
+    <h2 class="sec-title rv d1">Just, How?</h2>
     <p class="iv-subhead rv d1" style="font-size:11px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--red);margin-top:10px;">Hear it from them</p>
     <div class="rule"></div>
 
     <div class="iv-grid rv d2">
 
-      <!-- Nardo$ Reign — premiere episode -->
-      <a href="https://www.youtube.com/watch?v=zHgoL23XLLY" target="_blank" rel="noopener noreferrer" class="iv-card">
+      <!-- Yunosa — May 25, 2026 -->
+      <a href="https://www.youtube.com/watch?v=IIiDm5zuRwQ" target="_blank" rel="noopener noreferrer" class="iv-card">
         <div class="iv-thumb">
-          <img src="https://img.youtube.com/vi/zHgoL23XLLY/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/zHgoL23XLLY/hqdefault.jpg'" alt="Nardo$ Reign interview" class="iv-card-img">
+          <img src="https://img.youtube.com/vi/IIiDm5zuRwQ/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/IIiDm5zuRwQ/hqdefault.jpg'" alt="Yunosa interview" class="iv-card-img">
           <div class="iv-hover-cta"><span>&#9654; Watch Now</span></div>
         </div>
         <div class="iv-info">
           <div class="iv-meta">
-            <span class="iv-date">May 10, 2025</span>
-            <span class="iv-guest-name">Nardo$ Reign</span>
+            <span class="iv-date">May 25, 2026</span>
+            <span class="iv-guest-name">Yunosa</span>
           </div>
           <div class="iv-card-divider"></div>
-          <div class="iv-full-title">New Album News, Mental Health, Producing &amp; Rapping, Underground Rap</div>
-          <p class="iv-desc">Baltimore's Nardo$ Reign goes deep on navigating independence, mental health, and staying focused — the premiere episode of Mental Game.</p>
+          <div class="iv-full-title">Creative Process Behind Bfly &amp; Klash, Songwars W/KingMil, DMV</div>
+          <p class="iv-desc">Underground standout Yunosa breaks down his creative process and the mentality behind building serious impact with a small but powerful catalog.</p>
           <span class="iv-tag">RAP</span>
         </div>
         <div class="iv-watch-btn">Watch on YouTube &rarr;</div>
       </a>
 
-      <!-- Lelo -->
-      <a href="https://www.youtube.com/watch?v=xsP7EURF1-c" target="_blank" rel="noopener noreferrer" class="iv-card">
-        <div class="iv-thumb">
-          <img src="https://img.youtube.com/vi/xsP7EURF1-c/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/xsP7EURF1-c/hqdefault.jpg'" alt="Lelo interview" class="iv-card-img">
-          <div class="iv-hover-cta"><span>&#9654; Watch Now</span></div>
-        </div>
-        <div class="iv-info">
-          <div class="iv-meta">
-            <span class="iv-date">Jun 1, 2025</span>
-            <span class="iv-guest-name">Lelo</span>
-          </div>
-          <div class="iv-card-divider"></div>
-          <div class="iv-full-title">New Detroit, New Album, BabyfaceRay Collab, Upbringing in Detroit</div>
-          <p class="iv-desc">Evan J sits with Lelo to discuss his journey, what inspires his music, and how he plans to shake up the industry.</p>
-          <span class="iv-tag">RAP</span>
-        </div>
-        <div class="iv-watch-btn">Watch on YouTube &rarr;</div>
-      </a>
-
-      <!-- Kai H -->
-      <a href="https://www.youtube.com/watch?v=w5qK8u-mSnQ" target="_blank" rel="noopener noreferrer" class="iv-card">
-        <div class="iv-thumb">
-          <img src="https://img.youtube.com/vi/w5qK8u-mSnQ/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/w5qK8u-mSnQ/hqdefault.jpg'" alt="Kai H interview" class="iv-card-img">
-          <div class="iv-hover-cta"><span>&#9654; Watch Now</span></div>
-        </div>
-        <div class="iv-info">
-          <div class="iv-meta">
-            <span class="iv-date">Jun 1, 2025</span>
-            <span class="iv-guest-name">Kai H</span>
-          </div>
-          <div class="iv-card-divider"></div>
-          <div class="iv-full-title">Ultra Metal, Thriving as a Music Creative, Meeting 1300Saint, Fallen Republic News</div>
-          <p class="iv-desc">Visionary producer Kai H unpacks his journey, his distinct sound, and the intentionality behind his work with Militia and Fallen Republic.</p>
-          <span class="iv-tag">RAP</span>
-        </div>
-        <div class="iv-watch-btn">Watch on YouTube &rarr;</div>
-      </a>
-
-      <!-- 1300Saint -->
-      <a href="https://www.youtube.com/watch?v=h1ptnbNO64k" target="_blank" rel="noopener noreferrer" class="iv-card">
-        <div class="iv-thumb">
-          <img src="https://img.youtube.com/vi/h1ptnbNO64k/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/h1ptnbNO64k/hqdefault.jpg'" alt="1300Saint interview" class="iv-card-img">
-          <div class="iv-hover-cta"><span>&#9654; Watch Now</span></div>
-        </div>
-        <div class="iv-info">
-          <div class="iv-meta">
-            <span class="iv-date">Aug 1, 2025</span>
-            <span class="iv-guest-name">1300Saint</span>
-          </div>
-          <div class="iv-card-divider"></div>
-          <div class="iv-full-title">New Project, Mental Health, Working With YSL, What is Militia</div>
-          <p class="iv-desc">In an unfiltered sit-down, rising Baltimore artist 1300Saint opens up about his creative process and how he's carving his lane in a crowded industry.</p>
-          <span class="iv-tag">RAP</span>
-        </div>
-        <div class="iv-watch-btn">Watch on YouTube &rarr;</div>
-      </a>
-
-      <!-- Slump Madi -->
-      <a href="https://www.youtube.com/watch?v=TNiObPO_DEs" target="_blank" rel="noopener noreferrer" class="iv-card">
-        <div class="iv-thumb">
-          <img src="https://img.youtube.com/vi/TNiObPO_DEs/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/TNiObPO_DEs/hqdefault.jpg'" alt="Slump Madi interview" class="iv-card-img">
-          <div class="iv-hover-cta"><span>&#9654; Watch Now</span></div>
-        </div>
-        <div class="iv-info">
-          <div class="iv-meta">
-            <span class="iv-date"></span>
-            <span class="iv-guest-name">Slump Madi</span>
-          </div>
-          <div class="iv-card-divider"></div>
-          <div class="iv-full-title">Tour With 1300Saint, More Crank, Parasocial, Militia, Mastering Promo</div>
-          <p class="iv-desc">Rising DMV artist Slump Madi breaks down how he's building his name while forging key relationships with 1300Saint, Kai H, and Militia.</p>
-          <span class="iv-tag">RAP</span>
-        </div>
-        <div class="iv-watch-btn">Watch on YouTube &rarr;</div>
-      </a>
-
-      <!-- Thirteendegrees -->
+      <!-- Thirteendegrees — Apr 30, 2026 -->
       <a href="https://www.youtube.com/watch?v=pmkIElASjBE" target="_blank" rel="noopener noreferrer" class="iv-card">
         <div class="iv-thumb">
           <img src="https://img.youtube.com/vi/pmkIElASjBE/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/pmkIElASjBE/hqdefault.jpg'" alt="Thirteendegrees interview" class="iv-card-img">
@@ -1251,7 +1193,7 @@ body::after {
         </div>
         <div class="iv-info">
           <div class="iv-meta">
-            <span class="iv-date"></span>
+            <span class="iv-date">Apr 30, 2026</span>
             <span class="iv-guest-name">Thirteendegrees</span>
           </div>
           <div class="iv-card-divider"></div>
@@ -1262,7 +1204,45 @@ body::after {
         <div class="iv-watch-btn">Watch on YouTube &rarr;</div>
       </a>
 
-      <!-- YungHeir -->
+      <!-- Slump Madi — Mar 26, 2026 -->
+      <a href="https://www.youtube.com/watch?v=TNiObPO_DEs" target="_blank" rel="noopener noreferrer" class="iv-card">
+        <div class="iv-thumb">
+          <img src="https://img.youtube.com/vi/TNiObPO_DEs/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/TNiObPO_DEs/hqdefault.jpg'" alt="Slump Madi interview" class="iv-card-img">
+          <div class="iv-hover-cta"><span>&#9654; Watch Now</span></div>
+        </div>
+        <div class="iv-info">
+          <div class="iv-meta">
+            <span class="iv-date">Mar 26, 2026</span>
+            <span class="iv-guest-name">Slump Madi</span>
+          </div>
+          <div class="iv-card-divider"></div>
+          <div class="iv-full-title">Tour With 1300Saint, More Crank, Parasocial, Militia, Mastering Promo</div>
+          <p class="iv-desc">Rising DMV artist Slump Madi breaks down how he's building his name while forging key relationships with 1300Saint, Kai H, and Militia.</p>
+          <span class="iv-tag">RAP</span>
+        </div>
+        <div class="iv-watch-btn">Watch on YouTube &rarr;</div>
+      </a>
+
+      <!-- Destin Laurel — Mar 10, 2026 -->
+      <a href="https://www.youtube.com/watch?v=DCA58x_SMxs" target="_blank" rel="noopener noreferrer" class="iv-card">
+        <div class="iv-thumb">
+          <img src="https://img.youtube.com/vi/DCA58x_SMxs/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/DCA58x_SMxs/hqdefault.jpg'" alt="Destin Laurel interview" class="iv-card-img">
+          <div class="iv-hover-cta"><span>&#9654; Watch Now</span></div>
+        </div>
+        <div class="iv-info">
+          <div class="iv-meta">
+            <span class="iv-date">Mar 10, 2026</span>
+            <span class="iv-guest-name">Destin Laurel</span>
+          </div>
+          <div class="iv-card-divider"></div>
+          <div class="iv-full-title">Creation of Mercy, PlaqueBoyMax Songwar's, Tour With SosoCamo, What's Next</div>
+          <p class="iv-desc">Destin Laurel opens up about his family's role in his career, the creation of album Mercy, and his time on the No Service Tour with Sosocamo.</p>
+          <span class="iv-tag">RAP</span>
+        </div>
+        <div class="iv-watch-btn">Watch on YouTube &rarr;</div>
+      </a>
+
+      <!-- YungHeir — Jan 14, 2026 -->
       <a href="https://www.youtube.com/watch?v=5oboTRc_B6w" target="_blank" rel="noopener noreferrer" class="iv-card">
         <div class="iv-thumb">
           <img src="https://img.youtube.com/vi/5oboTRc_B6w/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/5oboTRc_B6w/hqdefault.jpg'" alt="YungHeir interview" class="iv-card-img">
@@ -1281,39 +1261,77 @@ body::after {
         <div class="iv-watch-btn">Watch on YouTube &rarr;</div>
       </a>
 
-      <!-- Destin Laurel -->
-      <a href="https://www.youtube.com/watch?v=DCA58x_SMxs" target="_blank" rel="noopener noreferrer" class="iv-card">
+      <!-- 1300Saint — Aug 1, 2025 -->
+      <a href="https://www.youtube.com/watch?v=h1ptnbNO64k" target="_blank" rel="noopener noreferrer" class="iv-card">
         <div class="iv-thumb">
-          <img src="https://img.youtube.com/vi/DCA58x_SMxs/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/DCA58x_SMxs/hqdefault.jpg'" alt="Destin Laurel interview" class="iv-card-img">
+          <img src="https://img.youtube.com/vi/h1ptnbNO64k/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/h1ptnbNO64k/hqdefault.jpg'" alt="1300Saint interview" class="iv-card-img">
           <div class="iv-hover-cta"><span>&#9654; Watch Now</span></div>
         </div>
         <div class="iv-info">
           <div class="iv-meta">
-            <span class="iv-date"></span>
-            <span class="iv-guest-name">Destin Laurel</span>
+            <span class="iv-date">Aug 1, 2025</span>
+            <span class="iv-guest-name">1300Saint</span>
           </div>
           <div class="iv-card-divider"></div>
-          <div class="iv-full-title">Creation of Mercy, PlaqueBoyMax Songwar's, Tour With SosoCamo, What's Next</div>
-          <p class="iv-desc">Destin Laurel opens up about his family's role in his career, the creation of album Mercy, and his time on the No Service Tour with Sosocamo.</p>
+          <div class="iv-full-title">New Project, Mental Health, Working With YSL, What is Militia</div>
+          <p class="iv-desc">In an unfiltered sit-down, rising Baltimore artist 1300Saint opens up about his creative process and how he's carving his lane in a crowded industry.</p>
           <span class="iv-tag">RAP</span>
         </div>
         <div class="iv-watch-btn">Watch on YouTube &rarr;</div>
       </a>
 
-      <!-- Yunosa -->
-      <a href="https://www.youtube.com/watch?v=IIiDm5zuRwQ" target="_blank" rel="noopener noreferrer" class="iv-card">
+      <!-- Lelo — Jun 1, 2025 -->
+      <a href="https://www.youtube.com/watch?v=xsP7EURF1-c" target="_blank" rel="noopener noreferrer" class="iv-card">
         <div class="iv-thumb">
-          <img src="https://img.youtube.com/vi/IIiDm5zuRwQ/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/IIiDm5zuRwQ/hqdefault.jpg'" alt="Yunosa interview" class="iv-card-img">
+          <img src="https://img.youtube.com/vi/xsP7EURF1-c/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/xsP7EURF1-c/hqdefault.jpg'" alt="Lelo interview" class="iv-card-img">
           <div class="iv-hover-cta"><span>&#9654; Watch Now</span></div>
         </div>
         <div class="iv-info">
           <div class="iv-meta">
-            <span class="iv-date"></span>
-            <span class="iv-guest-name">Yunosa</span>
+            <span class="iv-date">Jun 1, 2025</span>
+            <span class="iv-guest-name">Lelo</span>
           </div>
           <div class="iv-card-divider"></div>
-          <div class="iv-full-title">Creative Process Behind Bfly &amp; Klash, Songwars W/KingMil, DMV</div>
-          <p class="iv-desc">Underground standout Yunosa breaks down his creative process and the mentality behind building serious impact with a small but powerful catalog.</p>
+          <div class="iv-full-title">New Detroit, New Album, BabyfaceRay Collab, Upbringing in Detroit</div>
+          <p class="iv-desc">Evan J sits with Lelo to discuss his journey, what inspires his music, and how he plans to shake up the industry.</p>
+          <span class="iv-tag">RAP</span>
+        </div>
+        <div class="iv-watch-btn">Watch on YouTube &rarr;</div>
+      </a>
+
+      <!-- Kai H — Jun 1, 2025 -->
+      <a href="https://www.youtube.com/watch?v=w5qK8u-mSnQ" target="_blank" rel="noopener noreferrer" class="iv-card">
+        <div class="iv-thumb">
+          <img src="https://img.youtube.com/vi/w5qK8u-mSnQ/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/w5qK8u-mSnQ/hqdefault.jpg'" alt="Kai H interview" class="iv-card-img">
+          <div class="iv-hover-cta"><span>&#9654; Watch Now</span></div>
+        </div>
+        <div class="iv-info">
+          <div class="iv-meta">
+            <span class="iv-date">Jun 1, 2025</span>
+            <span class="iv-guest-name">Kai H</span>
+          </div>
+          <div class="iv-card-divider"></div>
+          <div class="iv-full-title">Ultra Metal, Thriving as a Music Creative, Meeting 1300Saint, Fallen Republic News</div>
+          <p class="iv-desc">Visionary producer Kai H unpacks his journey, his distinct sound, and the intentionality behind his work with Militia and Fallen Republic.</p>
+          <span class="iv-tag">RAP</span>
+        </div>
+        <div class="iv-watch-btn">Watch on YouTube &rarr;</div>
+      </a>
+
+      <!-- Nardo$ Reign — May 10, 2025 (premiere) -->
+      <a href="https://www.youtube.com/watch?v=zHgoL23XLLY" target="_blank" rel="noopener noreferrer" class="iv-card">
+        <div class="iv-thumb">
+          <img src="https://img.youtube.com/vi/zHgoL23XLLY/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/zHgoL23XLLY/hqdefault.jpg'" alt="Nardo$ Reign interview" class="iv-card-img">
+          <div class="iv-hover-cta"><span>&#9654; Watch Now</span></div>
+        </div>
+        <div class="iv-info">
+          <div class="iv-meta">
+            <span class="iv-date">May 10, 2025</span>
+            <span class="iv-guest-name">Nardo$ Reign</span>
+          </div>
+          <div class="iv-card-divider"></div>
+          <div class="iv-full-title">New Album News, Mental Health, Producing &amp; Rapping, Underground Rap</div>
+          <p class="iv-desc">Baltimore's Nardo$ Reign goes deep on navigating independence, mental health, and staying focused — the premiere episode of MentalGame.</p>
           <span class="iv-tag">RAP</span>
         </div>
         <div class="iv-watch-btn">Watch on YouTube &rarr;</div>
@@ -1339,7 +1357,7 @@ body::after {
       Back
     </button>
     <span class="panel-section-label">Reviews</span>
-    <span class="panel-wordmark">Mental Game</span>
+    <span class="panel-wordmark">MentalGame</span>
   </header>
 
   <section class="sec" style="background:var(--dark);">
@@ -1428,7 +1446,7 @@ body::after {
       Back
     </button>
     <span class="panel-section-label">Rankings</span>
-    <span class="panel-wordmark">Mental Game</span>
+    <span class="panel-wordmark">MentalGame</span>
   </header>
 
   <section class="sec" style="background:var(--black);">
@@ -1437,7 +1455,7 @@ body::after {
       <span class="sec-label-tag">Rankings</span>
     </div>
     <h2 class="sec-title rv d1">Best Artists <em>Ranked</em></h2>
-    <p class="iv-subhead rv d1" style="font-size:11px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--red);margin-top:10px;">Who's moving the culture</p>
+    <p class="iv-subhead rv d1" style="font-size:11px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--red);margin-top:10px;">Our Top 5.</p>
     <div class="rule"></div>
 
     <div class="rankings-grid rv d2">
@@ -1448,8 +1466,7 @@ body::after {
         <div class="board-tape tr" aria-hidden="true"></div>
         <div class="tape-y" style="width:64px;height:19px;bottom:-9px;left:40px;transform:rotate(-1.8deg);" aria-hidden="true"></div>
         <div class="tape-y" style="width:64px;height:19px;bottom:-9px;right:40px;transform:rotate(2.2deg);" aria-hidden="true"></div>
-        <div class="board-head">Top 5 Artists</div>
-        <p class="board-sub">Ranked by impact, authenticity &amp; contribution to music × mental health</p>
+        <div class="board-head board-head-gold">Top 5</div>
         <div class="rank-row" tabindex="0" role="listitem">
           <div class="rank-n top">1</div>
           <div><div class="rank-name">Kendrick Lamar</div><div class="rank-desc">Compton · Hip-Hop · Pulitzer Prize Winner</div></div>
@@ -1521,7 +1538,7 @@ body::after {
       Back
     </button>
     <span class="panel-section-label">About</span>
-    <span class="panel-wordmark">Mental Game</span>
+    <span class="panel-wordmark">MentalGame</span>
   </header>
 
   <section class="sec" style="background:var(--dark); overflow:hidden;">
@@ -1536,8 +1553,8 @@ body::after {
     <div class="about-layout">
 
       <div class="photo-stack rv">
-        <img src="IMG_1835.jpeg" alt="Evan J — host of Mental Game, seated in studio" class="ps-img ps-main">
-        <img src="IMG_1836.jpeg" alt="Mental Game podcast recording session" class="ps-img ps-back">
+        <img src="IMG_1835.jpeg" alt="Evan J — host of MentalGame, seated in studio" class="ps-img ps-main">
+        <img src="IMG_1836.jpeg" alt="MentalGame podcast recording session" class="ps-img ps-back">
         <img src="IMG_1839.jpeg" alt="Evan J portrait" class="ps-img ps-front">
         <div class="ps-tape t1" aria-hidden="true"></div>
         <div class="ps-tape t2" aria-hidden="true"></div>
@@ -1557,12 +1574,12 @@ body::after {
           The music is the message. The mental game is what gets you there.
         </div>
 
-        <p class="about-p rv d2">Mental Game is a platform built at the intersection of music and mental health. Created by Evan J, the show features raw, honest conversations with music creatives — artists, producers, songwriters — exploring how they navigate the mental and emotional demands of a life in music.</p>
+        <p class="about-p rv d2">MentalGame is a platform built at the intersection of music and mental health. Created by Evan J, the show features raw, honest conversations with music creatives — artists, producers, songwriters — exploring how they navigate the mental and emotional demands of a life in music.</p>
         <p class="about-p rv d3">Every episode is a window into the real journey behind the art: the grind, the growth, and the mental game it takes to keep going.</p>
 
         <div class="stats-row rv">
-          <div><div class="stat-n" data-count="30" data-suffix="+">30+</div><div class="stat-l">Interviews</div></div>
-          <div><div class="stat-n" data-count="5" data-suffix="K+">5K+</div><div class="stat-l">Followers</div></div>
+          <div><div class="stat-n" data-count="12" data-suffix="">12</div><div class="stat-l">Interviews</div></div>
+          <div><div class="stat-n" data-count="1394" data-suffix="" data-comma="true">1,394</div><div class="stat-l">Supporters</div></div>
           <div><div class="stat-n" data-count="100" data-suffix="%">100%</div><div class="stat-l">Real Talk</div></div>
         </div>
 
@@ -1586,7 +1603,7 @@ body::after {
       Back
     </button>
     <span class="panel-section-label">Community</span>
-    <span class="panel-wordmark">Mental Game</span>
+    <span class="panel-wordmark">MentalGame</span>
   </header>
 
   <!-- Paper scrapbook section -->
@@ -1596,8 +1613,8 @@ body::after {
     <div class="dc-paper-inner">
       <span class="dc-pretext">Join the</span>
       <h2 class="dc-marker-title">Community</h2>
-      <p class="dc-paper-sub">Connect with music creatives, share your journey, and be first to know about new episodes, reviews, and rankings. The Mental Game Discord is where the real conversation continues.</p>
-      <a href="#" class="btn-discord rv d2" aria-label="Join Mental Game Discord server">
+      <p class="dc-paper-sub">Connect with music creatives, share your journey, and be first to know about new episodes, reviews, and rankings. The MentalGame Discord is where the real conversation continues.</p>
+      <a href="#" class="btn-discord rv d2" aria-label="Join MentalGame Discord server">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.11 18.1.12 18.12a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
         Join Discord
       </a>
@@ -1671,7 +1688,7 @@ body::after {
   <div class="dc-foot">
     <div class="dc-foot-logo">
       <img src="logo.png" alt="">
-      <span>Mental Game</span>
+      <span>MentalGame</span>
     </div>
     <div class="dc-foot-socials">
       <a href="https://www.youtube.com/@mentalgameco" target="_blank" rel="noopener noreferrer" class="soc" aria-label="YouTube">
@@ -1681,7 +1698,7 @@ body::after {
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
       </a>
     </div>
-    <span class="dc-foot-copy">© 2025 Mental Game by Evan J. All rights reserved.</span>
+    <span class="dc-foot-copy">© 2025 MentalGame by Evan J. All rights reserved.</span>
   </div>
 </div><!-- /#panel-discord -->
 
@@ -2006,20 +2023,22 @@ function triggerStatCountUp(){
   if(statsFired) return;
   statsFired = true;
 
-  function countUp(el, target, suffix, dur){
+  function countUp(el, target, suffix, dur, useComma){
     const start = performance.now();
     (function step(now){
       const p   = Math.min((now - start) / dur, 1);
       const ease = p < .5 ? 2*p*p : -1+(4-2*p)*p;
-      el.textContent = Math.round(ease * target) + suffix;
+      const val  = Math.round(ease * target);
+      el.textContent = (useComma ? val.toLocaleString() : val) + suffix;
       if(p < 1) requestAnimationFrame(step);
     })(performance.now());
   }
 
   document.querySelectorAll('.stat-n[data-count]').forEach(el => {
-    const target = parseInt(el.dataset.count, 10);
-    const suffix = el.dataset.suffix || '';
-    countUp(el, target, suffix, 1400);
+    const target   = parseInt(el.dataset.count, 10);
+    const suffix   = el.dataset.suffix || '';
+    const useComma = el.dataset.comma === 'true';
+    countUp(el, target, suffix, 1400, useComma);
   });
 }
 
@@ -2094,78 +2113,29 @@ function triggerStatCountUp(){
 (function injectPaperTextures(){
   const seeds   = [42, 77, 13, 8, 24, 56, 99];
   const isMobile = window.innerWidth <= 768 || ('ontouchstart' in window && window.innerWidth <= 1024);
-  const TILE_H  = 900; // max tile height on mobile — well under iOS SVG filter render limit
-
-  /* Build the SVG filter + layer markup for a given tile region.
-     x0/y0 are the top-left corner in SVG user space; w/h are the tile dimensions.
-     The viewBox on the parent SVG shifts the coordinate origin so feTurbulence
-     samples from (x0, y0) in the global noise field, making tiles seamless. */
-  function buildInner(seed, u, x0, y0, w, h) {
-    return `
-<defs>
-  <filter id="w${u}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
-    <feTurbulence type="turbulence" baseFrequency="0.006 0.01" numOctaves="3" seed="${seed}" result="n"/>
-    <feDisplacementMap in="SourceGraphic" in2="n" scale="11" xChannelSelector="R" yChannelSelector="G"/>
-  </filter>
-  <filter id="sh${u}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
-    <feTurbulence type="turbulence" baseFrequency="0.006 0.01" numOctaves="3" seed="${seed}" result="n"/>
-    <feColorMatrix type="saturate" values="0" in="n" result="g"/>
-    <feDiffuseLighting in="g" lighting-color="#ffffff" surfaceScale="14" diffuseConstant="0.7" result="lit">
-      <feDistantLight azimuth="42" elevation="20"/>
-    </feDiffuseLighting>
-    <feComponentTransfer in="lit">
-      <feFuncR type="linear" slope="0.40" intercept="0.60"/>
-      <feFuncG type="linear" slope="0.40" intercept="0.60"/>
-      <feFuncB type="linear" slope="0.40" intercept="0.60"/>
-    </feComponentTransfer>
-  </filter>
-  <pattern id="rl${u}" x="0" y="0" width="9999" height="28" patternUnits="userSpaceOnUse">
-    <line x1="0" y1="27.5" x2="9999" y2="27.5" stroke="rgba(80,120,200,0.22)" stroke-width="1"/>
-  </pattern>
-</defs>
-<rect x="${x0}" y="${y0}" width="${w}" height="${h}" fill="white" filter="url(#sh${u})"/>
-<rect x="${x0}" y="${y0}" width="${w}" height="${h}" fill="url(#rl${u})" filter="url(#w${u})"/>
-<line x1="53" y1="${y0}" x2="53" y2="${y0 + h}" stroke="rgba(210,75,75,0.28)" stroke-width="1.5"/>`;
-  }
 
   document.querySelectorAll('.section-panel .sec').forEach((sec, i) => {
     const seed = seeds[i % seeds.length];
     const u    = `_pt${i}`;
-    const secH = sec.scrollHeight;
-    const secW = window.innerWidth;
+    const svg  = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'paper-texture-svg');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
 
-    if (isMobile && secH > TILE_H) {
-      /* Section too tall for iOS SVG filter — inject tiled SVGs.
-         Each tile has a viewBox y-offset so feTurbulence samples the correct
-         slice of the same continuous noise field. Tiles are seamless. */
-      const numTiles = Math.ceil(secH / TILE_H);
-      const frag = document.createDocumentFragment();
-
-      for (let t = 0; t < numTiles; t++) {
-        const tileY = t * TILE_H;
-        const tileH = Math.min(TILE_H, secH - tileY);
-        const ut    = `${u}_${t}`;
-
-        const tile = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        tile.setAttribute('class', 'paper-texture-svg');
-        tile.setAttribute('aria-hidden', 'true');
-        tile.setAttribute('focusable', 'false');
-        tile.setAttribute('viewBox', `0 ${tileY} ${secW} ${tileH}`);
-        tile.setAttribute('preserveAspectRatio', 'none');
-        /* Override the CSS inset:0 so each tile sits at its correct vertical slot */
-        tile.style.top    = `${tileY}px`;
-        tile.style.height = `${tileH}px`;
-        tile.style.bottom = 'auto';
-        tile.innerHTML = buildInner(seed, ut, 0, tileY, secW, tileH);
-        frag.appendChild(tile);
-      }
-      sec.insertBefore(frag, sec.firstChild);
+    if (isMobile) {
+      /* Mobile: ruled lines + margin only — no heavy SVG filters (feDiffuseLighting
+         causes grey rectangle rendering artifacts on iOS/Android). The cream
+         background is already applied via CSS; this adds the notebook line detail. */
+      svg.innerHTML = `
+<defs>
+  <pattern id="rl${u}" x="0" y="0" width="9999" height="28" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="27.5" x2="9999" y2="27.5" stroke="rgba(80,120,200,0.18)" stroke-width="1"/>
+  </pattern>
+</defs>
+<rect width="100%" height="100%" fill="url(#rl${u})"/>
+<line x1="53" y1="0" x2="53" y2="100%" stroke="rgba(210,75,75,0.22)" stroke-width="1.5"/>`;
     } else {
-      /* Desktop and short mobile sections: single full-height SVG (original) */
-      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      svg.setAttribute('class', 'paper-texture-svg');
-      svg.setAttribute('aria-hidden', 'true');
-      svg.setAttribute('focusable', 'false');
+      /* Desktop: full crumple effect with displacement + diffuse lighting */
       svg.innerHTML = `
 <defs>
   <filter id="w${u}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
@@ -2191,8 +2161,9 @@ function triggerStatCountUp(){
 <rect width="100%" height="100%" fill="white" filter="url(#sh${u})"/>
 <rect width="100%" height="100%" fill="url(#rl${u})" filter="url(#w${u})"/>
 <line x1="53" y1="0" x2="53" y2="100%" stroke="rgba(210,75,75,0.28)" stroke-width="1.5"/>`;
-      sec.insertAdjacentElement('afterbegin', svg);
     }
+
+    sec.insertAdjacentElement('afterbegin', svg);
   });
 })();
 </script>
