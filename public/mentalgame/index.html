@@ -2123,19 +2123,33 @@ function triggerStatCountUp(){
     svg.setAttribute('focusable', 'false');
 
     if (isMobile) {
-      /* Mobile: ruled lines + margin only — no heavy SVG filters (feDiffuseLighting
-         causes grey rectangle rendering artifacts on iOS/Android). The cream
-         background is already applied via CSS; this adds the notebook line detail. */
+      /* Mobile: single SVG, lighter filter — 2 octaves instead of 3, surfaceScale 8
+         instead of 14. This stays within iOS SVG filter render limits without tiling.
+         Previous approach tiled the SVG, but adjacent tiles' filter regions (x/y ±5%)
+         overlapped at boundaries, doubling the darkening and creating grey rectangles. */
       svg.innerHTML = `
 <defs>
+  <filter id="sh${u}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.038 0.026" numOctaves="2" seed="${seed}" result="n"/>
+    <feColorMatrix type="saturate" values="0" in="n" result="g"/>
+    <feDiffuseLighting in="g" lighting-color="#ffffff" surfaceScale="8" diffuseConstant="0.7" result="lit">
+      <feDistantLight azimuth="42" elevation="22"/>
+    </feDiffuseLighting>
+    <feComponentTransfer in="lit">
+      <feFuncR type="linear" slope="0.35" intercept="0.65"/>
+      <feFuncG type="linear" slope="0.35" intercept="0.65"/>
+      <feFuncB type="linear" slope="0.35" intercept="0.65"/>
+    </feComponentTransfer>
+  </filter>
   <pattern id="rl${u}" x="0" y="0" width="9999" height="28" patternUnits="userSpaceOnUse">
-    <line x1="0" y1="27.5" x2="9999" y2="27.5" stroke="rgba(80,120,200,0.18)" stroke-width="1"/>
+    <line x1="0" y1="27.5" x2="9999" y2="27.5" stroke="rgba(80,120,200,0.22)" stroke-width="1"/>
   </pattern>
 </defs>
+<rect width="100%" height="100%" fill="white" filter="url(#sh${u})"/>
 <rect width="100%" height="100%" fill="url(#rl${u})"/>
-<line x1="53" y1="0" x2="53" y2="100%" stroke="rgba(210,75,75,0.22)" stroke-width="1.5"/>`;
+<line x1="53" y1="0" x2="53" y2="100%" stroke="rgba(210,75,75,0.28)" stroke-width="1.5"/>`;
     } else {
-      /* Desktop: full crumple effect with displacement + diffuse lighting */
+      /* Desktop: full crumple — 3 octaves, surfaceScale 14, displacement on lines */
       svg.innerHTML = `
 <defs>
   <filter id="w${u}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
