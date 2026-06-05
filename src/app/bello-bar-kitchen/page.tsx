@@ -409,7 +409,7 @@ export default function BelloBarKitchenPreview() {
             <li><a href="#b-private">Private Events</a></li>
             <li><a href="#b-location">Find Us</a></li>
           </ul>
-          <a href="#" className="b-nav-cta">Reserve Now</a>
+          <a href="/bello-bar-kitchen/book" className="b-nav-cta">Reserve Now</a>
         </nav>
 
         {/* HERO */}
@@ -424,7 +424,7 @@ export default function BelloBarKitchenPreview() {
             Late-night cocktails, DJ Brunch, and a room that earns its reputation.
           </p>
           <div className="b-hero-actions">
-            <a href="#" className="b-btn-primary">Book a Table</a>
+            <a href="/bello-bar-kitchen/book" className="b-btn-primary">Book a Table</a>
             <a href="#b-menu" className="b-btn-outline">View Menu &rarr;</a>
           </div>
           <div className="b-hero-hours-bar">
@@ -672,7 +672,7 @@ export default function BelloBarKitchenPreview() {
             <div>
               <p className="b-footer-col-title">Reservations</p>
               <p className="b-footer-reserve-copy">Reservations recommended Friday &amp; Saturday. Walk-ins always welcome at the bar.</p>
-              <a href="#" className="b-btn-primary">Book via Resy</a>
+              <a href="/bello-bar-kitchen/book" className="b-btn-primary">Book via Resy</a>
             </div>
           </div>
           <div className="b-footer-bottom">
