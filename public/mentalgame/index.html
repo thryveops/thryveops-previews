@@ -196,16 +196,26 @@ body::after {
   text-transform:uppercase; color:var(--red); margin-top:10px;
 }
 
-/* boxes row */
+/* boxes area — two stacked flex rows */
 .hp-boxes {
   position:relative; z-index:4; flex:1;
-  display:flex; align-items:center; justify-content:center;
-  gap:clamp(20px,3vw,48px);
-  padding:0 clamp(24px,4vw,72px) 40px;
+  display:flex; flex-direction:column;
+  justify-content:center; align-items:center;
+  gap:clamp(10px,1.8vh,22px);
+  padding:0 clamp(16px,3vw,52px) 28px;
   width:100%;
 }
 
-/* Polaroid box — horizontal (landscape) */
+/* each row */
+.hp-row {
+  display:flex; align-items:center; width:100%;
+}
+/* top row — boxes pushed toward edges with a noticeable center gap */
+.hp-row-top  { justify-content:center; gap:clamp(60px,12vw,200px); }
+/* bottom row — tight gap, boxes sit close together in center */
+.hp-row-bottom { justify-content:center; gap:clamp(12px,2vw,28px); }
+
+/* Polaroid box */
 .hp-box {
   background:#f5f0e8;
   padding:9px 9px 40px;
@@ -215,8 +225,9 @@ body::after {
     inset 0 0 0 1px rgba(0,0,0,.07);
   border-radius:1px;
   transform:rotate(var(--rot,0deg)) translateY(var(--lift,0px));
-  position:relative; flex-shrink:0;
-  width:clamp(260px,29vw,410px);
+  position:relative;
+  width:clamp(200px,27vw,370px);
+  flex-shrink:0;
   opacity:0;
   transition:opacity .65s cubic-bezier(0.25,1,0.5,1) var(--bd,.3s);
   cursor:pointer;
@@ -862,26 +873,21 @@ body::after {
   .tn-socials { display:none; }
 
   /* ── HOME / HERO ── */
-  .hp-brand { padding:calc(60px + 20px) 20px 14px; }
+  .hp-brand { padding:calc(60px + 16px) 20px 10px; }
   .hp-title { font-size:clamp(34px,9vw,58px); }
   .hp-tagline { font-size:9px; letter-spacing:.28em; }
-  /* Polaroid boxes: horizontal swipeable carousel */
+  /* Polaroid boxes: 2×2 on mobile — rows stay flex, stack naturally */
   .hp-boxes {
-    flex-direction:row;
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
-    gap:16px;
-    padding:0 20px 48px;
-    justify-content:flex-start;
-    scrollbar-width:none;
-    width:100%;
+    gap:8px;
+    padding:0 10px 32px;
   }
-  .hp-boxes::-webkit-scrollbar { display:none; }
+  .hp-row {
+    gap:8px;
+    justify-content:center !important;
+  }
   .hp-box {
-    width:calc(100vw - 56px);
-    flex-shrink:0;
-    scroll-snap-align:center;
+    width:calc(50vw - 15px);
+    flex-shrink:1;
     transform:none !important;
   }
 
@@ -1085,54 +1091,78 @@ body::after {
       <p class="hp-tagline">Music × Mental Health</p>
     </div>
 
-    <!-- Scattered Polaroid video boxes -->
+    <!-- 2×2 Scattered Polaroid video boxes -->
     <div class="hp-boxes">
 
-      <!-- Box 1 -->
-      <div class="hp-box" id="hbox-1" style="--rot:-3.5deg;--lift:18px;--bd:.22s">
-        <div class="b-tape b-tape-tl"></div>
-        <div class="b-tape b-tape-tr"></div>
-        <div class="box-scene">
-          <video class="box-vid" id="bvid-1" muted playsinline preload="auto"></video>
-          <div class="page-cover" id="cov-1"></div>
-        </div>
-        <div class="box-foot">
-          <span class="box-dot on"></span>
-          <span class="box-dot"></span>
-          <span class="box-dot"></span>
-          <span class="box-dot"></span>
-        </div>
-      </div>
+      <!-- Top row — pushed toward edges -->
+      <div class="hp-row hp-row-top">
 
-      <!-- Box 2 -->
-      <div class="hp-box" id="hbox-2" style="--rot:3deg;--lift:-20px;--bd:.36s">
-        <div class="b-tape b-tape-tl"></div>
-        <div class="b-tape b-tape-tr"></div>
-        <div class="box-scene">
-          <video class="box-vid" id="bvid-2" muted playsinline preload="auto"></video>
-          <div class="page-cover" id="cov-2"></div>
+        <!-- Box 1 — top-left: tilts left, drops slightly -->
+        <div class="hp-box" id="hbox-1" style="--rot:-4.5deg;--lift:16px;--bd:.22s">
+          <div class="b-tape b-tape-tl"></div>
+          <div class="b-tape b-tape-tr"></div>
+          <div class="box-scene">
+            <video class="box-vid" id="bvid-1" muted playsinline preload="auto"></video>
+            <div class="page-cover" id="cov-1"></div>
+          </div>
+          <div class="box-foot">
+            <span class="box-dot on"></span>
+            <span class="box-dot"></span>
+            <span class="box-dot"></span>
+          </div>
         </div>
-        <div class="box-foot">
-          <span class="box-dot on"></span>
-          <span class="box-dot"></span>
-          <span class="box-dot"></span>
-          <span class="box-dot"></span>
-        </div>
-      </div>
 
-      <!-- Box 3 -->
-      <div class="hp-box" id="hbox-3" style="--rot:-1.5deg;--lift:12px;--bd:.50s">
-        <div class="b-tape b-tape-tl"></div>
-        <div class="b-tape b-tape-tr"></div>
-        <div class="box-scene">
-          <video class="box-vid" id="bvid-3" muted playsinline preload="auto"></video>
-          <div class="page-cover" id="cov-3"></div>
+        <!-- Box 2 — top-right: tilts right, rises up -->
+        <div class="hp-box" id="hbox-2" style="--rot:3.5deg;--lift:-22px;--bd:.36s">
+          <div class="b-tape b-tape-tl"></div>
+          <div class="b-tape b-tape-tr"></div>
+          <div class="box-scene">
+            <video class="box-vid" id="bvid-2" muted playsinline preload="auto"></video>
+            <div class="page-cover" id="cov-2"></div>
+          </div>
+          <div class="box-foot">
+            <span class="box-dot on"></span>
+            <span class="box-dot"></span>
+            <span class="box-dot"></span>
+          </div>
         </div>
-        <div class="box-foot">
-          <span class="box-dot on"></span>
-          <span class="box-dot"></span>
+
+      </div><!-- /.hp-row-top -->
+
+      <!-- Bottom row — tight together, centered -->
+      <div class="hp-row hp-row-bottom">
+
+        <!-- Box 4 — bottom-left: slight right tilt, rises slightly -->
+        <div class="hp-box" id="hbox-4" style="--rot:2deg;--lift:-12px;--bd:.50s">
+          <div class="b-tape b-tape-tl"></div>
+          <div class="b-tape b-tape-tr"></div>
+          <div class="box-scene">
+            <video class="box-vid" id="bvid-4" muted playsinline preload="auto"></video>
+            <div class="page-cover" id="cov-4"></div>
+          </div>
+          <div class="box-foot">
+            <span class="box-dot on"></span>
+            <span class="box-dot"></span>
+            <span class="box-dot"></span>
+          </div>
         </div>
-      </div>
+
+        <!-- Box 3 — bottom-right: tilts left, drops slightly -->
+        <div class="hp-box" id="hbox-3" style="--rot:-2.5deg;--lift:20px;--bd:.64s">
+          <div class="b-tape b-tape-tl"></div>
+          <div class="b-tape b-tape-tr"></div>
+          <div class="box-scene">
+            <video class="box-vid" id="bvid-3" muted playsinline preload="auto"></video>
+            <div class="page-cover" id="cov-3"></div>
+          </div>
+          <div class="box-foot">
+            <span class="box-dot on"></span>
+            <span class="box-dot"></span>
+            <span class="box-dot"></span>
+          </div>
+        </div>
+
+      </div><!-- /.hp-row-bottom -->
 
     </div>
   </main>
@@ -1883,9 +1913,10 @@ if(tnBurger && tnNav){
 ══════════════════════════════════════ */
 (function(){
   const PLAYLISTS = {
-    'hbox-1': ['videos/box1/1.mp4','videos/box1/2.mp4','videos/box1/3.mp4','videos/box1/4.mp4'],
-    'hbox-2': ['videos/box2/1.mp4','videos/box2/2.mp4','videos/box2/3.mp4','videos/box2/4.mp4'],
-    'hbox-3': ['videos/box3/1.mp4','videos/box3/2.mp4']
+    'hbox-1': ['videos/box1/1.mp4','videos/box1/2.mp4','videos/box1/3.mp4'],
+    'hbox-2': ['videos/box2/1.mp4','videos/box2/2.mp4','videos/box2/3.mp4'],
+    'hbox-3': ['videos/box3/1.mp4','videos/box3/2.mp4','videos/box3/3.mp4'],
+    'hbox-4': ['videos/box4/1.mp4','videos/box4/2.mp4','videos/box4/3.mp4']
   };
 
   Object.entries(PLAYLISTS).forEach(([boxId, playlist])=>{
@@ -1954,7 +1985,15 @@ if(tnBurger && tnNav){
     const mo = new MutationObserver(()=>{
       if(document.getElementById('hero-panel').classList.contains('hero-animated')){
         mo.disconnect();
-        setTimeout(()=>loadAndPlay(0), 200);
+        cover.style.transform = 'translateX(0)';
+        setTimeout(()=>{
+          loadAndPlay(0);
+          vid.addEventListener('canplay', ()=>{
+            cover.style.transform = '';
+            cover.classList.add('pg-out');
+            setTimeout(()=>{ cover.classList.remove('pg-out'); cover.style.transform = 'translateX(102%)'; }, 420);
+          }, {once:true});
+        }, 200);
       }
     });
     mo.observe(document.getElementById('hero-panel'),{attributes:true,attributeFilter:['class']});
@@ -2123,6 +2162,30 @@ function triggerStatCountUp(){
     svg.setAttribute('focusable', 'false');
 
     if (isMobile) {
+      const isInterviews = !!sec.closest('#panel-interviews');
+      if (isInterviews) {
+        /* Interviews on mobile: section is very tall, causing iOS to silently drop
+           feDiffuseLighting. Use pure-math feComponentTransfer instead — same visual
+           result, no render limit issues. */
+        svg.innerHTML = `
+<defs>
+  <filter id="sh${u}" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.038 0.026" numOctaves="3" seed="${seed}" result="n"/>
+    <feColorMatrix type="saturate" values="0" in="n" result="g"/>
+    <feComponentTransfer in="g">
+      <feFuncR type="linear" slope="0.35" intercept="0.65"/>
+      <feFuncG type="linear" slope="0.35" intercept="0.65"/>
+      <feFuncB type="linear" slope="0.33" intercept="0.63"/>
+    </feComponentTransfer>
+  </filter>
+  <pattern id="rl${u}" x="0" y="0" width="9999" height="28" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="27.5" x2="9999" y2="27.5" stroke="rgba(80,120,200,0.22)" stroke-width="1"/>
+  </pattern>
+</defs>
+<rect width="100%" height="100%" filter="url(#sh${u})"/>
+<rect width="100%" height="100%" fill="url(#rl${u})"/>
+<line x1="53" y1="0" x2="53" y2="100%" stroke="rgba(210,75,75,0.28)" stroke-width="1.5"/>`;
+      } else {
       /* Mobile: single SVG, lighter filter — 2 octaves instead of 3, surfaceScale 8
          instead of 14. This stays within iOS SVG filter render limits without tiling.
          Previous approach tiled the SVG, but adjacent tiles' filter regions (x/y ±5%)
@@ -2148,6 +2211,7 @@ function triggerStatCountUp(){
 <rect width="100%" height="100%" fill="white" filter="url(#sh${u})"/>
 <rect width="100%" height="100%" fill="url(#rl${u})"/>
 <line x1="53" y1="0" x2="53" y2="100%" stroke="rgba(210,75,75,0.28)" stroke-width="1.5"/>`;
+      }
     } else {
       /* Desktop: full crumple — 3 octaves, surfaceScale 14, displacement on lines */
       svg.innerHTML = `
