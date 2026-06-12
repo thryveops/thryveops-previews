@@ -169,6 +169,8 @@ body::after {
 /* ════════════════════════════════
    HERO (home) — cream paper + video boxes
 ════════════════════════════════ */
+
+
 #hero-panel {
   position:absolute; inset:0; z-index:0; overflow:hidden;
   display:flex; flex-direction:column; align-items:center;
@@ -192,7 +194,7 @@ body::after {
   text-shadow: 0 2px 24px rgba(0,0,0,.45);
 }
 .hp-tagline {
-  font-size:10px; font-weight:600; letter-spacing:.38em;
+  font-size:10px; font-weight:600; letter-spacing:.18em;
   text-transform:uppercase; color:var(--red); margin-top:10px;
 }
 
@@ -572,6 +574,7 @@ body::after {
 .rank-desc { font-size:11px; color:#666; margin-top:2px; }
 .rank-pill { font-size:8px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; padding:5px 12px; border:1.5px solid var(--red); color:var(--red); white-space:nowrap; }
 .rank-pill.filled { background:var(--red); color:#fff; }
+.rank-avatar { width:44px; height:44px; border-radius:50%; object-fit:cover; border:2px solid var(--red); flex-shrink:0; display:block; }
 
 /* Two-column rankings layout */
 .rankings-grid {
@@ -594,7 +597,7 @@ body::after {
 /* ════════════════════════════════
    ABOUT PANEL
 ════════════════════════════════ */
-.about-layout { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.about-layout { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
 .photo-stack { position:relative; height:580px; }
 .ps-img { position:absolute; object-fit:cover; }
 .ps-main  { width:74%; height:88%; top:6%; left:13%; z-index:3; filter:grayscale(15%); }
@@ -1081,14 +1084,14 @@ body::after {
     <!-- Paper texture — same system as section panels -->
     <!-- Full-bleed hero photo + dark cinematic overlay -->
     <div id="hp-photo-bg" aria-hidden="true" style="position:absolute;inset:0;z-index:1;pointer-events:none;">
-      <img src="IMG_1836.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.52) saturate(0.88);">
-      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,.42) 0%, rgba(0,0,0,.18) 45%, rgba(0,0,0,.58) 100%);"></div>
+      <img src="IMG_2276.jpeg" alt="" style="width:100%;height:100%;object-fit:contain;display:block;filter:brightness(.32) saturate(0.7);">
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.72) 100%);"></div>
     </div>
 
     <!-- Brand -->
     <div class="hp-brand">
       <h1 class="hp-title">MentalGame</h1>
-      <p class="hp-tagline">Music × Mental Health</p>
+      <p class="hp-tagline">× Where Conversation Meets Understanding</p>
     </div>
 
     <!-- 2×2 Scattered Polaroid video boxes -->
@@ -1112,8 +1115,8 @@ body::after {
           </div>
         </div>
 
-        <!-- Box 2 — top-right: tilts right, rises up -->
-        <div class="hp-box" id="hbox-2" style="--rot:3.5deg;--lift:-22px;--bd:.36s">
+        <!-- Box 2 — top-right: tilts right, drops slightly -->
+        <div class="hp-box" id="hbox-2" style="--rot:3.5deg;--lift:12px;--bd:.36s">
           <div class="b-tape b-tape-tl"></div>
           <div class="b-tape b-tape-tr"></div>
           <div class="box-scene">
@@ -1499,28 +1502,43 @@ body::after {
         <div class="board-head board-head-gold">Top 5</div>
         <div class="rank-row" tabindex="0" role="listitem">
           <div class="rank-n top">1</div>
-          <div><div class="rank-name">Kendrick Lamar</div><div class="rank-desc">Compton · Hip-Hop · Pulitzer Prize Winner</div></div>
-          <div class="rank-pill filled">GOAT</div>
+          <div><div class="rank-name">1300Saint</div><div class="rank-desc">Atlanta · Hip-Hop · YSL Signee</div></div>
+          <img class="rank-avatar" src="https://i.scdn.co/image/ab676161000051748dd88ecf424c03fe22a0d24d" alt="1300Saint">
+        </div>
+        <div class="sp-track">
+          <iframe src="https://open.spotify.com/embed/track/5zQP4vqngOMggR1KZ41FWg?utm_source=generator&start=70" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
         <div class="rank-row" tabindex="0" role="listitem">
           <div class="rank-n top">2</div>
-          <div><div class="rank-name">SZA</div><div class="rank-desc">New Jersey · R&amp;B / Soul · Cultural Icon</div></div>
-          <div class="rank-pill filled">Elite</div>
+          <div><div class="rank-name">Sk8Star</div><div class="rank-desc">Atlanta · Rap · Young Thug Co-sign</div></div>
+          <img class="rank-avatar" src="https://i.scdn.co/image/ab67616100005174701ad2624520dbce236dda91" alt="Sk8Star">
+        </div>
+        <div class="sp-track">
+          <iframe src="https://open.spotify.com/embed/track/7fXaqa5pORR29KsyBAs8ei?utm_source=generator&start=56" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
         <div class="rank-row" tabindex="0" role="listitem">
           <div class="rank-n top">3</div>
-          <div><div class="rank-name">J. Cole</div><div class="rank-desc">Fayetteville · Hip-Hop · Lyricist</div></div>
-          <div class="rank-pill filled">Elite</div>
+          <div><div class="rank-name">Nosaint</div><div class="rank-desc">Maryland · Hip-Hop · Recording Artist &amp; Producer</div></div>
+          <img class="rank-avatar" src="https://i.scdn.co/image/ab67616100005174f33617e2ddc6a546123c80b7" alt="Nosaint">
+        </div>
+        <div class="sp-track">
+          <iframe src="https://open.spotify.com/embed/track/3eGERKLr88dK2CKQWp40pf?utm_source=generator&start=25" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
         <div class="rank-row" tabindex="0" role="listitem">
           <div class="rank-n">4</div>
-          <div><div class="rank-name">Frank Ocean</div><div class="rank-desc">Long Beach · Alt R&amp;B · Visionary</div></div>
-          <div class="rank-pill">Top Tier</div>
+          <div><div class="rank-name">Yunosa</div><div class="rank-desc">Hip-Hop · Trap · Rising Artist</div></div>
+          <img class="rank-avatar" src="https://i.scdn.co/image/ab676161000051742aebd43df1627fadd6ce9dd9" alt="Yunosa">
+        </div>
+        <div class="sp-track">
+          <iframe src="https://open.spotify.com/embed/track/6lfz3De065QfgNDHbNhKSf?utm_source=generator&start=55" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
         <div class="rank-row" tabindex="0" role="listitem">
           <div class="rank-n">5</div>
-          <div><div class="rank-name">Tyler, the Creator</div><div class="rank-desc">Los Angeles · Hip-Hop / Neo-Soul · Producer</div></div>
-          <div class="rank-pill">Top Tier</div>
+          <div><div class="rank-name">Teezus</div><div class="rank-desc">Atlanta / New York · Hip-Hop · Rising Rapper</div></div>
+          <img class="rank-avatar" src="https://i.scdn.co/image/ab67616d00001e020111b3fa11d038e258656f0c" alt="Teezus">
+        </div>
+        <div class="sp-track">
+          <iframe src="https://open.spotify.com/embed/track/6QwafPhwIWy4G2ELlf5bQp?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -1535,23 +1553,23 @@ body::after {
 
         <div class="sp-track">
           <span class="sp-num">1</span>
-          <iframe src="https://open.spotify.com/embed/track/5EJZjKGQ9q3XNTggoyuGnL?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <iframe src="https://open.spotify.com/embed/track/2pHQJBa5vbQMwPfkgZPGMQ?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
         <div class="sp-track">
           <span class="sp-num">2</span>
-          <iframe src="https://open.spotify.com/embed/track/38tpgg5HNLAEhSvH68Gg7r?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <iframe src="https://open.spotify.com/embed/track/2yND5dTg3IXVmIguDQHX0B?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
         <div class="sp-track">
           <span class="sp-num">3</span>
-          <iframe src="https://open.spotify.com/embed/track/0poiRlgaHR3W3iPzhvzyx7?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <iframe src="https://open.spotify.com/embed/track/0lQOf91liB6EugXMBNW2QR?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
         <div class="sp-track">
           <span class="sp-num">4</span>
-          <iframe src="https://open.spotify.com/embed/track/2DQR4SmBa7eyt21q3OufrJ?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <iframe src="https://open.spotify.com/embed/track/6JjXldxVzhuSoDlYo2yFT0?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
         <div class="sp-track">
           <span class="sp-num">5</span>
-          <iframe src="https://open.spotify.com/embed/track/0msk6oZ8ITjIPOgfisgdio?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <iframe src="https://open.spotify.com/embed/track/6G41ZGoVyJFRInAy3LWT8O?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -1582,43 +1600,47 @@ body::after {
 
     <div class="about-layout">
 
-      <div class="photo-stack rv">
-        <img src="IMG_1835.jpeg" alt="Evan J — host of MentalGame, seated in studio" class="ps-img ps-main">
-        <img src="IMG_1836.jpeg" alt="MentalGame podcast recording session" class="ps-img ps-back">
-        <img src="IMG_1839.jpeg" alt="Evan J portrait" class="ps-img ps-front">
-        <div class="ps-tape t1" aria-hidden="true"></div>
-        <div class="ps-tape t2" aria-hidden="true"></div>
-        <!-- Evan J name badge over photo stack -->
-        <div class="name-badge" style="--rot:-6deg; top:-12px; left:-10px;" aria-hidden="true">
-          <div class="badge-head">
-            <span class="badge-hello">Hello</span>
-            <span class="badge-myname">my name is</span>
+      <div>
+        <div class="photo-stack rv">
+          <img src="IMG_1835.jpeg" alt="Evan J — host of MentalGame, seated in studio" class="ps-img ps-main">
+          <img src="IMG_1836.jpeg" alt="MentalGame podcast recording session" class="ps-img ps-back">
+          <img src="IMG_1839.jpeg" alt="Evan J portrait" class="ps-img ps-front">
+          <div class="ps-tape t1" aria-hidden="true"></div>
+          <div class="ps-tape t2" aria-hidden="true"></div>
+          <div class="name-badge" style="--rot:-6deg; top:-12px; left:-10px;" aria-hidden="true">
+            <div class="badge-head">
+              <span class="badge-hello">Hello</span>
+              <span class="badge-myname">my name is</span>
+            </div>
+            <span class="badge-name-text">Evan J</span>
           </div>
-          <span class="badge-name-text">Evan J</span>
+        </div>
+
+        <div class="stats-row rv" style="margin-top:32px;justify-content:center;">
+          <div><div class="stat-n" data-count="12" data-suffix="">12</div><div class="stat-l">Interviews</div></div>
+          <div><div class="stat-n" data-count="1394" data-suffix="" data-comma="true">1,394</div><div class="stat-l">Supporters</div></div>
+          <div><div class="stat-n" data-count="100" data-suffix="%">100%</div><div class="stat-l">Real Talk</div></div>
+        </div>
+
+        <div style="margin-top:24px;text-align:center;" class="rv">
+          <a href="https://www.instagram.com/mentalgame.co/" target="_blank" rel="noopener noreferrer" class="btn-red">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Follow on Instagram
+          </a>
         </div>
       </div>
 
       <div>
         <div class="about-quote rv d1">
           <span class="quote-mark" aria-hidden="true">"</span>
-          The music is the message. The mental game is what gets you there.
+          Success starts in the mind long before it appears in reality. It's up to you to win the MentalGame, and bring that vision to life.
         </div>
 
-        <p class="about-p rv d2">MentalGame is a platform built at the intersection of music and mental health. Created by Evan J, the show features raw, honest conversations with music creatives — artists, producers, songwriters — exploring how they navigate the mental and emotional demands of a life in music.</p>
-        <p class="about-p rv d3">Every episode is a window into the real journey behind the art: the grind, the growth, and the mental game it takes to keep going.</p>
+        <p class="about-p rv d2">My name is Evan J, a Psychology graduate from Morgan State University and the founder of MentalGame, a media platform dedicated to telling the stories behind the artists shaping the future of music.</p>
+        <p class="about-p rv d3">MentalGame was created from my passion for music, storytelling, and understanding what drives people to pursue their dreams. Through in-depth interviews, artist spotlights, album reviews, and cultural commentary, I aim to give audiences a deeper look into the minds of emerging creatives. Rather than focusing solely on numbers, trends, or viral moments, MentalGame explores the experiences, challenges, motivations, and mental resilience that fuel artistic success.</p>
+        <p class="about-p rv d4">As a psychology graduate, I bring a unique perspective to every conversation. I'm fascinated by the intersection of music, identity, mental health, and human behavior, and I use that lens to create meaningful discussions that allow artists to share who they are beyond the music.</p>
+        <p class="about-p rv d4">Since launching MentalGame, I've had the opportunity to interview rising artists and creatives from across the country, providing a platform where authentic stories can be told and genuine connections can be made. My goal is to build MentalGame into a trusted voice in music media, one that helps discover the next generation of talent while creating conversations that inspire, educate, and resonate with audiences worldwide.</p>
 
-        <div class="stats-row rv">
-          <div><div class="stat-n" data-count="12" data-suffix="">12</div><div class="stat-l">Interviews</div></div>
-          <div><div class="stat-n" data-count="1394" data-suffix="" data-comma="true">1,394</div><div class="stat-l">Supporters</div></div>
-          <div><div class="stat-n" data-count="100" data-suffix="%">100%</div><div class="stat-l">Real Talk</div></div>
-        </div>
-
-        <div style="margin-top:34px;" class="rv">
-          <a href="https://www.instagram.com/mentalgame.co/" target="_blank" rel="noopener noreferrer" class="btn-red">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            Follow on Instagram
-          </a>
-        </div>
       </div>
     </div>
   </section>
@@ -2214,14 +2236,19 @@ function triggerStatCountUp(){
       }
     } else {
       /* Desktop: full crumple — 3 octaves, surfaceScale 14, displacement on lines */
+      const isAbout = !!sec.closest('#panel-about');
+      const isInterviews = !!sec.closest('#panel-interviews');
+      const bf      = isAbout ? '0.008 0.013' : '0.006 0.01';
+      const noiseType = isInterviews ? 'fractalNoise' : 'turbulence';
+      const ibf     = isInterviews ? '0.014 0.020' : bf;
       svg.innerHTML = `
 <defs>
   <filter id="w${u}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
-    <feTurbulence type="turbulence" baseFrequency="0.006 0.01" numOctaves="3" seed="${seed}" result="n"/>
+    <feTurbulence type="${noiseType}" baseFrequency="${ibf}" numOctaves="3" seed="${seed}" result="n"/>
     <feDisplacementMap in="SourceGraphic" in2="n" scale="11" xChannelSelector="R" yChannelSelector="G"/>
   </filter>
   <filter id="sh${u}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
-    <feTurbulence type="turbulence" baseFrequency="0.006 0.01" numOctaves="3" seed="${seed}" result="n"/>
+    <feTurbulence type="${noiseType}" baseFrequency="${ibf}" numOctaves="3" seed="${seed}" result="n"/>
     <feColorMatrix type="saturate" values="0" in="n" result="g"/>
     <feDiffuseLighting in="g" lighting-color="#ffffff" surfaceScale="14" diffuseConstant="0.7" result="lit">
       <feDistantLight azimuth="42" elevation="20"/>
