@@ -2440,7 +2440,11 @@ function triggerStatCountUp(){
 <line x1="53" y1="0" x2="53" y2="100%" stroke="rgba(210,75,75,0.28)" stroke-width="1.5"/>`;
       }
     } else {
-      /* Desktop: full crumple — 3 octaves, surfaceScale 14, displacement on lines */
+      /* Desktop: full crumple — 3 octaves, surfaceScale 18, displacement on lines */
+      /* ── APPROVED CRUMPLE VALUES — do not adjust without permission ──
+         interviews: fractalNoise, bf=0.014 0.020, surfaceScale=18, slope=0.36, dispScale=14
+         default:    turbulence,   bf=0.006 0.01,  surfaceScale=18, slope=0.36, dispScale=14
+         about:      turbulence,   bf=0.008 0.013, surfaceScale=18, slope=0.36, dispScale=14 */
       const isAbout = !!sec.closest('#panel-about');
       const isInterviews = !!sec.closest('#panel-interviews');
       const bf      = isAbout ? '0.008 0.013' : '0.006 0.01';
@@ -2450,18 +2454,18 @@ function triggerStatCountUp(){
 <defs>
   <filter id="w${u}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
     <feTurbulence type="${noiseType}" baseFrequency="${ibf}" numOctaves="3" seed="${seed}" result="n"/>
-    <feDisplacementMap in="SourceGraphic" in2="n" scale="11" xChannelSelector="R" yChannelSelector="G"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G"/>
   </filter>
   <filter id="sh${u}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
     <feTurbulence type="${noiseType}" baseFrequency="${ibf}" numOctaves="3" seed="${seed}" result="n"/>
     <feColorMatrix type="saturate" values="0" in="n" result="g"/>
-    <feDiffuseLighting in="g" lighting-color="#ffffff" surfaceScale="14" diffuseConstant="0.7" result="lit">
+    <feDiffuseLighting in="g" lighting-color="#ffffff" surfaceScale="18" diffuseConstant="0.7" result="lit">
       <feDistantLight azimuth="42" elevation="20"/>
     </feDiffuseLighting>
     <feComponentTransfer in="lit">
-      <feFuncR type="linear" slope="0.40" intercept="0.60"/>
-      <feFuncG type="linear" slope="0.40" intercept="0.60"/>
-      <feFuncB type="linear" slope="0.40" intercept="0.60"/>
+      <feFuncR type="linear" slope="0.36" intercept="0.60"/>
+      <feFuncG type="linear" slope="0.36" intercept="0.60"/>
+      <feFuncB type="linear" slope="0.36" intercept="0.60"/>
     </feComponentTransfer>
   </filter>
   <pattern id="rl${u}" x="0" y="0" width="9999" height="28" patternUnits="userSpaceOnUse">
