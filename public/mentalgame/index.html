@@ -515,6 +515,92 @@ body::after {
 .star { width:13px; height:13px; background:var(--red); clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
 .star.e { background:#ccc; }
 
+/* ── REVIEW — rating, read-more, full article ── */
+.rv-rating-row { display:flex; align-items:baseline; gap:4px; margin-bottom:14px; position:relative; z-index:1; }
+.rv-rating-num { font-family:'Righteous',sans-serif; font-size:56px; line-height:1; color:var(--red); }
+.rv-rating-denom { font-family:'Righteous',sans-serif; font-size:20px; color:rgba(0,0,0,.35); }
+.rv-meta-row { display:flex; align-items:center; flex-wrap:wrap; gap:5px; margin:14px 0 18px; position:relative; z-index:1; }
+.rv-meta-item { font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:rgba(0,0,0,.5); }
+.rv-meta-dot { font-size:10px; color:rgba(0,0,0,.28); }
+.rv-read-btn {
+  position:relative; z-index:1; display:inline-block;
+  background:var(--black); color:var(--white);
+  font-family:'Poppins',sans-serif; font-size:9px; font-weight:700;
+  letter-spacing:.22em; text-transform:uppercase;
+  padding:11px 22px; border:none; cursor:pointer; transition:background .2s;
+}
+.rv-read-btn:hover { background:var(--red); }
+
+/* full review expandable — grid-row trick for smooth animation */
+.rv-full-wrap { display:grid; grid-template-rows:0fr; transition:grid-template-rows .65s cubic-bezier(0.16,1,0.3,1); margin-top:48px; }
+.rv-full-wrap.open { grid-template-rows:1fr; }
+.rv-full-inner { overflow:hidden; }
+.rv-full-content {
+  padding:60px 72px; background:var(--cream); color:var(--black);
+  background-image: repeating-linear-gradient(transparent, transparent 27px, rgba(140,170,210,.24) 27px, rgba(140,170,210,.24) 28px);
+}
+.rv-full-head { border-bottom:2px solid rgba(0,0,0,.15); padding-bottom:28px; margin-bottom:36px; }
+.rv-full-flag { font-size:9px; font-weight:700; letter-spacing:.35em; text-transform:uppercase; color:var(--red); margin-bottom:10px; }
+.rv-full-hrating { display:flex; align-items:baseline; gap:5px; margin-bottom:14px; }
+.rv-full-hrating-num { font-family:'Righteous',sans-serif; font-size:64px; line-height:1; color:var(--red); }
+.rv-full-hrating-den { font-family:'Righteous',sans-serif; font-size:22px; color:rgba(0,0,0,.3); }
+.rv-full-htitle { font-family:'Libre Bodoni',serif; font-size:32px; font-weight:700; line-height:1.2; margin-bottom:6px; }
+.rv-full-hbyline { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(0,0,0,.42); }
+.rv-full-body { max-width:680px; }
+.rv-full-body p { font-size:15px; line-height:1.88; color:#1e1e1e; margin-bottom:22px; }
+.rv-full-body > p:first-child::first-letter {
+  font-family:'Libre Bodoni',serif; font-size:68px; font-weight:700;
+  float:left; line-height:.82; padding-right:10px; padding-top:8px; color:var(--red);
+}
+.rv-pull-quote { border-left:3px solid var(--red); padding:14px 22px; margin:36px 0; background:rgba(230,51,41,.05); }
+.rv-pull-quote p { font-family:'Libre Bodoni',serif; font-size:18px; font-style:italic; line-height:1.55; color:var(--black); margin:0 !important; float:none !important; }
+.rv-pull-quote p::first-letter { all:unset; }
+.rv-video-section { margin-top:40px; padding-top:32px; border-top:1px solid rgba(0,0,0,.12); }
+.rv-video-label { font-size:9px; font-weight:700; letter-spacing:.35em; text-transform:uppercase; color:var(--red); margin-bottom:16px; }
+.rv-video-card {
+  display:flex; align-items:center; gap:20px;
+  background:var(--black); padding:20px 24px;
+  text-decoration:none; max-width:520px;
+  border-left:3px solid var(--red);
+  transition:background .2s;
+}
+.rv-video-card:hover { background:#1a1a1a; }
+.rv-video-thumb {
+  position:relative; flex-shrink:0;
+  width:120px; height:68px; background:#111; overflow:hidden;
+}
+.rv-video-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.rv-video-play {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  background:rgba(0,0,0,.4);
+}
+.rv-video-play svg { width:32px; height:32px; }
+.rv-video-info { flex:1; min-width:0; }
+.rv-video-eyebrow { font-size:9px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--red); margin-bottom:5px; }
+.rv-video-title { font-family:'Righteous',sans-serif; font-size:13px; color:var(--white); text-transform:uppercase; letter-spacing:.04em; line-height:1.3; margin-bottom:4px; }
+.rv-video-sub { font-size:11px; color:rgba(255,255,255,.45); }
+.rv-full-closer { text-align:center; margin-top:44px; padding-top:32px; border-top:1px solid rgba(0,0,0,.12); }
+.rv-close-btn {
+  background:transparent; color:var(--black);
+  font-family:'Poppins',sans-serif; font-size:9px; font-weight:700;
+  letter-spacing:.22em; text-transform:uppercase;
+  padding:11px 24px; border:2px solid rgba(0,0,0,.25); cursor:pointer; transition:all .2s;
+}
+.rv-close-btn:hover { background:var(--black); color:var(--white); }
+
+/* Coming soon stamp row */
+.rv-row-coming { position:relative; opacity:.6; cursor:default; pointer-events:none; }
+.rv-row-coming::after {
+  content:'COMING SOON';
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Permanent Marker',cursive; font-size:20px; letter-spacing:.18em;
+  color:rgba(230,51,41,.6);
+  transform:rotate(-6deg);
+  pointer-events:none;
+  text-shadow:0 0 0 rgba(230,51,41,.1);
+}
+
 .rv-list { display:flex; flex-direction:column; }
 .rv-row {
   display:grid; grid-template-columns:64px 1fr auto; gap:18px; align-items:center;
@@ -587,6 +673,36 @@ body::after {
   flex-shrink:0; width:22px; text-align:right; line-height:1;
 }
 .sp-track iframe { flex:1; display:block; border-radius:6px; }
+
+/* ── Top 5 Songs — click-to-play custom rows ── */
+.sp-song-slot { border-bottom:1px solid rgba(0,0,0,.08); }
+.sp-song-slot:last-child { border-bottom:none; }
+.sp-song-row {
+  display:flex; align-items:center; gap:12px;
+  padding:12px 4px; cursor:pointer; transition:background .15s;
+  border-radius:4px;
+}
+.sp-song-row:hover { background:rgba(230,51,41,.06); }
+.sp-song-num {
+  font-family:'Righteous',sans-serif; font-size:18px; color:var(--red);
+  flex-shrink:0; width:22px; text-align:right; line-height:1;
+}
+.sp-song-info { flex:1; min-width:0; }
+.sp-song-title { font-family:'Righteous',sans-serif; font-size:13px; text-transform:uppercase; letter-spacing:.04em; color:var(--black); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.sp-song-artist { font-size:11px; color:rgba(0,0,0,.45); margin-top:2px; }
+.sp-play-btn {
+  flex-shrink:0; width:34px; height:34px; border-radius:50%;
+  background:var(--black); border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .2s, transform .15s;
+}
+.sp-song-row:hover .sp-play-btn { background:var(--red); transform:scale(1.08); }
+.sp-play-btn svg { width:14px; height:14px; fill:white; margin-left:2px; }
+.sp-play-btn.playing svg { margin-left:0; }
+.sp-embed-wrap { display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s cubic-bezier(0.16,1,0.3,1); }
+.sp-embed-wrap.open { grid-template-rows:1fr; }
+.sp-embed-inner { overflow:hidden; }
+.sp-embed-inner iframe { display:block; border-radius:6px; margin-bottom:8px; }
 .sp-missing {
   flex:1; height:80px; display:flex; align-items:center; justify-content:center;
   background:rgba(0,0,0,.08); border-radius:6px;
@@ -919,6 +1035,11 @@ body::after {
   .rv-row { grid-template-columns:44px 1fr auto; gap:10px; }
   .rv-num { font-size:28px; }
   .rv-featured { transform:none; }
+  .rv-full-content { padding:36px 24px; }
+  .rv-full-htitle { font-size:22px; }
+  .rv-full-hrating-num { font-size:48px; }
+  .rv-full-body p { font-size:14px; }
+  .rv-pull-quote p { font-size:15px; }
 
   /* ── RANKINGS ── */
   .rankings-grid { grid-template-columns:1fr; gap:28px; }
@@ -1406,67 +1527,106 @@ body::after {
       <div class="rv-sidebar-col rv">
         <div class="rv-featured">
           <div class="rv-cat">Featured Review</div>
-          <div class="rv-feat-title">How Sound Shapes the Mind</div>
-          <div class="rv-artist">Various Artists · Album Review</div>
-          <p class="rv-excerpt">A deep exploration of how contemporary Black music confronts mental health in its rawest, most unfiltered form — and why that matters more than ever.</p>
-          <div class="stars">
-            <div class="star"></div><div class="star"></div><div class="star"></div>
-            <div class="star"></div><div class="star"></div>
+          <div class="rv-rating-row">
+            <span class="rv-rating-num">8.5</span>
+            <span class="rv-rating-denom">/10</span>
           </div>
+          <div class="rv-feat-title">The Resurrection</div>
+          <div class="rv-artist">Teezus · YSL Records · 2025</div>
+          <p class="rv-excerpt">"The first time I've felt that potential fully realized across an entire body of work."</p>
+          <div class="rv-meta-row">
+            <span class="rv-meta-item">8 Tracks</span>
+            <span class="rv-meta-dot">·</span>
+            <span class="rv-meta-item">19 Min</span>
+            <span class="rv-meta-dot">·</span>
+            <span class="rv-meta-item">Album Review</span>
+          </div>
+          <button class="rv-read-btn" onclick="toggleFullReview()">Read Full Review →</button>
         </div>
       </div>
 
       <div class="rv-list">
-        <div class="rv-row rv" tabindex="0" role="article">
+        <div class="rv-row rv" tabindex="0" role="article" style="cursor:pointer;" onclick="openFullReview()">
           <div class="rv-num">01</div>
           <div>
-            <div class="rv-row-title">The Weight of Lyrics</div>
-            <div class="rv-row-sub">How rappers are redefining mental health in verse · 8 min read</div>
+            <div class="rv-row-title">Teezus — The Resurrection</div>
+            <div class="rv-row-sub">8.5/10 · 8 tracks, 19 minutes of undeniable crank · Album Review</div>
           </div>
-          <div class="rv-badge">Article</div>
+          <div class="rv-badge">Review</div>
         </div>
-        <div class="rv-row rv d1" tabindex="0" role="article">
+        <div class="rv-row rv-row-coming" aria-hidden="true">
           <div class="rv-num">02</div>
           <div>
-            <div class="rv-row-title">Kendrick Lamar — GNX</div>
-            <div class="rv-row-sub">A masterclass in vulnerability and accountability · Album Review</div>
+            <div class="rv-row-title">BabyfaceRay &amp; 42Dugg — 4 Da Trenches Tour</div>
+            <div class="rv-row-sub">Tour Review · Coming Soon</div>
           </div>
-          <div class="rv-badge">Review</div>
-        </div>
-        <div class="rv-row rv d2" tabindex="0" role="article">
-          <div class="rv-num">03</div>
-          <div>
-            <div class="rv-row-title">The Sound of Healing</div>
-            <div class="rv-row-sub">Music therapy in practice, from bedroom producers · Feature</div>
-          </div>
-          <div class="rv-badge">Feature</div>
-        </div>
-        <div class="rv-row rv d3" tabindex="0" role="article">
-          <div class="rv-num">04</div>
-          <div>
-            <div class="rv-row-title">SZA — LANA</div>
-            <div class="rv-row-sub">Navigating love, loss, and self-discovery through R&amp;B · Album Review</div>
-          </div>
-          <div class="rv-badge">Review</div>
-        </div>
-        <div class="rv-row rv" tabindex="0" role="article">
-          <div class="rv-num">05</div>
-          <div>
-            <div class="rv-row-title">Underground to Mainstream</div>
-            <div class="rv-row-sub">The mental cost of overnight success in music · Deep Dive</div>
-          </div>
-          <div class="rv-badge">Deep Dive</div>
-        </div>
-        <div class="rv-row rv" tabindex="0" role="article">
-          <div class="rv-num">06</div>
-          <div>
-            <div class="rv-row-title">Tyler, The Creator — Chromakopia</div>
-            <div class="rv-row-sub">Identity, masks, and the art of evolution · Album Review</div>
-          </div>
-          <div class="rv-badge">Review</div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.4;flex-shrink:0;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         </div>
       </div>
     </div>
+
+    <!-- Full review expander -->
+    <div class="rv-full-wrap" id="rv-full-review">
+      <div class="rv-full-inner">
+        <div class="rv-full-content">
+          <div class="rv-full-head">
+            <div class="rv-full-flag">Album Review · June 8, 2025</div>
+            <div class="rv-full-hrating">
+              <span class="rv-full-hrating-num">8.5</span>
+              <span class="rv-full-hrating-den">/10</span>
+            </div>
+            <div class="rv-full-htitle">Teezus — <em>The Resurrection</em></div>
+            <div class="rv-full-hbyline">by Evan J · MentalGame</div>
+          </div>
+          <div class="rv-full-body">
+            <p>On June 8th, YSL's newest signee, Teezus, released his first solo project under the label, <em>The Resurrection</em> — and it left me stunned.</p>
+            <p>Going into the project, my expectations were high. Teezus did an exceptional job building anticipation around the release, making it nearly impossible to ignore the moment he was trying to create. Whether it was previewing the opening track, "Solange," four months before the album dropped, delivering some of the underground's most memorable performances, or generating buzz through his standout collaboration with Sk8star and Diamond on "N$D," Teezus made sure all eyes were on him.</p>
+            <p>That said, my perception of Teezus prior to this release wasn't entirely positive. While I appreciated his energy and presence, I felt his collaborative project with Diamond exposed areas where he still needed to grow — particularly in knowing when to unleash his signature screaming rap style and in developing more creative, introspective lyricism. I also wasn't a huge fan of his breakout single, "Bada Bing Bada Boom."</p>
+            <p>Even so, I've always believed Teezus possessed star-level potential. Tracks like "PISCES," "Warrior," and "Outro" showcased an artist whose talent feels almost limitless. Across those records, he displays a level of personality and charisma that's impossible to ignore. While his aggressive, barbaric rap style may not appeal to everyone, I've grown to appreciate it when it's used with intention. "PISCES," in particular, is a perfect example of how effective and captivating that approach can be when executed properly.</p>
+            <p>Now, bringing us to <em>The Resurrection</em>.</p>
+            <p>I must say, the moment I pressed play on the opening track, "Solange," I couldn't help but smile. After hearing snippets of the song throughout Teezus' rollout and spending months wanting to hear it in its entirety, finally getting access to the full record felt rewarding. It wasn't just another album intro — it felt like the payoff to months of anticipation. The first listen was made even more special because the song was finally mine to replay, download, and fully experience.</p>
+            <p>Continuing with "Solange" — what a f***ing introduction.</p>
+            <p>The track perfectly sets the tone for everything that follows, immediately embracing the energy and spirit of Lil Wayne and DJ Drama's Dedication mixtape series. More importantly, the way Teezus flips the Solange sample feels entirely unique. While countless artists have sampled soulful records before, I've never heard anything quite like this.</p>
+            <p>The barbaric rap style that I've mentioned throughout this review is executed flawlessly here. Teezus attacks the beat with relentless aggression, creating a striking contrast against the soft and emotional "Cranes in the Sky" sample. On paper, the combination shouldn't work. In reality, it's exactly what makes the record so captivating. The contrast between chaos and beauty creates one of the album's most memorable moments and immediately signals that <em>The Resurrection</em> is going to be something special.</p>
+            <div class="rv-pull-quote">
+              <p>"What I love most about this album is that it fully embodies a phrase I've always taken pride in — 'undeniable crank.' Simply put, this project is loaded with it."</p>
+            </div>
+            <p>Right from the jump, Teezus puts together an incredible opening run with "Solange," "Aubrey," "Teezus Mane La'Flair," and "Jeffrey Williams." Across those four tracks, he proves he can sustain momentum without missing a step. Each record hits with the kind of energy that has your head nodding before you even realize it.</p>
+            <p>Whether it's the nostalgic samples, the earth-shaking 808s, his aggressive delivery, or the variety in his flows, Teezus finds a way to fire on all cylinders. Every element works together to create a listening experience that's both chaotic and controlled.</p>
+            <p>Overall, I thoroughly enjoyed <em>The Resurrection</em> and can confidently say it was one of my favorite first listens of the year.</p>
+            <p>One of the project's greatest strengths is its length. At just eight songs and nineteen minutes, Teezus delivers exactly what the album needs — nothing more and nothing less. In an era where artists often flood projects with filler in pursuit of streams, <em>The Resurrection</em> feels refreshingly focused. Every track serves a purpose, allowing listeners to walk away with a memorable experience without feeling fatigued.</p>
+            <div class="rv-pull-quote">
+              <p>"While Teezus has always shown flashes of immense potential, <em>The Resurrection</em> is the first time I've felt that potential fully realized across an entire body of work."</p>
+            </div>
+            <p>More importantly, this project feels like a statement. The production is explosive, the performances are memorable, and the energy rarely dips from start to finish.</p>
+            <p>If this project is any indication of what's to come, Teezus isn't just another promising underground artist — he's positioning himself to be one of the most exciting voices in rap's next generation.</p>
+          </div>
+          <div class="rv-video-section">
+            <div class="rv-video-label">Watch the Review</div>
+            <a href="https://youtube.com/shorts/TR60Mx_y8Rc" target="_blank" rel="noopener noreferrer" class="rv-video-card">
+              <div class="rv-video-thumb">
+                <img src="https://img.youtube.com/vi/TR60Mx_y8Rc/hqdefault.jpg" alt="Teezus Resurrection review video thumbnail">
+                <div class="rv-video-play">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="11" fill="var(--red)"/>
+                    <polygon points="10,8 17,12 10,16" fill="white"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="rv-video-info">
+                <div class="rv-video-eyebrow">YouTube · Album Review</div>
+                <div class="rv-video-title">Teezus — The Resurrection</div>
+                <div class="rv-video-sub">Watch on YouTube →</div>
+              </div>
+            </a>
+          </div>
+          <div class="rv-full-closer">
+            <button class="rv-close-btn" onclick="toggleFullReview()">Close Review ↑</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </section>
 </div><!-- /#panel-reviews -->
 
@@ -1519,7 +1679,7 @@ body::after {
         <div class="rank-row" tabindex="0" role="listitem">
           <div class="rank-n top">3</div>
           <div><div class="rank-name">Nosaint</div><div class="rank-desc">Maryland · Hip-Hop · Recording Artist &amp; Producer</div></div>
-          <img class="rank-avatar" src="https://i.scdn.co/image/ab67616100005174f33617e2ddc6a546123c80b7" alt="Nosaint">
+          <img class="rank-avatar" src="nosaint.jpeg" alt="Nosaint">
         </div>
         <div class="sp-track">
           <iframe src="https://open.spotify.com/embed/track/3eGERKLr88dK2CKQWp40pf?utm_source=generator&start=25" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -1534,8 +1694,8 @@ body::after {
         </div>
         <div class="rank-row" tabindex="0" role="listitem">
           <div class="rank-n">5</div>
-          <div><div class="rank-name">Teezus</div><div class="rank-desc">Atlanta / New York · Hip-Hop · Rising Rapper</div></div>
-          <img class="rank-avatar" src="https://i.scdn.co/image/ab67616d00001e020111b3fa11d038e258656f0c" alt="Teezus">
+          <div><div class="rank-name">Teezus</div><div class="rank-desc">Atlanta · Hip-Hop · Rising Rapper</div></div>
+          <img class="rank-avatar" src="teezus.jpeg" alt="Teezus">
         </div>
         <div class="sp-track">
           <iframe src="https://open.spotify.com/embed/track/6QwafPhwIWy4G2ELlf5bQp?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -1551,25 +1711,70 @@ body::after {
         <div class="board-head">Top 5 Songs</div>
         <p class="board-sub">Personal picks — songs that move the mental game</p>
 
-        <div class="sp-track">
-          <span class="sp-num">1</span>
-          <iframe src="https://open.spotify.com/embed/track/2pHQJBa5vbQMwPfkgZPGMQ?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="sp-song-slot" id="sp-slot-1">
+          <div class="sp-song-row" onclick="toggleSong('sp-slot-1','0lQOf91liB6EugXMBNW2QR')">
+            <span class="sp-song-num">1</span>
+            <div class="sp-song-info">
+              <div class="sp-song-title">Eviction Notice</div>
+              <div class="sp-song-artist">Guapo</div>
+            </div>
+            <button class="sp-play-btn" aria-label="Play Eviction Notice">
+              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+          </div>
+          <div class="sp-embed-wrap" id="sp-embed-sp-slot-1"><div class="sp-embed-inner"></div></div>
         </div>
-        <div class="sp-track">
-          <span class="sp-num">2</span>
-          <iframe src="https://open.spotify.com/embed/track/2yND5dTg3IXVmIguDQHX0B?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="sp-song-slot" id="sp-slot-2">
+          <div class="sp-song-row" onclick="toggleSong('sp-slot-2','2yND5dTg3IXVmIguDQHX0B')">
+            <span class="sp-song-num">2</span>
+            <div class="sp-song-info">
+              <div class="sp-song-title">Down To Earth</div>
+              <div class="sp-song-artist">Lelo</div>
+            </div>
+            <button class="sp-play-btn" aria-label="Play Down To Earth">
+              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+          </div>
+          <div class="sp-embed-wrap" id="sp-embed-sp-slot-2"><div class="sp-embed-inner"></div></div>
         </div>
-        <div class="sp-track">
-          <span class="sp-num">3</span>
-          <iframe src="https://open.spotify.com/embed/track/0lQOf91liB6EugXMBNW2QR?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="sp-song-slot" id="sp-slot-3">
+          <div class="sp-song-row" onclick="toggleSong('sp-slot-3','6JjXldxVzhuSoDlYo2yFT0')">
+            <span class="sp-song-num">3</span>
+            <div class="sp-song-info">
+              <div class="sp-song-title">Bleeding Out</div>
+              <div class="sp-song-artist">1300Saint &amp; ShyneMoonlight</div>
+            </div>
+            <button class="sp-play-btn" aria-label="Play Bleeding Out">
+              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+          </div>
+          <div class="sp-embed-wrap" id="sp-embed-sp-slot-3"><div class="sp-embed-inner"></div></div>
         </div>
-        <div class="sp-track">
-          <span class="sp-num">4</span>
-          <iframe src="https://open.spotify.com/embed/track/6JjXldxVzhuSoDlYo2yFT0?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="sp-song-slot" id="sp-slot-4">
+          <div class="sp-song-row" onclick="toggleSong('sp-slot-4','6G41ZGoVyJFRInAy3LWT8O')">
+            <span class="sp-song-num">4</span>
+            <div class="sp-song-info">
+              <div class="sp-song-title">So Glad I Made It</div>
+              <div class="sp-song-artist">Nardo$ Reign</div>
+            </div>
+            <button class="sp-play-btn" aria-label="Play So Glad I Made It">
+              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+          </div>
+          <div class="sp-embed-wrap" id="sp-embed-sp-slot-4"><div class="sp-embed-inner"></div></div>
         </div>
-        <div class="sp-track">
-          <span class="sp-num">5</span>
-          <iframe src="https://open.spotify.com/embed/track/6G41ZGoVyJFRInAy3LWT8O?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="sp-song-slot" id="sp-slot-5">
+          <div class="sp-song-row" onclick="toggleSong('sp-slot-5','2pHQJBa5vbQMwPfkgZPGMQ')">
+            <span class="sp-song-num">5</span>
+            <div class="sp-song-info">
+              <div class="sp-song-title">Warrior</div>
+              <div class="sp-song-artist">Teezus</div>
+            </div>
+            <button class="sp-play-btn" aria-label="Play Warrior">
+              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+          </div>
+          <div class="sp-embed-wrap" id="sp-embed-sp-slot-5"><div class="sp-embed-inner"></div></div>
         </div>
       </div>
 
@@ -2300,6 +2505,42 @@ function triggerStatCountUp(){
     attachAll();
   }
 })();
+</script>
+
+<script>
+function toggleSong(slotId, trackId) {
+  var wrap = document.getElementById('sp-embed-' + slotId);
+  var inner = wrap.querySelector('.sp-embed-inner');
+  var btn = document.getElementById(slotId).querySelector('.sp-play-btn');
+  var isOpen = wrap.classList.contains('open');
+
+  /* close any open slot first */
+  document.querySelectorAll('.sp-embed-wrap.open').forEach(function(w) {
+    w.classList.remove('open');
+    w.querySelector('.sp-embed-inner').innerHTML = '';
+    var b = w.closest('.sp-song-slot').querySelector('.sp-play-btn');
+    b.innerHTML = '<svg viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>';
+  });
+
+  if (!isOpen) {
+    inner.innerHTML = '<iframe src="https://open.spotify.com/embed/track/' + trackId + '?utm_source=generator" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>';
+    wrap.classList.add('open');
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="white" width="14" height="14"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>';
+  }
+}
+
+function toggleFullReview() {
+  var wrap = document.getElementById('rv-full-review');
+  var isOpen = wrap.classList.toggle('open');
+  if (isOpen) {
+    setTimeout(function(){ wrap.scrollIntoView({behavior:'smooth', block:'start'}); }, 80);
+  }
+}
+function openFullReview() {
+  var wrap = document.getElementById('rv-full-review');
+  if (!wrap.classList.contains('open')) { wrap.classList.add('open'); }
+  setTimeout(function(){ wrap.scrollIntoView({behavior:'smooth', block:'start'}); }, 80);
+}
 </script>
 
 <!-- Thryve Ops preview watermark -->

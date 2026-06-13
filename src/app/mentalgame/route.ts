@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 
 const BASE = '/mentalgame/';
-const ASSETS = ['logo.png', 'mental_game.svg', 'IMG_1835.jpeg', 'IMG_1836.jpeg', 'IMG_1839.jpeg', 'IMG_1841.jpeg', 'IMG_2268.jpeg', 'IMG_2269.jpeg', 'IMG_2272.jpeg', 'IMG_2276.jpeg'];
+const ASSETS = ['logo.png', 'mental_game.svg', 'IMG_1835.jpeg', 'IMG_1836.jpeg', 'IMG_1839.jpeg', 'IMG_1841.jpeg', 'IMG_2268.jpeg', 'IMG_2269.jpeg', 'IMG_2272.jpeg', 'IMG_2276.jpeg', 'teezus.jpeg', 'nosaint.jpeg'];
 
 export async function GET() {
   let html = readFileSync(join(process.cwd(), 'public/mentalgame/index.html'), 'utf-8');
