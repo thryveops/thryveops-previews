@@ -1,8 +1,10 @@
 import type { NextConfig } from "next";
 
-// Point at the stable production alias (not a pinned deployment) so the hub
-// always proxies the latest live nyx-club without needing a config change.
-const NYX_ORIGIN = "https://nyx-club.vercel.app";
+// NYX is served from its own subdomain (nyx-club.thryveops.com), which maps
+// directly to the nyx-club Vercel project. Proxying it under /nyx-club broke
+// styling + navigation (a root-based Next app can't live cleanly under a
+// subpath), so the old path now redirects to the working subdomain.
+const NYX_URL = "https://nyx-club.thryveops.com";
 
 const nextConfig: NextConfig = {
   images: {
@@ -10,16 +12,10 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
-  async rewrites() {
+  async redirects() {
     return [
-      {
-        source: "/nyx-club",
-        destination: `${NYX_ORIGIN}/`,
-      },
-      {
-        source: "/nyx-club/:path*",
-        destination: `${NYX_ORIGIN}/:path*`,
-      },
+      { source: "/nyx-club", destination: NYX_URL, permanent: false },
+      { source: "/nyx-club/:path*", destination: `${NYX_URL}/:path*`, permanent: false },
     ];
   },
   async headers() {
