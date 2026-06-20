@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
-const NYX_ORIGIN = "https://nyx-club-mm66ro2qc-thryveops-4612s-projects.vercel.app";
+// Point at the stable production alias (not a pinned deployment) so the hub
+// always proxies the latest live nyx-club without needing a config change.
+const NYX_ORIGIN = "https://nyx-club.vercel.app";
 
 const nextConfig: NextConfig = {
   images: {
