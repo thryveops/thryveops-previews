@@ -20,6 +20,7 @@ export default function Home() {
           Tampa · May 2026
         </p>
         <ul className="divide-y divide-neutral-200 border-y border-neutral-200">
+          <PreviewLink href="/motionfleetgroup" name="Motion Fleet Group LLC" status="ready" cross />
           <PreviewLink href="/jamesjoyce" name="James Joyce Irish Pub" status="ready" />
           <PreviewLink href="/laterrazza" name="La Terrazza" status="draft" />
           <PreviewLink href="/salrosa" name="Sal Rosa" status="draft" />
@@ -44,28 +45,41 @@ function PreviewLink({
   href,
   name,
   status,
+  cross,
 }: {
   href: string;
   name: string;
   status: "ready" | "draft";
+  /** Cross-zone link (separate Multi-Zone app) — must hard-navigate via <a>. */
+  cross?: boolean;
 }) {
+  const className =
+    "flex items-center justify-between py-4 hover:bg-neutral-100 transition px-2 -mx-2 rounded";
+  const inner = (
+    <>
+      <span className="font-medium">{name}</span>
+      <span
+        className={`text-xs uppercase tracking-wider px-2 py-1 rounded ${
+          status === "ready"
+            ? "bg-emerald-100 text-emerald-700"
+            : "bg-neutral-200 text-neutral-600"
+        }`}
+      >
+        {status}
+      </span>
+    </>
+  );
   return (
     <li>
-      <Link
-        href={href}
-        className="flex items-center justify-between py-4 hover:bg-neutral-100 transition px-2 -mx-2 rounded"
-      >
-        <span className="font-medium">{name}</span>
-        <span
-          className={`text-xs uppercase tracking-wider px-2 py-1 rounded ${
-            status === "ready"
-              ? "bg-emerald-100 text-emerald-700"
-              : "bg-neutral-200 text-neutral-600"
-          }`}
-        >
-          {status}
-        </span>
-      </Link>
+      {cross ? (
+        <a href={href} className={className}>
+          {inner}
+        </a>
+      ) : (
+        <Link href={href} className={className}>
+          {inner}
+        </Link>
+      )}
     </li>
   );
 }

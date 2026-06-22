@@ -1,0 +1,217 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Motion Fleet Group — Design Tokens
+   "Engineered Confidence": high-contrast automotive editorial.
+   Brand palette derived from CLAUDE.md §3.
+   ============================================================ */
+
+@theme {
+  /* Brand colors */
+  --color-ink: #0d0d0d; /* primary dark background */
+  --color-ink-800: #161616; /* raised dark surface */
+  --color-ink-700: #1f1f1f; /* dark cards / borders on dark */
+  --color-red: #e01e26; /* primary brand / CTAs / accents */
+  --color-red-dark: #b3161c; /* hover / pressed */
+  --color-silver: #c7c7c7; /* chrome accent, secondary text on dark */
+  --color-silver-dim: #8a8a8a; /* muted chrome / captions on dark */
+  --color-fog: #ededed; /* primary body text on dark */
+  --color-paper: #f7f6f4; /* light background (tinted off-white) */
+  --color-white: #ffffff;
+  --color-gray-700: #3a3a3a; /* body text on light */
+  --color-gray-500: #6b6b6b; /* secondary text on light */
+  --color-hairline: #e3e1dd; /* dividers on light */
+
+  /* Typography */
+  --font-display: var(--font-archivo), "Arial Narrow", sans-serif;
+  --font-body: var(--font-dm-sans), system-ui, sans-serif;
+
+  /* Fluid type scale (clamp: min, fluid, max) */
+  --text-eyebrow: 0.78rem;
+  --text-display: clamp(2.6rem, 1.4rem + 5.4vw, 5.5rem);
+  --text-h1: clamp(2.1rem, 1.3rem + 3.6vw, 3.75rem);
+  --text-h2: clamp(1.7rem, 1.2rem + 2.2vw, 2.75rem);
+  --text-h3: clamp(1.25rem, 1rem + 1vw, 1.6rem);
+
+  /* Easing — natural deceleration, no bounce */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Layout */
+  --shell-max: 80rem; /* 1280px content shell */
+}
+
+/* ============================================================
+   Base layer — MUST stay inside @layer base in Tailwind v4,
+   or it overrides spacing utilities (padding/margin) sitewide.
+   ============================================================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* Dark brand shell by default (CLAUDE.md §4). Inventory pages opt into
+     the light surface explicitly via .surface-light. */
+  body {
+    background: var(--color-ink);
+    color: var(--color-fog);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: inherit; /* takes the surface's heading color (see surfaces below) */
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    font-weight: 800;
+  }
+
+  /* Tabular figures everywhere numbers carry meaning (the "spec-sheet" motif) */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+
+  ::selection {
+    background: var(--color-red);
+    color: var(--color-white);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-red);
+    outline-offset: 2px;
+  }
+}
+
+/* ============================================================
+   Brand utilities & motifs
+   ============================================================ */
+@layer components {
+  /* ── Surface themes ───────────────────────────────────────────────────
+     Dark = premium brand shell (home, about, financing, contact…).
+     Light = inventory + vehicle detail, so photos read clean (CLAUDE.md §4).
+     Headings get their own brighter/darker shade than body copy. */
+  .surface-dark {
+    background: var(--color-ink);
+    color: var(--color-fog);
+  }
+  .surface-dark :is(h1, h2, h3, h4) {
+    color: var(--color-white);
+  }
+  .surface-light {
+    background: var(--color-paper);
+    color: var(--color-gray-700);
+  }
+  .surface-light :is(h1, h2, h3, h4) {
+    color: var(--color-ink);
+  }
+
+  /* Centered content shell */
+  .shell {
+    width: 100%;
+    max-width: var(--shell-max);
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 4rem);
+  }
+
+  /* Section eyebrow / kicker label — small caps, chrome rule */
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: var(--text-eyebrow);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  /* Chrome/metallic text treatment for the logo wordmark fallback */
+  .chrome-text {
+    background: linear-gradient(
+      176deg,
+      #ffffff 0%,
+      #d8d8d8 18%,
+      #8f8f8f 40%,
+      #f4f4f4 52%,
+      #6f6f6f 70%,
+      #c9c9c9 88%,
+      #ffffff 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Branded range slider (payment calculator) */
+  .mfg-range {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--color-ink-700);
+    cursor: pointer;
+  }
+  .mfg-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 999px;
+    background: var(--color-red);
+    border: 3px solid var(--color-white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.15s var(--ease-out-quint);
+  }
+  .mfg-range::-webkit-slider-thumb:hover {
+    transform: scale(1.12);
+  }
+  .mfg-range::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 999px;
+    background: var(--color-red);
+    border: 3px solid var(--color-white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Hairline divider, automotive spec-sheet feel */
+  .hairline {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-silver) 12%,
+      var(--color-silver) 88%,
+      transparent
+    );
+  }
+}
+
+/* Subtle staggered page-load reveal (respects reduced motion) */
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: reveal 0.8s var(--ease-out-quint) forwards;
+  }
+  @keyframes reveal {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+}
