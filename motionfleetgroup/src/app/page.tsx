@@ -68,7 +68,7 @@ export default function HomePage() {
           className="pointer-events-none absolute -left-10 bottom-16 h-40 w-[420px] opacity-25"
         />
 
-        <div className="shell relative grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-12 lg:py-32">
+        <div className="shell relative grid items-center gap-12 pb-20 pt-10 sm:py-28 lg:grid-cols-12 lg:py-32">
           <div className="lg:col-span-7">
             <Eyebrow className="reveal">Clearwater · Largo · Tampa Bay</Eyebrow>
             <h1
