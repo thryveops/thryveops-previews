@@ -26,14 +26,14 @@ export function Logo({
     <Link
       href="/"
       aria-label={`${brand.displayName} — home`}
-      className={`group inline-flex items-center gap-3 ${className}`}
+      className={`group inline-flex items-center gap-3 max-sm:gap-2 ${className}`}
     >
       {/* MFG mark with speedometer arc */}
       <span className="relative inline-flex flex-col items-center leading-none">
         <svg
           viewBox="0 0 100 22"
           aria-hidden="true"
-          className="mb-[2px] h-[10px] w-[64px] overflow-visible"
+          className="mb-[2px] h-[10px] w-[64px] overflow-visible max-sm:h-[8px] max-sm:w-[48px]"
           fill="none"
         >
           {/* speedometer arc — red sweep into chrome tip */}
@@ -56,7 +56,7 @@ export function Logo({
           />
         </svg>
         <span
-          className="font-display text-[1.5rem] font-black italic leading-none tracking-tight"
+          className="font-display text-[1.5rem] font-black italic leading-none tracking-tight max-sm:text-[1.15rem]"
           style={{ transform: "skewX(-6deg)" }}
         >
           <span className="text-red">MF</span>
@@ -67,12 +67,12 @@ export function Logo({
       {showWordmark && (
         <span className="flex flex-col leading-none">
           <span
-            className={`font-display text-[0.72rem] font-extrabold uppercase tracking-[0.28em] ${wordTop}`}
+            className={`font-display text-[0.72rem] font-extrabold uppercase tracking-[0.28em] max-sm:text-[0.56rem] max-sm:tracking-[0.14em] ${wordTop}`}
           >
             Motion
           </span>
           <span
-            className={`font-display text-[0.6rem] font-semibold uppercase tracking-[0.2em] ${wordBottom}`}
+            className={`font-display text-[0.6rem] font-semibold uppercase tracking-[0.2em] max-sm:text-[0.46rem] max-sm:tracking-[0.08em] ${wordBottom}`}
           >
             Fleet Group
           </span>

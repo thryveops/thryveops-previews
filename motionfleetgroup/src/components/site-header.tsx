@@ -62,7 +62,7 @@ export function SiteHeader() {
         </nav>
 
         {/* Right-side actions */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           <a
             href={brand.phoneHref}
             className="hidden items-center gap-2 font-display text-sm font-bold tracking-tight text-white hover:text-red md:inline-flex"
@@ -81,7 +81,7 @@ export function SiteHeader() {
           <ButtonLink
             href={ctas.preApproved.href}
             size="sm"
-            className="hidden sm:inline-flex"
+            className="whitespace-nowrap max-sm:px-2 max-sm:text-xs"
           >
             {ctas.preApproved.label}
           </ButtonLink>
