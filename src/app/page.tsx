@@ -17,6 +17,24 @@ export default function Home() {
         </p>
 
         <p className="text-xs tracking-wider uppercase text-neutral-500 mb-4">
+          Tampa · July 2026
+        </p>
+        <ul className="divide-y divide-neutral-200 border-y border-neutral-200 mb-12">
+          <PreviewLink href="/v-nail-and-beauty" name="V Nail and Beauty" status="ready" />
+          <PreviewLink href="/t-and-d-nail-salon" name="T and D Nail Salon" status="ready" />
+          <PreviewLink href="/lv-nails-spa" name="LV Nails & Spa" status="ready" />
+          <PreviewLink href="/levisa-massage-spa" name="LeVisa Massage Spa & Wellness" status="ready" />
+          <PreviewLink href="/aguila-electrical" name="Aguila Electrical Services" status="ready" />
+          <PreviewLink href="/plumbgreat-plumbing" name="Plumbgreat Plumbing" status="ready" />
+          <PreviewLink href="/albert-ellis-landscaping" name="Albert & Ellis Landscaping" status="ready" />
+          <PreviewLink href="/mastercut-lawn-service" name="MasterCut Lawn Service" status="ready" />
+          <PreviewLink href="/stay-dry-roofing" name="Stay Dry Roofing of Tampa Bay" status="ready" />
+          <PreviewLink href="/slay-the-bay-charters" name="Slay The Bay Fishing Charters" status="ready" />
+          <PreviewLink href="/tampa-fishing-charters" name="Tampa Fishing Charters" status="ready" />
+          <PreviewLink href="/shallow-point-charters" name="Shallow Point Fishing Charters" status="ready" />
+        </ul>
+
+        <p className="text-xs tracking-wider uppercase text-neutral-500 mb-4">
           Tampa · May 2026
         </p>
         <ul className="divide-y divide-neutral-200 border-y border-neutral-200">
