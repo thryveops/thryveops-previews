@@ -1,108 +1,147 @@
 import Image from "next/image";
 import Link from "next/link";
 import ConsultFlow from "./ConsultFlow";
+import Faq from "./Faq";
 
-// ─── ANGRY RAVEN TATTOO — concept mockup by Thryve Operations ─────────────────
-// Dark studio aesthetic: near-black base, rust-orange accent pulled from the
-// shop's red-orange-on-black storefront sign. All photos are the shop's own
-// GMB photos under /images/angry-raven-tattoo/.
+// ─── ANGRY RAVEN TATTOO — Editorial Ink concept mockup by Thryve Operations ───
+// Gallery-editorial system modeled on the approved Tampa Tattoo Co. build:
+// restrained type scale, uniform grids, centered section composition, generous
+// whitespace. Accent: rust orange from the shop's red-orange-on-black
+// storefront sign. Work photos are the prospect's own GMB shots; hero/studio
+// scenes are generated editorial imagery (no real people depicted). Filler
+// artist entries are concept placeholders for layout demonstration.
 
 const BUSINESS_NAME = "Angry Raven Tattoo";
-const TAGLINE = "Custom tattoos in Tampa, FL";
+const TAGLINE = "Custom tattoos on W Waters Ave, Tampa";
 
-// Palette
-const BG1 = "#0A0A0A"; // page base
-const BG2 = "#111111"; // alt sections
-const BG3 = "#141414"; // cards
-const BORDER = "#2A2A2A";
-const T2 = "#A0A0A0"; // secondary text
-const ACCENT = "#C7502E"; // rust / burnt orange from the storefront sign
-const ACCENT_LIGHT = "#F8E9E2";
+// Palette — rust orange on near-black
+const BG = "#0A0A0A";
+const BG2 = "#0E0E0E";
+const CARD = "#141414";
+const BORDER = "#242424";
+const T2 = "#A3A3A3";
+const ACCENT = "#C7502E";
+const LIGHT = "#F8EDE7";
 
-// Contact
+const BEBAS = { fontFamily: "var(--font-bebas-neue)" } as const;
+
 const PHONE_FORMATTED = "(941) 539-7513";
-const PHONE_TEL = "tel:+19415397513";
+const PHONE_HREF = "tel:+19415397513";
 const ADDRESS_LINE_1 = "1816 W Waters Ave";
 const ADDRESS_LINE_2 = "Tampa, FL 33604";
 const DIRECTIONS_URL = "https://maps.google.com/?q=Angry+Raven+Tattoo+1816+W+Waters+Ave+Tampa+FL+33604";
+const MAP_EMBED_URL =
+  "https://maps.google.com/maps?q=Angry%20Raven%20Tattoo%2C%201816%20W%20Waters%20Ave%2C%20Tampa%2C%20FL%2033604&z=15&output=embed";
 const IG_SHOP = "angry_raven_tattoo";
 const IG_NASH = "nash_desantis_tattoo";
 const AVG_RATING = "5.0";
 const REVIEW_COUNT = "299";
 
 export const metadata = {
-  title: "Angry Raven Tattoo — Custom Tattoos in Tampa, FL",
+  title: `${BUSINESS_NAME} — Custom Tattoos in Tampa, Walk-Ins Until 10 PM`,
   description:
     "Custom tattoos, walk-ins, cover-ups, fine line, black & grey, and color realism by Nash De Santis. 5.0 stars across 299 Google reviews. 1816 W Waters Ave, Tampa. Military and first-responder discounts.",
 };
 
+// Services — real offerings from the shop, $100 walk-in shop minimum
 const services = [
   {
     name: "Custom Tattoos",
     desc: "One-of-one pieces designed with you from scratch — Nash draws every custom piece himself.",
     price: "Consult for quote",
+    popular: true,
   },
   {
     name: "Walk-Ins",
     desc: "Open until 10 PM six nights a week. Come by with an idea and leave with ink the same day.",
     price: "$100 shop minimum",
+    popular: false,
   },
   {
     name: "Cover-Ups",
     desc: "Old ink, bad ink, someone's name — reworked into a piece you actually want to show off.",
     price: "Consult for quote",
+    popular: false,
   },
   {
     name: "Fine Line",
     desc: "Delicate single-needle work — script, florals, and minimal pieces with clean healed results.",
     price: "Consult for quote",
+    popular: false,
   },
   {
     name: "Black & Grey",
     desc: "Smooth shading, statues, portraits, and ornamental work built to age well.",
     price: "Consult for quote",
+    popular: false,
   },
   {
     name: "Color Realism",
     desc: "Saturated, layered color — koi, florals, and full-color pieces that stay vivid.",
     price: "Consult for quote",
+    popular: false,
   },
 ];
 
-const gallery = [
+// Gallery — the shop's own GMB work shots, uniform tiles
+const portfolio = [
   {
     src: "/images/angry-raven-tattoo/gmb-2.jpg",
     alt: "Nordic runic ornamental shoulder piece",
     label: "Nordic / Blackwork",
+    sub: "Runic ornamental, shoulder",
   },
   {
     src: "/images/angry-raven-tattoo/gmb-4.jpg",
     alt: "Black and grey warrior woman thigh piece",
     label: "Black & Grey Realism",
+    sub: "Warrior woman, thigh",
   },
   {
     src: "/images/angry-raven-tattoo/gmb-8.jpg",
     alt: "Color koi and cherry blossom rib piece",
     label: "Color",
+    sub: "Koi & cherry blossoms, ribs",
   },
   {
     src: "/images/angry-raven-tattoo/gmb-3.jpg",
     alt: "Script lettering forearm tattoo with doves",
     label: "Script & Lettering",
+    sub: "Script with doves, forearm",
+  },
+];
+
+// Artists — Nash is real; the other two entries are concept placeholders
+// (filler names for layout demonstration, per client direction).
+const artists = [
+  {
+    initial: "N",
+    name: "Nash De Santis",
+    specialty: "Nordic / Blackwork · Realism · Cover-Ups",
+    bio: "Owner. Angry Raven is Nash's shop from the sign on the roof to the needle in his hand — he draws every custom piece himself, from Nordic blackwork to color realism.",
   },
   {
-    src: "/images/angry-raven-tattoo/gmb-7.jpg",
-    alt: "Realistic shark teeth arm tattoo",
-    label: "Realism",
+    initial: "S",
+    name: "Sofia Marsh",
+    specialty: "Color · Neo-Traditional",
+    bio: "Bold, saturated color work — koi, florals, and statement pieces with clean healed results.",
+  },
+  {
+    initial: "D",
+    name: "Dante Cole",
+    specialty: "Fine Line · Script",
+    bio: "Delicate single-needle work — lettering, dates, and minimal pieces that heal crisp.",
   },
 ];
 
 // composite reviews — replace with real GMB quotes before live deployment
+const pressQuote = {
+  text: "Nash is amazing and exceeded my expectations! He is very talented and explained every step and made me feel comfortable while getting a tattoo. He went above and beyond!",
+  author: "Google review",
+  source: "5.0 stars",
+};
+
 const reviews = [
-  {
-    text: "Nash is amazing and exceeded my expectations! He is very talented and explained every step and made me feel comfortable while getting a tattoo. He went above and beyond!",
-    author: "Google review",
-  },
   {
     text: "Walked in on a Tuesday night with a rough idea and walked out with a piece better than what I had pictured. The shop is spotless and the whole vibe is welcoming.",
     author: "Google review",
@@ -113,540 +152,514 @@ const reviews = [
   },
 ];
 
+const igPhotos = [
+  { src: "/images/angry-raven-tattoo/gmb-2.jpg", alt: "Nordic runic ornamental shoulder piece" },
+  { src: "/images/angry-raven-tattoo/gmb-4.jpg", alt: "Black and grey warrior woman thigh piece" },
+  { src: "/images/angry-raven-tattoo/gmb-8.jpg", alt: "Color koi and cherry blossom rib piece" },
+  { src: "/images/angry-raven-tattoo/gmb-3.jpg", alt: "Script lettering forearm tattoo with doves" },
+  { src: "/images/angry-raven-tattoo/gmb-7.jpg", alt: "Realistic shark teeth arm tattoo" },
+  { src: "/images/angry-raven-tattoo/gmb-5.jpg", alt: "Inside Angry Raven Tattoo — dark walls, red doors, working stations" },
+];
+
+const faqItems = [
+  {
+    q: "Do you take walk-ins?",
+    a: "Yes — the shop is open until 10 PM Monday through Saturday and Sundays 12 to 8, so walk-ins work even after a full day. First come, first served; larger custom pieces are better booked as a consultation so there's time to design them properly.",
+  },
+  {
+    q: "How much will my tattoo cost?",
+    a: "Custom work is quoted at your consultation based on size, placement, and detail — sit down with Nash, talk through the idea, get an honest number.",
+  },
+  {
+    q: "What's the shop minimum?",
+    a: "$100 — that's the starting price for walk-ins and small pieces, no matter how simple the design.",
+  },
+  {
+    q: "How old do I have to be?",
+    a: "18 or older with a valid government-issued photo ID — Florida law, no exceptions.",
+  },
+  {
+    q: "How should I prepare for my session?",
+    a: "Eat a full meal beforehand, stay hydrated, and skip alcohol for 24 hours before your appointment. Wear clothing that gives easy access to the placement area.",
+  },
+  {
+    q: "Do you offer any discounts?",
+    a: "Military and first-responder discounts, every day — just show your ID at the desk.",
+  },
+];
+
+// Shared section header — small centered index + modest tracked uppercase title
+function SectionHeader({ index, title, sub }: { index: string; title: string; sub?: string }) {
+  return (
+    <div className="text-center mb-12 md:mb-16">
+      <p className="text-[10px] tracking-[0.5em] uppercase mb-4" style={{ color: ACCENT }}>
+        {index}
+      </p>
+      <h2 className="text-3xl md:text-4xl tracking-[0.12em] text-white" style={BEBAS}>
+        {title}
+      </h2>
+      {sub && (
+        <p className="mt-4 text-sm leading-relaxed max-w-md mx-auto" style={{ color: T2 }}>
+          {sub}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ─── PAGE — server component: no "use client", no event handlers ──────────────
 export default function MockupPage() {
   return (
-    <div className="font-sans antialiased" style={{ background: BG1, color: "#FFFFFF" }}>
-      {/* ── NAV ─────────────────────────────────────────────────────────────── */}
+    <div className="font-sans antialiased" style={{ background: BG, color: LIGHT }}>
+
+      {/* ── NAV — minimal editorial ───────────────────────────────────────── */}
       <nav
         className="fixed top-0 inset-x-0 z-50 backdrop-blur border-b"
-        style={{ background: "rgba(10,10,10,0.92)", borderColor: BORDER }}
+        style={{ background: "rgba(10,10,10,0.9)", borderColor: BORDER }}
       >
         <div className="max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
-          <a href="#" className="leading-tight">
-            <span className="font-display block text-lg md:text-xl font-bold tracking-tight text-white">
+          <a href="#top" className="leading-none">
+            <span className="block text-lg tracking-[0.1em] text-white" style={BEBAS}>
               ANGRY RAVEN
             </span>
-            <span className="block text-[10px] tracking-[0.35em] uppercase" style={{ color: ACCENT }}>
-              Tattoo · Tampa
+            <span className="block text-[8px] tracking-[0.4em] uppercase mt-1" style={{ color: ACCENT }}>
+              Tattoo — Tampa
             </span>
           </a>
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+          <div className="hidden md:flex items-center gap-8 text-[10px] font-medium tracking-[0.25em] uppercase">
             <a href="#work" className="hover:opacity-60 transition-opacity">The Work</a>
+            <a href="#artists" className="hover:opacity-60 transition-opacity">Artists</a>
             <a href="#services" className="hover:opacity-60 transition-opacity">Services</a>
-            <a href="#artist" className="hover:opacity-60 transition-opacity">The Artist</a>
+            <a href="#faq" className="hover:opacity-60 transition-opacity">FAQ</a>
             <a href="#visit" className="hover:opacity-60 transition-opacity">Visit</a>
             <a
-              href={PHONE_TEL}
-              className="px-5 py-2 rounded-full text-sm font-semibold text-white transition hover:brightness-110"
-              style={{ background: ACCENT }}
+              href={PHONE_HREF}
+              className="px-5 py-2 text-[10px] font-bold tracking-[0.25em] uppercase transition hover:brightness-110"
+              style={{ background: ACCENT, color: "#0A0A0A" }}
             >
-              Book a Consultation
+              Book
             </a>
           </div>
           <a
-            href={PHONE_TEL}
-            className="md:hidden px-4 py-2 rounded-full text-sm font-semibold text-white"
-            style={{ background: ACCENT }}
+            href={PHONE_HREF}
+            className="md:hidden px-4 py-2 text-[10px] font-bold tracking-[0.25em] uppercase"
+            style={{ background: ACCENT, color: "#0A0A0A" }}
           >
             Book
           </a>
         </div>
       </nav>
 
-      {/* ── HERO — the actual storefront ────────────────────────────────────── */}
-      <section className="relative min-h-[92vh] flex items-end overflow-hidden">
+      {/* ── HERO — full-bleed photo, shop title, address, two CTAs, air ───── */}
+      <header id="top" className="relative h-svh min-h-[600px] flex items-center justify-center overflow-hidden">
         <Image
-          src="/images/angry-raven-tattoo/gmb-1.jpg"
-          alt="Angry Raven Tattoo storefront on W Waters Ave, Tampa"
+          src="/images/angry-raven-tattoo/editorial-hero.jpg"
+          alt="Silhouetted tattoo artist inking a client's shoulder under rust-orange light"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-top"
+          className="object-cover"
         />
+        {/* hero image is dark/silhouetted — lighter top gradient stop than usual */}
         <div
           className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.15) 40%, rgba(10,10,10,0.92) 100%)",
-          }}
+          style={{ background: "linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.3) 45%, rgba(10,10,10,0.9) 100%)" }}
         />
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-5 md:px-8 pb-16 pt-40">
-          <p className="text-xs md:text-sm tracking-[0.35em] uppercase mb-4" style={{ color: ACCENT_LIGHT }}>
-            1816 W Waters Ave &middot; Tampa, FL
+        <div className="relative z-10 text-center px-6 max-w-3xl mx-auto pt-14">
+          <p className="text-[10px] md:text-[11px] tracking-[0.5em] uppercase mb-7" style={{ color: ACCENT }}>
+            Custom Tattoos — Tampa, FL
           </p>
-          <h1 className="font-display text-5xl md:text-7xl font-bold leading-[1.0] mb-6 max-w-3xl">
-            Ink worth the story.{" "}
-            <span className="italic font-normal" style={{ color: ACCENT }}>
-              Walk in angry, leave happy.
-            </span>
+          <h1 className="text-5xl md:text-7xl leading-none text-white" style={BEBAS}>
+            Angry Raven Tattoo
           </h1>
-          <p className="text-lg md:text-xl text-white/80 mb-8 max-w-xl leading-relaxed">
-            Custom tattoos, cover-ups, and walk-ins by Nash De Santis — the shop behind a perfect
-            5.0 across {REVIEW_COUNT} Google reviews.
+          <p className="mt-6 text-[11px] md:text-xs tracking-[0.4em] uppercase text-white/75">
+            {ADDRESS_LINE_1} — Tampa, Florida
           </p>
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href={PHONE_TEL}
-              className="px-8 py-4 rounded-full font-semibold text-white text-center transition hover:brightness-110"
-              style={{ background: ACCENT }}
+              href={PHONE_HREF}
+              className="px-7 py-3 text-[11px] font-bold tracking-[0.25em] uppercase transition hover:brightness-110"
+              style={{ background: ACCENT, color: "#0A0A0A" }}
             >
               Book a Consultation
             </a>
             <a
               href="#work"
-              className="px-8 py-4 rounded-full font-semibold text-center border border-white/30 text-white hover:bg-white/10 transition"
+              className="px-7 py-3 text-[11px] font-bold tracking-[0.25em] uppercase border transition hover:bg-white/10 text-white"
+              style={{ borderColor: "rgba(248,237,231,0.4)" }}
             >
               See the Work
             </a>
           </div>
-          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/70">
-            <span>
-              <span className="tracking-wider" style={{ color: ACCENT }}>★★★★★</span>{" "}
-              {AVG_RATING} · {REVIEW_COUNT} Google reviews
-            </span>
-            <span className="hidden sm:inline text-white/30">|</span>
-            <span>Open til 10 PM Mon–Sat</span>
-            <span className="hidden sm:inline text-white/30">|</span>
-            <span style={{ color: ACCENT_LIGHT }}>Military &amp; first-responder discounts</span>
-          </div>
+          <p className="mt-10 text-[10px] tracking-[0.25em] uppercase" style={{ color: "rgba(248,237,231,0.6)" }}>
+            <span style={{ color: ACCENT }}>★★★★★</span>{`  ${AVG_RATING} — ${REVIEW_COUNT} Google reviews  ·  Walk-ins until 10 PM`}
+          </p>
         </div>
-      </section>
+      </header>
 
-      {/* ── ONE PLACE TO BOOK ───────────────────────────────────────────────── */}
-      <section className="py-14 px-5 md:px-8 border-y" style={{ background: BG2, borderColor: BORDER }}>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-          <div>
-            <p className="font-display text-2xl font-bold mb-2" style={{ color: ACCENT }}>
-              One place to book
-            </p>
-            <p className="text-sm leading-relaxed" style={{ color: T2 }}>
-              No more hunting across Booksy, Vagaro, and Fresha. One call, one consultation, one
-              chair with your name on it.
-            </p>
-          </div>
-          <div>
-            <p className="font-display text-2xl font-bold mb-2 text-white">Walk-ins welcome</p>
-            <p className="text-sm leading-relaxed" style={{ color: T2 }}>
-              $100 shop minimum, open until 10 PM six nights a week. Evening ink after work is kind
-              of our thing.
-            </p>
-          </div>
-          <div>
-            <p className="font-display text-2xl font-bold mb-2 text-white">Serving those who serve</p>
-            <p className="text-sm leading-relaxed" style={{ color: T2 }}>
-              Military and first-responder discounts, every day — just show your ID at the desk.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── GALLERY / THE WORK ──────────────────────────────────────────────── */}
-      <section id="work" className="py-20 md:py-28 px-5 md:px-8">
+      {/* ── 01 — THE WORK — uniform gallery grid ──────────────────────────── */}
+      <section id="work" className="py-20 md:py-28 px-5 md:px-8" style={{ background: BG }}>
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ color: ACCENT }}>
-                The Work
-              </p>
-              <h2 className="font-display text-4xl md:text-5xl font-bold">
-                Healed, photographed, real.
-              </h2>
-            </div>
+          <SectionHeader
+            index="01"
+            title="The Work"
+            sub="Every piece below came out of this shop. Fresh ink every week on Instagram."
+          />
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+            {portfolio.map((piece) => (
+              <figure key={piece.src}>
+                <div className="group relative aspect-[4/5] overflow-hidden" style={{ background: CARD }}>
+                  <Image
+                    src={piece.src}
+                    alt={piece.alt}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                </div>
+                <figcaption className="mt-3 text-center">
+                  <span className="block text-[9px] tracking-[0.3em] uppercase mb-1" style={{ color: ACCENT }}>
+                    {piece.label}
+                  </span>
+                  <span className="block text-xs" style={{ color: T2 }}>
+                    {piece.sub}
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
             <a
-              href={`https://instagram.com/${IG_NASH}`}
-              className="hidden md:block text-sm font-semibold hover:underline"
-              style={{ color: ACCENT }}
+              href={`https://instagram.com/${IG_SHOP}`}
+              className="inline-block px-7 py-3 text-[10px] font-bold tracking-[0.25em] uppercase border transition hover:bg-white/5"
+              style={{ borderColor: BORDER, color: LIGHT }}
             >
-              More on Instagram →
+              View Full Gallery — @{IG_SHOP}
             </a>
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-            <div className="relative row-span-2 aspect-[9/16] md:aspect-auto overflow-hidden rounded-lg group">
-              <Image
-                src={gallery[0].src}
-                alt={gallery[0].alt}
-                fill
-                sizes="(max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <span
-                className="absolute bottom-3 left-3 px-3 py-1 rounded-full text-xs font-semibold"
-                style={{ background: "rgba(10,10,10,0.75)", color: ACCENT_LIGHT }}
-              >
-                {gallery[0].label}
-              </span>
-            </div>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-lg group">
-              <Image
-                src={gallery[1].src}
-                alt={gallery[1].alt}
-                fill
-                sizes="(max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <span
-                className="absolute bottom-3 left-3 px-3 py-1 rounded-full text-xs font-semibold"
-                style={{ background: "rgba(10,10,10,0.75)", color: ACCENT_LIGHT }}
-              >
-                {gallery[1].label}
-              </span>
-            </div>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-lg group">
-              <Image
-                src={gallery[2].src}
-                alt={gallery[2].alt}
-                fill
-                sizes="(max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <span
-                className="absolute bottom-3 left-3 px-3 py-1 rounded-full text-xs font-semibold"
-                style={{ background: "rgba(10,10,10,0.75)", color: ACCENT_LIGHT }}
-              >
-                {gallery[2].label}
-              </span>
-            </div>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-lg group">
-              <Image
-                src={gallery[3].src}
-                alt={gallery[3].alt}
-                fill
-                sizes="(max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <span
-                className="absolute bottom-3 left-3 px-3 py-1 rounded-full text-xs font-semibold"
-                style={{ background: "rgba(10,10,10,0.75)", color: ACCENT_LIGHT }}
-              >
-                {gallery[3].label}
-              </span>
-            </div>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-lg group">
-              <Image
-                src={gallery[4].src}
-                alt={gallery[4].alt}
-                fill
-                sizes="(max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <span
-                className="absolute bottom-3 left-3 px-3 py-1 rounded-full text-xs font-semibold"
-                style={{ background: "rgba(10,10,10,0.75)", color: ACCENT_LIGHT }}
-              >
-                {gallery[4].label}
-              </span>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* ── SERVICES ────────────────────────────────────────────────────────── */}
-      <section id="services" className="py-20 md:py-28 px-5 md:px-8" style={{ background: BG2 }}>
+      {/* ── 02 — THE ARTISTS — uniform roster cards ───────────────────────── */}
+      <section id="artists" className="py-20 md:py-28 px-5 md:px-8 border-t" style={{ background: BG2, borderColor: BORDER }}>
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ color: ACCENT }}>
-              Services
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">What we do</h2>
-            <p className="max-w-xl mx-auto" style={{ color: T2 }}>
-              Every piece starts with a conversation. $100 shop minimum on walk-ins — custom work
-              is quoted at your consultation.
-            </p>
-          </div>
+          <SectionHeader
+            index="02"
+            title="The Artists"
+            sub="Every piece starts with a conversation. Book with the artist whose work speaks to you."
+          />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px rounded-lg overflow-hidden" style={{ background: BORDER }}>
-            {services.map((svc) => (
-              <div
-                key={svc.name}
-                className="p-7 transition-colors duration-200 hover:bg-[#191919] border-l-2 border-transparent hover:border-l-[#C7502E]"
-                style={{ background: BG3 }}
-              >
-                <div className="flex items-baseline justify-between gap-4 mb-2">
-                  <h3 className="font-display text-2xl font-semibold text-white">{svc.name}</h3>
-                  <span
-                    className="text-sm font-semibold whitespace-nowrap"
-                    style={{ color: ACCENT }}
-                  >
-                    {svc.price}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6">
+            {artists.map((artist) => (
+              <div key={artist.name} className="border p-7 text-center flex flex-col items-center" style={{ background: CARD, borderColor: BORDER }}>
+                <div
+                  className="w-16 h-16 flex items-center justify-center border mb-5"
+                  style={{ borderColor: ACCENT }}
+                >
+                  <span className="text-2xl leading-none" style={{ ...BEBAS, color: ACCENT }}>
+                    {artist.initial}
                   </span>
                 </div>
-                <p className="text-sm leading-relaxed" style={{ color: T2 }}>
-                  {svc.desc}
+                <h3 className="text-xl tracking-[0.1em] text-white mb-2" style={BEBAS}>
+                  {artist.name}
+                </h3>
+                <p className="text-[9px] tracking-[0.3em] uppercase mb-4" style={{ color: ACCENT }}>
+                  {artist.specialty}
                 </p>
+                <p className="text-xs leading-relaxed mb-6 flex-1" style={{ color: T2 }}>
+                  {artist.bio}
+                </p>
+                <a
+                  href={PHONE_HREF}
+                  className="text-[10px] font-bold tracking-[0.25em] uppercase underline underline-offset-4 hover:opacity-60 transition-opacity"
+                  style={{ color: LIGHT }}
+                >
+                  Book with {artist.name.split(" ")[0]}
+                </a>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── CONSULT FLOW (interactive client component) ─────────────────────── */}
-      <section id="consult" className="py-20 md:py-28 px-5 md:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ color: ACCENT }}>
-              Start Your Piece
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              Tell us what you&rsquo;re thinking
-            </h2>
-            <p className="max-w-xl mx-auto" style={{ color: T2 }}>
-              Three quick questions and Nash takes it from there. Prefer to talk?{" "}
-              <a href={PHONE_TEL} className="font-semibold hover:underline" style={{ color: ACCENT }}>
-                Call {PHONE_FORMATTED}
-              </a>
-              .
-            </p>
-          </div>
-          <ConsultFlow />
-        </div>
-      </section>
+      {/* ── 03 — SERVICES — tight price-list rows ─────────────────────────── */}
+      <section id="services" className="py-20 md:py-28 px-5 md:px-8 border-t" style={{ background: BG, borderColor: BORDER }}>
+        <div className="max-w-3xl mx-auto">
+          <SectionHeader
+            index="03"
+            title="Services"
+            sub="Walk-ins start at the $100 shop minimum — custom work is quoted at your consultation. Talk through the idea, get an honest number."
+          />
 
-      {/* ── THE ARTIST ──────────────────────────────────────────────────────── */}
-      <section id="artist" className="py-20 md:py-28 px-5 md:px-8" style={{ background: BG2 }}>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-          <div className="relative aspect-[4/5] rounded-lg overflow-hidden">
-            <Image
-              src="/images/angry-raven-tattoo/gmb-5.jpg"
-              alt="Inside Angry Raven Tattoo — dark walls, red doors, working stations"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-            />
-            <div
-              className="absolute inset-0"
-              style={{ background: "linear-gradient(180deg, transparent 55%, rgba(10,10,10,0.8) 100%)" }}
-            />
-            <div className="absolute bottom-0 left-0 right-0 p-6 flex items-center gap-4">
-              <span
-                className="w-16 h-16 rounded-full flex items-center justify-center font-display text-2xl font-bold shrink-0"
-                style={{ background: ACCENT, color: "#FFFFFF" }}
+          <div className="border-t" style={{ borderColor: BORDER }}>
+            {services.map((svc) => (
+              <div
+                key={svc.name}
+                className="flex items-baseline justify-between gap-6 py-5 border-b transition-colors hover:bg-[#101010]"
+                style={{ borderColor: BORDER }}
               >
-                ND
-              </span>
-              <div>
-                <p className="font-display text-2xl font-bold text-white leading-tight">
-                  Nash De Santis
-                </p>
-                <p className="text-xs uppercase tracking-[0.25em]" style={{ color: ACCENT_LIGHT }}>
-                  Owner &amp; Lead Artist
-                </p>
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <h3 className="text-lg tracking-[0.08em] text-white" style={BEBAS}>
+                      {svc.name}
+                    </h3>
+                    {svc.popular && (
+                      <span
+                        className="text-[8px] font-bold tracking-[0.25em] uppercase px-2 py-0.5"
+                        style={{ background: ACCENT, color: "#0A0A0A" }}
+                      >
+                        Most Requested
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-1 text-xs leading-relaxed max-w-md" style={{ color: T2 }}>
+                    {svc.desc}
+                  </p>
+                </div>
+                <span className="text-[10px] tracking-[0.2em] uppercase text-right shrink-0" style={{ color: ACCENT }}>
+                  {svc.price}
+                </span>
               </div>
-            </div>
+            ))}
           </div>
-          <div>
-            <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ color: ACCENT }}>
-              The Artist
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              One shop. One standard.
-            </h2>
-            <p className="text-base md:text-lg leading-relaxed mb-4" style={{ color: "#D4D4D4" }}>
-              Angry Raven is Nash&rsquo;s shop from the sign on the roof to the needle in his hand.
-              From Nordic blackwork to color realism, every piece that leaves the chair carries the
-              same obsession — reviewers talk about him staying open late until the design is right.
-            </p>
-            <p className="text-base md:text-lg leading-relaxed mb-8" style={{ color: "#D4D4D4" }}>
-              That is how a single-artist shop on W Waters Ave ends up with 299 Google reviews and
-              not a single one below five stars.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href={PHONE_TEL}
-                className="px-6 py-3 rounded-full text-sm font-semibold text-white transition hover:brightness-110"
-                style={{ background: ACCENT }}
-              >
-                Book with Nash
-              </a>
-              <a
-                href={`https://instagram.com/${IG_NASH}`}
-                className="px-6 py-3 rounded-full text-sm font-semibold border border-white/25 text-white hover:bg-white/10 transition"
-              >
-                @{IG_NASH}
-              </a>
-            </div>
+
+          <div className="mt-10 text-center">
+            <a
+              href={PHONE_HREF}
+              className="inline-block px-7 py-3 text-[11px] font-bold tracking-[0.25em] uppercase transition hover:brightness-110"
+              style={{ background: ACCENT, color: "#0A0A0A" }}
+            >
+              Book a Consultation
+            </a>
           </div>
         </div>
       </section>
 
-      {/* ── REVIEWS ─────────────────────────────────────────────────────────── */}
+      {/* ── PRESS-QUOTE BAND ──────────────────────────────────────────────── */}
       {/* composite reviews — replace with real GMB quotes before live deployment */}
-      <section className="py-20 md:py-28 px-5 md:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14">
-            <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ color: ACCENT }}>
-              Reviews
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-3">
-              ★★★★★ {AVG_RATING} on Google
-            </h2>
-            <p style={{ color: T2 }}>
-              {REVIEW_COUNT} reviews. Not one below five stars.
-            </p>
-          </div>
+      <section className="relative py-20 md:py-32 px-5 md:px-8 overflow-hidden">
+        <Image
+          src="/images/angry-raven-tattoo/editorial-studio.jpg"
+          alt="Dark studio wall with framed raven artwork under rust-orange glow"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0" style={{ background: "rgba(10,10,10,0.88)" }} />
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
+          <p className="text-[10px] tracking-[0.5em] uppercase mb-8" style={{ color: ACCENT }}>
+            Word Around Tampa
+          </p>
+          <blockquote className="font-display italic text-xl md:text-2xl leading-relaxed text-white mb-6">
+            &ldquo;{pressQuote.text}&rdquo;
+          </blockquote>
+          <p className="text-[10px] tracking-[0.3em] uppercase" style={{ color: T2 }}>
+            {pressQuote.author} — {pressQuote.source}
+          </p>
+          <p className="mt-8 text-[10px] tracking-[0.25em] uppercase" style={{ color: ACCENT }}>
+            ★★★★★ {AVG_RATING} — {REVIEW_COUNT} Google reviews
+          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {reviews.map((review, i) => (
-              <blockquote
-                key={i}
-                className="p-7 rounded-lg"
-                style={{ background: BG3, border: `1px solid ${BORDER}` }}
-              >
-                <p className="mb-3 tracking-wider" style={{ color: ACCENT }}>★★★★★</p>
-                <p className="text-white/90 leading-relaxed mb-4 text-sm">&ldquo;{review.text}&rdquo;</p>
-                <footer className="text-xs" style={{ color: T2 }}>— {review.author}</footer>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5 text-left">
+            {reviews.map((review) => (
+              <blockquote key={review.text} className="p-6 border" style={{ background: "rgba(20,20,20,0.85)", borderColor: BORDER }}>
+                <p className="mb-3 text-[10px] tracking-[0.2em]" style={{ color: ACCENT }}>★★★★★</p>
+                <p className="leading-relaxed mb-4 text-xs" style={{ color: "rgba(248,237,231,0.9)" }}>
+                  &ldquo;{review.text}&rdquo;
+                </p>
+                <footer className="text-[9px] tracking-[0.25em] uppercase" style={{ color: T2 }}>
+                  {review.author}
+                </footer>
               </blockquote>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── VISIT ───────────────────────────────────────────────────────────── */}
-      <section id="visit" className="py-20 md:py-28 px-5 md:px-8" style={{ background: BG2 }}>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-          <div>
-            <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ color: ACCENT }}>
-              Visit
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-8 leading-tight">
-              Find the raven
-            </h2>
+      {/* ── 04 — START YOUR PIECE — wizard only, no imagery ───────────────── */}
+      <section className="py-20 md:py-28 px-5 md:px-8 border-t" style={{ background: BG2, borderColor: BORDER }}>
+        <div className="max-w-2xl mx-auto">
+          <SectionHeader
+            index="04"
+            title="Start Your Piece"
+            sub="Three quick steps — style, size and placement, and how to reach you. Or skip it all and just call the shop."
+          />
+          <ConsultFlow />
+        </div>
+      </section>
 
-            <div className="space-y-6 text-base">
+      {/* ── 05 — FAQ + BOOKING CHANNELS ───────────────────────────────────── */}
+      <section id="faq" className="py-20 md:py-28 px-5 md:px-8 border-t" style={{ background: BG, borderColor: BORDER }}>
+        <div className="max-w-5xl mx-auto">
+          <SectionHeader index="05" title="Good to Know" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,2fr),minmax(0,3fr)] gap-10 lg:gap-16 items-start">
+            {/* booking channels */}
+            <div className="space-y-px" style={{ background: BORDER }}>
+              {[
+                { label: "Call the shop", value: PHONE_FORMATTED, href: PHONE_HREF, cta: "Call" },
+                { label: "Instagram DM", value: `@${IG_SHOP}`, href: `https://instagram.com/${IG_SHOP}`, cta: "DM" },
+                { label: "Walk in", value: `${ADDRESS_LINE_1} — until 10 PM, Mon-Sat`, href: DIRECTIONS_URL, cta: "Directions" },
+              ].map((ch) => (
+                <a
+                  key={ch.label}
+                  href={ch.href}
+                  className="flex items-center justify-between gap-4 p-5 transition-colors hover:bg-[#161616]"
+                  style={{ background: CARD }}
+                >
+                  <div>
+                    <span className="block text-[9px] tracking-[0.35em] uppercase mb-1" style={{ color: ACCENT }}>
+                      {ch.label}
+                    </span>
+                    <span className="block text-sm" style={{ color: LIGHT }}>{ch.value}</span>
+                  </div>
+                  <span className="text-[9px] tracking-[0.3em] uppercase underline underline-offset-4 shrink-0" style={{ color: T2 }}>
+                    {ch.cta}
+                  </span>
+                </a>
+              ))}
+            </div>
+
+            <Faq items={faqItems} accent={ACCENT} />
+          </div>
+        </div>
+      </section>
+
+      {/* ── 06 — VISIT — details + real embedded map ──────────────────────── */}
+      <section id="visit" className="py-20 md:py-28 px-5 md:px-8 border-t" style={{ background: BG2, borderColor: BORDER }}>
+        <div className="max-w-6xl mx-auto">
+          <SectionHeader index="06" title="Visit" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start">
+            <div className="space-y-8">
               <div>
-                <h4 className="font-semibold mb-1 text-white">Address</h4>
-                <p style={{ color: T2 }}>
-                  {ADDRESS_LINE_1}
-                  <br />
-                  {ADDRESS_LINE_2}
-                </p>
+                <h4 className="text-[9px] tracking-[0.4em] uppercase mb-2" style={{ color: ACCENT }}>Address</h4>
+                <p className="text-base text-white">{ADDRESS_LINE_1}, {ADDRESS_LINE_2}</p>
+                <p className="text-xs mt-1" style={{ color: T2 }}>Look for the raven on the sign.</p>
               </div>
               <div>
-                <h4 className="font-semibold mb-1 text-white">Hours</h4>
-                <table className="text-sm" style={{ color: T2 }}>
+                <h4 className="text-[9px] tracking-[0.4em] uppercase mb-2" style={{ color: ACCENT }}>Hours</h4>
+                <table className="text-sm w-full max-w-xs" style={{ color: T2 }}>
                   <tbody>
-                    <tr>
-                      <td className="pr-8 py-0.5">Mon — Sat</td>
-                      <td>11 AM – 10 PM</td>
+                    <tr className="border-b" style={{ borderColor: BORDER }}>
+                      <td className="py-2">Mon — Sat</td>
+                      <td className="text-right text-white">11 AM – 10 PM</td>
                     </tr>
                     <tr>
-                      <td className="pr-8 py-0.5">Sunday</td>
-                      <td>12 PM – 8 PM</td>
+                      <td className="py-2">Sunday</td>
+                      <td className="text-right text-white">12 PM – 8 PM</td>
                     </tr>
                   </tbody>
                 </table>
+                <p className="text-[10px] tracking-[0.25em] uppercase mt-3" style={{ color: ACCENT }}>
+                  Military & first-responder discounts — show ID
+                </p>
               </div>
               <div>
-                <h4 className="font-semibold mb-1 text-white">Call or text</h4>
-                <a
-                  href={PHONE_TEL}
-                  className="font-semibold hover:underline"
-                  style={{ color: ACCENT }}
-                >
-                  {PHONE_FORMATTED}
-                </a>
+                <h4 className="text-[9px] tracking-[0.4em] uppercase mb-2" style={{ color: ACCENT }}>Contact</h4>
+                <p className="text-sm">
+                  <a href={PHONE_HREF} className="hover:opacity-70 transition-opacity" style={{ color: LIGHT }}>
+                    {PHONE_FORMATTED}
+                  </a>
+                </p>
               </div>
-              <p className="text-sm" style={{ color: ACCENT_LIGHT }}>
-                Military &amp; first responders — mention it at the desk for your discount.
-              </p>
-              <div className="flex flex-wrap gap-3 pt-2">
+              <div className="flex flex-wrap gap-3 pt-1">
                 <a
-                  href={PHONE_TEL}
-                  className="px-6 py-3 rounded-full text-sm font-semibold text-white transition hover:brightness-110"
-                  style={{ background: ACCENT }}
+                  href={PHONE_HREF}
+                  className="px-6 py-3 text-[10px] font-bold tracking-[0.25em] uppercase transition hover:brightness-110"
+                  style={{ background: ACCENT, color: "#0A0A0A" }}
                 >
                   Book a Consultation
                 </a>
                 <a
                   href={DIRECTIONS_URL}
-                  className="px-6 py-3 rounded-full text-sm font-semibold border border-white/25 text-white hover:bg-white/10 transition"
+                  className="px-6 py-3 text-[10px] font-bold tracking-[0.25em] uppercase border transition hover:bg-white/10"
+                  style={{ borderColor: "rgba(248,237,231,0.35)", color: LIGHT }}
                 >
-                  Get Directions
+                  Directions
                 </a>
               </div>
             </div>
-          </div>
 
-          <div className="relative aspect-[4/5] md:aspect-square rounded-lg overflow-hidden">
-            <Image
-              src="/images/angry-raven-tattoo/gmb-6.jpg"
-              alt="Angry Raven Tattoo reception desk with raven emblem"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ── INSTAGRAM BAND ──────────────────────────────────────────────────── */}
-      <section className="py-16 px-5 md:px-8 border-t" style={{ borderColor: BORDER }}>
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ color: ACCENT }}>
-            Follow the work
-          </p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">
-            Fresh ink, every week
-          </h2>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a
-              href={`https://instagram.com/${IG_NASH}`}
-              className="px-6 py-3 rounded-full text-sm font-semibold text-white transition hover:brightness-110"
-              style={{ background: ACCENT }}
-            >
-              @{IG_NASH}
-            </a>
-            <a
-              href={`https://instagram.com/${IG_SHOP}`}
-              className="px-6 py-3 rounded-full text-sm font-semibold border border-white/25 text-white hover:bg-white/10 transition"
-            >
-              @{IG_SHOP}
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ── FOOTER ──────────────────────────────────────────────────────────── */}
-      <footer
-        className="py-12 px-5 md:px-8 text-sm border-t"
-        style={{ background: BG1, color: T2, borderColor: BORDER }}
-      >
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <p className="font-display text-2xl font-bold text-white mb-1">ANGRY RAVEN TATTOO</p>
-            <p>{TAGLINE}</p>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-2">Visit</h4>
-            <p>
-              {ADDRESS_LINE_1}
-              <br />
-              {ADDRESS_LINE_2}
-              <br />
-              <a href={PHONE_TEL} className="hover:text-white transition-colors">
-                {PHONE_FORMATTED}
-              </a>
-            </p>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-2">Follow</h4>
-            <div className="flex gap-4">
-              <a href={`https://instagram.com/${IG_NASH}`} className="hover:text-white transition-colors">
-                @{IG_NASH}
-              </a>
-              <a href={`https://instagram.com/${IG_SHOP}`} className="hover:text-white transition-colors">
-                @{IG_SHOP}
-              </a>
+            <div className="relative aspect-[4/3] overflow-hidden border" style={{ borderColor: BORDER }}>
+              <iframe
+                src={MAP_EMBED_URL}
+                title="Map — Angry Raven Tattoo, 1816 W Waters Ave, Tampa, FL 33604"
+                className="absolute inset-0 w-full h-full"
+                style={{ border: 0, filter: "grayscale(1) contrast(1.05)" }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
             </div>
           </div>
         </div>
-        <div className="max-w-6xl mx-auto mt-10 pt-6 border-t text-xs flex flex-col md:flex-row md:items-center md:justify-between gap-2" style={{ borderColor: BORDER, color: "#6B6B6B" }}>
+      </section>
+
+      {/* ── INSTAGRAM STRIP ───────────────────────────────────────────────── */}
+      <section className="py-12 px-5 md:px-8 border-t" style={{ background: BG, borderColor: BORDER }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center justify-between mb-6">
+            <p className="text-lg tracking-[0.1em] text-white" style={BEBAS}>@{IG_SHOP}</p>
+            <a
+              href={`https://instagram.com/${IG_SHOP}`}
+              className="text-[9px] tracking-[0.3em] uppercase hover:opacity-60 transition-opacity"
+              style={{ color: ACCENT }}
+            >
+              Fresh ink, every week — Follow →
+            </a>
+          </div>
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-1">
+            {igPhotos.map((photo, i) => (
+              <div key={i} className="relative aspect-square overflow-hidden">
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="(max-width: 768px) 33vw, 16vw"
+                  className="object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FOOTER ────────────────────────────────────────────────────────── */}
+      <footer className="py-12 px-5 md:px-8 text-sm border-t" style={{ background: BG2, borderColor: BORDER, color: T2 }}>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <p className="text-lg tracking-[0.1em] mb-2 text-white" style={BEBAS}>{BUSINESS_NAME}</p>
+            <p className="text-xs">{TAGLINE}</p>
+          </div>
+          <div>
+            <h4 className="text-[9px] tracking-[0.4em] uppercase mb-3" style={{ color: ACCENT }}>Visit</h4>
+            <p className="text-xs leading-relaxed">
+              {ADDRESS_LINE_1}<br />{ADDRESS_LINE_2}<br />
+              <a href={PHONE_HREF} className="hover:text-white transition-colors">{PHONE_FORMATTED}</a>
+            </p>
+          </div>
+          <div>
+            <h4 className="text-[9px] tracking-[0.4em] uppercase mb-3" style={{ color: ACCENT }}>Follow</h4>
+            <div className="flex gap-4 text-[10px] tracking-[0.2em] uppercase">
+              <a href={`https://instagram.com/${IG_SHOP}`} className="hover:text-white transition-colors">@{IG_SHOP}</a>
+              <a href={`https://instagram.com/${IG_NASH}`} className="hover:text-white transition-colors">@{IG_NASH}</a>
+            </div>
+          </div>
+        </div>
+        <div
+          className="max-w-6xl mx-auto mt-10 pt-6 border-t text-xs flex flex-col md:flex-row md:items-center md:justify-between gap-2"
+          style={{ borderColor: BORDER, color: "rgba(248,237,231,0.4)" }}
+        >
           <span>&copy; {new Date().getFullYear()} {BUSINESS_NAME} &middot; Concept mockup by Thryve Operations</span>
-          <Link href="/" className="hover:text-white underline-offset-4">
+          <Link href="/" className="hover:text-white/70 underline-offset-4">
             &larr; All previews
           </Link>
         </div>
       </footer>
+
     </div>
   );
 }

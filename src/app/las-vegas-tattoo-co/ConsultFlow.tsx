@@ -4,11 +4,13 @@ import { useState } from "react";
 
 // ─── Consultation request wizard — concept preview, no backend ────────────────
 // Client component: interactivity lives here, never in page.tsx.
+// Editorial Ink styling: squared corners, letterspaced uppercase buttons.
 
 const ACCENT = "#C0392B";
-const CARD = "#1A1A1A";
-const BORDER = "#2A2A2A";
-const T2 = "#A0A0A0";
+const CARD = "#161616";
+const BORDER = "#262626";
+const LIGHT = "#F5EEEE";
+const T2 = "#A3A3A3";
 
 const STYLES = [
   "Fine-line",
@@ -40,9 +42,9 @@ function Chip({
     <button
       type="button"
       onClick={onClick}
-      className="px-4 py-2.5 rounded-full text-sm font-medium transition-colors border"
+      className="px-4 py-2.5 text-xs font-bold tracking-[0.25em] uppercase transition-colors border"
       style={{
-        background: selected ? ACCENT : "transparent",
+        background: selected ? ACCENT : "#0A0A0A",
         borderColor: selected ? ACCENT : BORDER,
         color: selected ? "#FFFFFF" : T2,
       }}
@@ -70,15 +72,15 @@ export default function ConsultFlow() {
   if (done) {
     return (
       <div
-        className="rounded-2xl border p-8 md:p-12 text-center"
-        style={{ background: CARD, borderColor: BORDER }}
+        className="border p-8 md:p-12 text-center"
+        style={{ background: CARD, borderColor: ACCENT }}
       >
-        <div
-          className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full text-2xl"
-          style={{ background: "rgba(192,57,43,0.15)", color: ACCENT }}
+        <p
+          className="inline-block text-[11px] font-bold tracking-[0.2em] uppercase px-3 py-1.5 mb-6"
+          style={{ background: ACCENT, color: "#FFFFFF" }}
         >
-          ✓
-        </div>
+          Concept preview — no request was sent
+        </p>
         <h3 className="font-display text-2xl md:text-3xl font-bold text-white mb-3">
           Request received, {name.split(" ")[0]}
         </h3>
@@ -86,47 +88,61 @@ export default function ConsultFlow() {
           {style} &middot; {placement} &middot; {size} &middot; {budget}. The shop would call you back at{" "}
           {phone} to set up your consultation with Tony, Belle, or Colt.
         </p>
+        {notes && (
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed" style={{ color: T2 }}>
+            Notes: {notes}
+          </p>
+        )}
         <p
-          className="mx-auto mt-6 max-w-md rounded-lg border px-4 py-3 text-sm"
-          style={{ borderColor: ACCENT, color: ACCENT }}
+          className="mx-auto mt-6 max-w-md border px-4 py-3 text-sm"
+          style={{ borderColor: BORDER, color: T2 }}
         >
-          This is a concept preview — no request was sent. Call (813) 248-3004 or walk in to book for
-          real.
+          This page is a design mockup by Thryve Operations — nothing was submitted and no one was
+          contacted. Call (813) 248-3004 or walk in to book for real.
         </p>
-        <button
-          type="button"
-          onClick={() => {
-            setDone(false);
-            setStep(0);
-            setStyle("");
-            setPlacement("");
-            setSize("");
-            setBudget("");
-            setName("");
-            setPhone("");
-            setNotes("");
-          }}
-          className="mt-6 text-sm font-semibold underline underline-offset-4 transition-opacity hover:opacity-70"
-          style={{ color: T2 }}
-        >
-          Start over
-        </button>
+        <div className="mt-7 flex flex-col sm:flex-row gap-3 justify-center">
+          <a
+            href="tel:+18132483004"
+            className="px-8 py-3.5 text-xs font-bold tracking-[0.25em] uppercase transition hover:brightness-110"
+            style={{ background: ACCENT, color: "#FFFFFF" }}
+          >
+            Call the real shop: (813) 248-3004
+          </a>
+          <button
+            type="button"
+            onClick={() => {
+              setDone(false);
+              setStep(0);
+              setStyle("");
+              setPlacement("");
+              setSize("");
+              setBudget("");
+              setName("");
+              setPhone("");
+              setNotes("");
+            }}
+            className="px-8 py-3.5 text-xs font-bold tracking-[0.25em] uppercase border transition hover:bg-white/10"
+            style={{ borderColor: "rgba(245,238,238,0.35)", color: LIGHT }}
+          >
+            Start over
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="rounded-2xl border p-6 md:p-10" style={{ background: CARD, borderColor: BORDER }}>
+    <div className="border p-6 md:p-10" style={{ background: CARD, borderColor: BORDER }}>
       {/* progress */}
       <div className="mb-8 flex items-center gap-3">
         {stepLabels.map((label, i) => (
           <div key={label} className="flex flex-1 flex-col gap-2">
             <div
-              className="h-1 rounded-full transition-colors"
+              className="h-1 transition-colors"
               style={{ background: i <= step ? ACCENT : BORDER }}
             />
             <span
-              className="text-[11px] uppercase tracking-wider"
+              className="text-[10px] uppercase tracking-[0.2em]"
               style={{ color: i === step ? "#FFFFFF" : T2 }}
             >
               {i + 1}. {label}
@@ -194,16 +210,16 @@ export default function ConsultFlow() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Name"
-              className="rounded-lg border bg-transparent px-4 py-3 text-white placeholder:text-neutral-500 focus:outline-none"
-              style={{ borderColor: BORDER }}
+              className="border px-4 py-3 text-sm text-white placeholder:text-neutral-500 outline-none focus:border-[#C0392B] transition-colors"
+              style={{ background: "#0A0A0A", borderColor: BORDER }}
             />
             <input
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="Phone"
-              className="rounded-lg border bg-transparent px-4 py-3 text-white placeholder:text-neutral-500 focus:outline-none"
-              style={{ borderColor: BORDER }}
+              className="border px-4 py-3 text-sm text-white placeholder:text-neutral-500 outline-none focus:border-[#C0392B] transition-colors"
+              style={{ background: "#0A0A0A", borderColor: BORDER }}
             />
           </div>
           <textarea
@@ -211,8 +227,8 @@ export default function ConsultFlow() {
             onChange={(e) => setNotes(e.target.value)}
             placeholder="Anything else — reference images you have, cover-up, first tattoo, etc. (optional)"
             rows={3}
-            className="mt-4 w-full rounded-lg border bg-transparent px-4 py-3 text-white placeholder:text-neutral-500 focus:outline-none"
-            style={{ borderColor: BORDER }}
+            className="mt-4 w-full border px-4 py-3 text-sm text-white placeholder:text-neutral-500 outline-none focus:border-[#C0392B] transition-colors"
+            style={{ background: "#0A0A0A", borderColor: BORDER }}
           />
         </div>
       )}
@@ -222,10 +238,10 @@ export default function ConsultFlow() {
           <button
             type="button"
             onClick={() => setStep(step - 1)}
-            className="text-sm font-semibold transition-opacity hover:opacity-70"
-            style={{ color: T2 }}
+            className="px-6 py-3 text-xs font-bold tracking-[0.25em] uppercase border transition hover:bg-white/10"
+            style={{ borderColor: BORDER, color: LIGHT }}
           >
-            ← Back
+            Back
           </button>
         ) : (
           <span />
@@ -234,10 +250,10 @@ export default function ConsultFlow() {
           type="button"
           disabled={!canNext}
           onClick={() => (step === 2 ? setDone(true) : setStep(step + 1))}
-          className="rounded-full px-7 py-3 text-sm font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40"
-          style={{ background: ACCENT }}
+          className="px-7 py-3 text-xs font-bold tracking-[0.25em] uppercase transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40"
+          style={{ background: ACCENT, color: "#FFFFFF" }}
         >
-          {step === 2 ? "Request Consultation" : "Next →"}
+          {step === 2 ? "Preview my request" : "Next"}
         </button>
       </div>
     </div>
