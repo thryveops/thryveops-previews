@@ -288,7 +288,7 @@ export default function MomoHub() {
             <a href="https://facebook.com/momohubmaryland" className="hover:text-white">Facebook</a>
           </div>
         </div>
-        <p className="max-w-6xl mx-auto mt-6 text-[10px] tracking-widest uppercase text-white/30">Mockup by Thryve Operations · thryveops.com · @thryveops · hello@thryveops.com</p>
+        <p className="max-w-6xl mx-auto mt-6 text-[10px] tracking-widest uppercase text-white/30">Mockup by Thryve Operations · thryveops.com · @thryveops · contact@thryveops.com</p>
       </footer>
     </div>
   )

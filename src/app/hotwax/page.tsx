@@ -746,7 +746,7 @@ export default function HotWaxPreview() {
           <span>
             © 2026 HotWax Coffee Shop &amp; Tap House · Concept mockup by Thryve Operations
           </span>
-          <span>thryveops.com · hello@thryveops.com</span>
+          <span>thryveops.com · contact@thryveops.com</span>
         </div>
       </footer>
     </div>

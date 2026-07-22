@@ -326,7 +326,7 @@ export default function TrolleyStop() {
           </div>
         </div>
         <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/10 text-xs text-white/50">© 2026 The Trolley Stop. All rights reserved.</div>
-        <p className="max-w-6xl mx-auto mt-6 text-[10px] tracking-widest uppercase text-white/30">Mockup by Thryve Operations · thryveops.com · @thryveops · hello@thryveops.com</p>
+        <p className="max-w-6xl mx-auto mt-6 text-[10px] tracking-widest uppercase text-white/30">Mockup by Thryve Operations · thryveops.com · @thryveops · contact@thryveops.com</p>
       </footer>
     </div>
   )

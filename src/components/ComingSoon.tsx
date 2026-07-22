@@ -34,7 +34,7 @@ export function ComingSoon({
           We&apos;ll share the live preview as soon as it&apos;s ready.
         </p>
         <p className="text-xs text-neutral-400 mt-12">
-          thryveops.com · hello@thryveops.com
+          thryveops.com · contact@thryveops.com
         </p>
       </div>
     </main>

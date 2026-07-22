@@ -69,7 +69,7 @@ export default function Home() {
         </ul>
 
         <p className="text-xs text-neutral-400 mt-12">
-          thryveops.com · hello@thryveops.com
+          thryveops.com · contact@thryveops.com
         </p>
       </div>
     </main>

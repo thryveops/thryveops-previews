@@ -280,7 +280,7 @@ export default function CoasisPreview() {
         </div>
         <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/10 text-xs flex flex-col md:flex-row md:justify-between gap-2" style={{ color: "rgba(255,255,255,0.25)" }}>
           <span>© 2026 Coasis Restaurant, Bar &amp; Suites · Concept mockup by Thryve Operations</span>
-          <span>thryveops.com · hello@thryveops.com</span>
+          <span>thryveops.com · contact@thryveops.com</span>
         </div>
       </footer>
     </div>

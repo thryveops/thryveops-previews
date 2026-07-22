@@ -637,7 +637,7 @@ export default function LaTerrazzaPreview() {
             © 2026 La Terrazza Ristorante Italiano · Concept mockup by Thryve
             Operations
           </span>
-          <span>thryveops.com · hello@thryveops.com</span>
+          <span>thryveops.com · contact@thryveops.com</span>
         </div>
       </footer>
     </div>
