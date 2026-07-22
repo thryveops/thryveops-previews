@@ -17,6 +17,21 @@ export default function Home() {
         </p>
 
         <p className="text-xs tracking-wider uppercase text-neutral-500 mb-4">
+          Tampa · July 2026 — In-Person Batch
+        </p>
+        <ul className="divide-y divide-neutral-200 border-y border-neutral-200 mb-12">
+          <PreviewLink href="/k-dessert-cafe" name="K-dessert Cafe" status="ready" />
+          <PreviewLink href="/sea-maids-creamery" name="Sea Maids Creamery" status="ready" />
+          <PreviewLink href="/las-vegas-tattoo-co" name="Las Vegas Tattoo Co" status="ready" />
+          <PreviewLink href="/angry-raven-tattoo" name="Angry Raven Tattoo" status="ready" />
+          <PreviewLink href="/tampa-tattoo-co" name="Tampa Tattoo Co." status="ready" />
+          <PreviewLink href="/tonikon-barbershop" name="Tonikon Barbershop" status="ready" />
+          <PreviewLink href="/the-fade-factory" name="The Fade Factory Gentlemen's Grooming" status="ready" />
+          <PreviewLink href="/razorz-edge-barbershop" name="Razorz Edge Barbershop" status="ready" />
+          <PreviewLink href="/jb-mobile-detailing" name="The J&B Mobile Detailing" status="ready" />
+        </ul>
+
+        <p className="text-xs tracking-wider uppercase text-neutral-500 mb-4">
           Tampa · July 2026
         </p>
         <ul className="divide-y divide-neutral-200 border-y border-neutral-200 mb-12">
