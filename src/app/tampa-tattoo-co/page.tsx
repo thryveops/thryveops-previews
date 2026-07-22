@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ConsultFlow from "./ConsultFlow";
 import Faq from "./Faq";
+import { Reveal, HeroMedia, Marquee, ParallaxBand } from "./Motion";
 
 // ─── TAMPA TATTOO CO. — Editorial Ink concept mockup by Thryve Operations ─────
 // Gallery-editorial system modeled on Bang Bang NYC: restrained type scale,
@@ -33,6 +34,7 @@ const FRESHA_URL = "https://www.fresha.com/lvp/tampa-tattoo-co-north-howard-aven
 const DIRECTIONS_URL = "https://maps.google.com/?q=Tampa+Tattoo+Co,+1012+N+Howard+Ave,+Tampa,+FL+33607";
 const MAP_EMBED_URL =
   "https://maps.google.com/maps?q=Tampa%20Tattoo%20Co%2C%201012%20N%20Howard%20Ave%2C%20Tampa%2C%20FL%2033607&z=15&output=embed";
+const HERO_STILL = "/images/tampa-tattoo-co/editorial-hero-2.jpg";
 const INSTAGRAM_HANDLE = "tampatattooco";
 const TIKTOK_HANDLE = "tampatattooco";
 const FACEBOOK_HANDLE = "ttc813";
@@ -252,21 +254,18 @@ export default function MockupPage() {
         </div>
       </nav>
 
-      {/* ── HERO — full-bleed photo, shop title, address, two CTAs, air ───── */}
-      <header id="top" className="relative h-svh min-h-[600px] flex items-center justify-center overflow-hidden">
-        <Image
-          src="/images/tampa-tattoo-co/editorial-hero.jpg"
+      {/* ── HERO — video/parallax media, shop title, bleeds into The Work ── */}
+      <header id="top" className="relative h-[112svh] min-h-[700px] overflow-hidden">
+        <HeroMedia
+          still={HERO_STILL}
           alt="Tattoo artist at work in a dark gallery-style studio with gold-framed art"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
         />
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(180deg, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.3) 45%, rgba(10,10,10,0.9) 100%)" }}
+          style={{ background: "linear-gradient(180deg, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.3) 38%, rgba(10,10,10,0.8) 74%, #0A0A0A 100%)" }}
         />
-        <div className="relative z-10 text-center px-6 max-w-3xl mx-auto pt-14">
+        <div className="relative z-10 h-svh flex items-center justify-center">
+        <div className="text-center px-6 max-w-3xl mx-auto pt-14">
           <p className="text-[10px] md:text-[11px] tracking-[0.5em] uppercase mb-7" style={{ color: ACCENT }}>
             Custom Tattoos — Est. 2015
           </p>
@@ -296,20 +295,24 @@ export default function MockupPage() {
             <span style={{ color: ACCENT }}>★★★★★</span>{`  ${AVG_RATING} — ${REVIEW_COUNT} Google reviews  ·  Walk-ins 7 days`}
           </p>
         </div>
+        </div>
       </header>
 
-      {/* ── 01 — THE WORK — uniform gallery grid ──────────────────────────── */}
-      <section id="work" className="py-20 md:py-28 px-5 md:px-8" style={{ background: BG }}>
+      {/* ── 01 — THE WORK — bleeds up over the hero tail ──────────────────── */}
+      <section id="work" className="relative z-10 -mt-[16svh] scroll-mt-24 pb-20 md:pb-28 px-5 md:px-8">
         <div className="max-w-6xl mx-auto">
-          <SectionHeader
-            index="01"
-            title="The Work"
-            sub="Every piece below came out of this shop. Over 1,300 more on Instagram."
-          />
+          <Reveal>
+            <SectionHeader
+              index="01"
+              title="The Work"
+              sub="Every piece below came out of this shop. Over 1,300 more on Instagram."
+            />
+          </Reveal>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
-            {portfolio.map((piece) => (
-              <figure key={piece.src}>
+            {portfolio.map((piece, i) => (
+              <Reveal key={piece.src} delay={i * 0.08}>
+              <figure>
                 <div className="group relative aspect-[4/5] overflow-hidden" style={{ background: CARD }}>
                   <Image
                     src={piece.src}
@@ -328,6 +331,7 @@ export default function MockupPage() {
                   </span>
                 </figcaption>
               </figure>
+              </Reveal>
             ))}
           </div>
 
@@ -343,18 +347,29 @@ export default function MockupPage() {
         </div>
       </section>
 
+      {/* ── EDITORIAL MARQUEE ─────────────────────────────────────────────── */}
+      <Marquee
+        items={["Walk-Ins Welcome", "Custom Tattoos", "Black & Grey Realism", "Portraits", "Cover-Ups", "Est. 2015 — Howard Ave"]}
+        accent={ACCENT}
+        border={BORDER}
+        color={T2}
+      />
+
       {/* ── 02 — THE ARTISTS — uniform roster cards ───────────────────────── */}
-      <section id="artists" className="py-20 md:py-28 px-5 md:px-8 border-t" style={{ background: BG2, borderColor: BORDER }}>
+      <section id="artists" className="py-20 md:py-28 px-5 md:px-8" style={{ background: BG2 }}>
         <div className="max-w-5xl mx-auto">
-          <SectionHeader
-            index="02"
-            title="The Artists"
-            sub="Every piece starts with a conversation. Book with the artist whose work speaks to you."
-          />
+          <Reveal>
+            <SectionHeader
+              index="02"
+              title="The Artists"
+              sub="Every piece starts with a conversation. Book with the artist whose work speaks to you."
+            />
+          </Reveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6">
-            {artists.map((artist) => (
-              <div key={artist.name} className="border p-7 text-center flex flex-col items-center" style={{ background: CARD, borderColor: BORDER }}>
+            {artists.map((artist, i) => (
+              <Reveal key={artist.name} delay={i * 0.1} className="h-full">
+              <div className="border p-7 text-center flex flex-col items-center h-full" style={{ background: CARD, borderColor: BORDER }}>
                 <div
                   className="w-16 h-16 flex items-center justify-center border mb-5"
                   style={{ borderColor: ACCENT }}
@@ -380,6 +395,7 @@ export default function MockupPage() {
                   Book with {artist.name.split(" ")[0]}
                 </a>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -388,12 +404,15 @@ export default function MockupPage() {
       {/* ── 03 — SERVICES — tight price-list rows ─────────────────────────── */}
       <section id="services" className="py-20 md:py-28 px-5 md:px-8 border-t" style={{ background: BG, borderColor: BORDER }}>
         <div className="max-w-3xl mx-auto">
-          <SectionHeader
-            index="03"
-            title="Services"
-            sub="Every custom piece starts with a free consult — talk through the idea, get an honest quote. No pressure, no deposit to talk."
-          />
+          <Reveal>
+            <SectionHeader
+              index="03"
+              title="Services"
+              sub="Every custom piece starts with a free consult — talk through the idea, get an honest quote. No pressure, no deposit to talk."
+            />
+          </Reveal>
 
+          <Reveal>
           <div className="border-t" style={{ borderColor: BORDER }}>
             {services.map((svc) => (
               <div
@@ -425,6 +444,7 @@ export default function MockupPage() {
               </div>
             ))}
           </div>
+          </Reveal>
 
           <div className="mt-10 text-center">
             <a
@@ -482,19 +502,25 @@ export default function MockupPage() {
       {/* ── 04 — START YOUR PIECE — wizard only, no imagery ───────────────── */}
       <section className="py-20 md:py-28 px-5 md:px-8 border-t" style={{ background: BG2, borderColor: BORDER }}>
         <div className="max-w-2xl mx-auto">
-          <SectionHeader
-            index="04"
-            title="Start Your Piece"
-            sub="Three quick steps — style, placement, and how to reach you. Or skip it all and just call the shop."
-          />
-          <ConsultFlow />
+          <Reveal>
+            <SectionHeader
+              index="04"
+              title="Start Your Piece"
+              sub="Three quick steps — style, placement, and how to reach you. Or skip it all and just call the shop."
+            />
+          </Reveal>
+          <Reveal delay={0.08}>
+            <ConsultFlow />
+          </Reveal>
         </div>
       </section>
 
       {/* ── 05 — FAQ + BOOKING CHANNELS ───────────────────────────────────── */}
       <section id="faq" className="py-20 md:py-28 px-5 md:px-8 border-t" style={{ background: BG, borderColor: BORDER }}>
         <div className="max-w-5xl mx-auto">
-          <SectionHeader index="05" title="Good to Know" />
+          <Reveal>
+            <SectionHeader index="05" title="Good to Know" />
+          </Reveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,2fr),minmax(0,3fr)] gap-10 lg:gap-16 items-start">
             {/* booking channels */}
@@ -528,10 +554,22 @@ export default function MockupPage() {
         </div>
       </section>
 
+      {/* ── PARALLAX DIVIDER — machine macro at depth ─────────────────────── */}
+      <ParallaxBand
+        src="/images/tampa-tattoo-co/editorial-detail.jpg"
+        alt="Macro detail of a gold and black tattoo machine on a dark workstation"
+      >
+        <p className="text-[11px] tracking-[0.5em] uppercase text-white/85">
+          Howard Ave — Tampa, FL
+        </p>
+      </ParallaxBand>
+
       {/* ── 06 — VISIT — details + real embedded map ──────────────────────── */}
-      <section id="visit" className="py-20 md:py-28 px-5 md:px-8 border-t" style={{ background: BG2, borderColor: BORDER }}>
+      <section id="visit" className="py-20 md:py-28 px-5 md:px-8" style={{ background: BG2 }}>
         <div className="max-w-6xl mx-auto">
-          <SectionHeader index="06" title="Visit" />
+          <Reveal>
+            <SectionHeader index="06" title="Visit" />
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start">
             <div className="space-y-8">
