@@ -38,11 +38,11 @@ export default function ConsultFlow() {
   if (done) {
     return (
       <div
-        className="rounded-lg border p-8 md:p-10 text-center"
+        className="border p-8 md:p-10 text-center"
         style={{ background: CARD, borderColor: ACCENT }}
       >
         <p
-          className="inline-block text-[11px] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full mb-6"
+          className="inline-block text-[11px] font-bold tracking-[0.2em] uppercase px-3 py-1.5 mb-6"
           style={{ background: ACCENT, color: "#0A0A0A" }}
         >
           Concept preview — no request was sent
@@ -51,7 +51,7 @@ export default function ConsultFlow() {
           This is what your consult request would look like
         </h3>
         <div
-          className="max-w-md mx-auto text-left rounded-lg border p-5 mb-6 text-sm space-y-2"
+          className="max-w-md mx-auto text-left border p-5 mb-6 text-sm space-y-2"
           style={{ borderColor: BORDER, color: LIGHT }}
         >
           <p><span style={{ color: T2 }}>Style:</span> {styleLabel}</p>
@@ -66,7 +66,7 @@ export default function ConsultFlow() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <a
             href="tel:+18136445959"
-            className="px-7 py-3.5 rounded-full font-semibold transition hover:brightness-110"
+            className="px-8 py-3.5 text-xs font-bold tracking-[0.25em] uppercase transition hover:brightness-110"
             style={{ background: ACCENT, color: "#0A0A0A" }}
           >
             Call the real shop: (813) 644-5959
@@ -77,7 +77,7 @@ export default function ConsultFlow() {
               setDone(false);
               setStep(1);
             }}
-            className="px-7 py-3.5 rounded-full font-semibold border transition hover:bg-white/10"
+            className="px-8 py-3.5 text-xs font-bold tracking-[0.25em] uppercase border transition hover:bg-white/10"
             style={{ borderColor: "rgba(245,238,220,0.35)", color: LIGHT }}
           >
             Start over
@@ -88,7 +88,7 @@ export default function ConsultFlow() {
   }
 
   return (
-    <div className="rounded-lg border p-6 md:p-9" style={{ background: CARD, borderColor: BORDER }}>
+    <div className="border p-6 md:p-9" style={{ background: CARD, borderColor: BORDER }}>
       {/* progress */}
       <div className="flex items-center gap-2 mb-8">
         {[1, 2, 3].map((n) => (
@@ -120,7 +120,7 @@ export default function ConsultFlow() {
                 key={s.id}
                 type="button"
                 onClick={() => setStyle(s.id)}
-                className="text-left p-4 rounded-lg border transition-colors"
+                className="text-left p-4 border transition-colors"
                 style={
                   style === s.id
                     ? { borderColor: ACCENT, background: "#0A0A0A" }
@@ -139,7 +139,7 @@ export default function ConsultFlow() {
               type="button"
               disabled={!style}
               onClick={() => setStep(2)}
-              className="px-7 py-3 rounded-full font-semibold transition hover:brightness-110 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-7 py-3 text-xs font-bold tracking-[0.25em] uppercase transition hover:brightness-110 disabled:opacity-40 disabled:cursor-not-allowed"
               style={{ background: ACCENT, color: "#0A0A0A" }}
             >
               Next: Placement
@@ -158,7 +158,7 @@ export default function ConsultFlow() {
                 key={p}
                 type="button"
                 onClick={() => setPlacement(p)}
-                className="px-4 py-2 rounded-full text-sm font-medium border transition-colors"
+                className="px-4 py-2 text-[11px] tracking-[0.15em] uppercase font-medium border transition-colors"
                 style={
                   placement === p
                     ? { borderColor: ACCENT, color: "#0A0A0A", background: ACCENT }
@@ -176,7 +176,7 @@ export default function ConsultFlow() {
                 key={s}
                 type="button"
                 onClick={() => setSize(s)}
-                className="px-4 py-2 rounded-full text-sm font-medium border transition-colors"
+                className="px-4 py-2 text-[11px] tracking-[0.15em] uppercase font-medium border transition-colors"
                 style={
                   size === s
                     ? { borderColor: ACCENT, color: "#0A0A0A", background: ACCENT }
@@ -193,14 +193,14 @@ export default function ConsultFlow() {
             onChange={(e) => setIdea(e.target.value)}
             rows={3}
             placeholder="A ship sleeve like the one on your Instagram, a portrait of my grandfather..."
-            className="w-full rounded-lg border p-3.5 text-sm outline-none focus:border-[#C9A84C] transition-colors"
+            className="w-full border p-3.5 text-sm outline-none focus:border-[#C9A84C] transition-colors"
             style={{ background: "#0A0A0A", borderColor: BORDER, color: LIGHT }}
           />
           <div className="mt-7 flex justify-between">
             <button
               type="button"
               onClick={() => setStep(1)}
-              className="px-6 py-3 rounded-full font-semibold border transition hover:bg-white/10"
+              className="px-6 py-3 text-xs font-bold tracking-[0.25em] uppercase border transition hover:bg-white/10"
               style={{ borderColor: BORDER, color: LIGHT }}
             >
               Back
@@ -209,7 +209,7 @@ export default function ConsultFlow() {
               type="button"
               disabled={!placement || !size}
               onClick={() => setStep(3)}
-              className="px-7 py-3 rounded-full font-semibold transition hover:brightness-110 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-7 py-3 text-xs font-bold tracking-[0.25em] uppercase transition hover:brightness-110 disabled:opacity-40 disabled:cursor-not-allowed"
               style={{ background: ACCENT, color: "#0A0A0A" }}
             >
               Next: Contact
@@ -234,7 +234,7 @@ export default function ConsultFlow() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Your name"
-                className="w-full rounded-lg border p-3.5 text-sm outline-none focus:border-[#C9A84C] transition-colors"
+                className="w-full border p-3.5 text-sm outline-none focus:border-[#C9A84C] transition-colors"
                 style={{ background: "#0A0A0A", borderColor: BORDER, color: LIGHT }}
               />
             </div>
@@ -247,7 +247,7 @@ export default function ConsultFlow() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="(813) 555-0123"
-                className="w-full rounded-lg border p-3.5 text-sm outline-none focus:border-[#C9A84C] transition-colors"
+                className="w-full border p-3.5 text-sm outline-none focus:border-[#C9A84C] transition-colors"
                 style={{ background: "#0A0A0A", borderColor: BORDER, color: LIGHT }}
               />
             </div>
@@ -256,7 +256,7 @@ export default function ConsultFlow() {
             <button
               type="button"
               onClick={() => setStep(2)}
-              className="px-6 py-3 rounded-full font-semibold border transition hover:bg-white/10"
+              className="px-6 py-3 text-xs font-bold tracking-[0.25em] uppercase border transition hover:bg-white/10"
               style={{ borderColor: BORDER, color: LIGHT }}
             >
               Back
@@ -265,7 +265,7 @@ export default function ConsultFlow() {
               type="button"
               disabled={!name.trim() || !phone.trim()}
               onClick={() => setDone(true)}
-              className="px-7 py-3 rounded-full font-semibold transition hover:brightness-110 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-7 py-3 text-xs font-bold tracking-[0.25em] uppercase transition hover:brightness-110 disabled:opacity-40 disabled:cursor-not-allowed"
               style={{ background: ACCENT, color: "#0A0A0A" }}
             >
               Preview my request
