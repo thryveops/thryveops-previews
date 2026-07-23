@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ConsultFlow from "./ConsultFlow";
 import Faq from "./Faq";
-import { Reveal, HeroMedia, Marquee, ParallaxBand } from "./Motion";
+import { Reveal, HeroMedia, Marquee, ParallaxBand } from "@/components/motion";
 
 // ─── IRONBLOOD TATTOOS — Editorial Ink concept mockup by Thryve Operations ────
 // Gallery-editorial system matched to the approved Tampa Tattoo Co. standard:

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ConsultFlow from "./ConsultFlow";
 import Faq from "./Faq";
-import { Reveal, HeroMedia, Marquee, ParallaxBand } from "./Motion";
+import { Reveal, HeroMedia, Marquee, ParallaxBand } from "@/components/motion";
 
 // ─── DOC DOG'S LAS VEGAS TATTOO CO. — Editorial Ink concept mockup ────────────
 // Concept mockup by Thryve Operations. Gallery-editorial system matched to the

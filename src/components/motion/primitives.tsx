@@ -4,14 +4,27 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 
+import {
+  EASE,
+  DURATION,
+  RISE,
+  VIEWPORT,
+  PARALLAX_HERO,
+  PARALLAX_BAND,
+  KEN_BURNS_SCALE,
+  MARQUEE_X,
+} from "./tokens";
+
 // ─── Editorial Ink motion set (client components) ─────────────────────────────
 // Reveal        — fade/rise sections + staggered tiles on scroll
 // HeroMedia     — parallax hero with Ken Burns drift, optional video loop
 // Marquee       — slow editorial text ribbon
 // ParallaxBand  — full-bleed image divider that scrolls at depth
 // All effects respect prefers-reduced-motion.
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+//
+// Promoted from four byte-identical per-page copies (tampa-tattoo-co,
+// ironblood-tattoos, las-vegas-tattoo-co, angry-raven-tattoo). Behaviour is
+// unchanged — only the constants moved to ./tokens.
 
 export function Reveal({
   children,
@@ -27,10 +40,10 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 26 }}
+      initial={{ opacity: 0, y: RISE }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-70px" }}
-      transition={{ duration: 0.8, delay, ease: EASE }}
+      viewport={VIEWPORT}
+      transition={{ duration: DURATION.enter, delay, ease: EASE }}
     >
       {children}
     </motion.div>
@@ -52,7 +65,7 @@ export function HeroMedia({
     target: ref,
     offset: ["start start", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const y = useTransform(scrollYProgress, [0, 1], PARALLAX_HERO);
 
   const media =
     video && !reduce ? (
@@ -78,11 +91,16 @@ export function HeroMedia({
         <motion.div className="absolute inset-0" style={{ y }}>
           <motion.div
             className="absolute inset-0"
-            animate={video ? undefined : { scale: [1, 1.07] }}
+            animate={video ? undefined : { scale: KEN_BURNS_SCALE }}
             transition={
               video
                 ? undefined
-                : { duration: 26, repeat: Infinity, repeatType: "mirror", ease: "linear" }
+                : {
+                    duration: DURATION.kenBurns,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    ease: "linear",
+                  }
             }
           >
             {media}
@@ -126,8 +144,8 @@ export function Marquee({
       ) : (
         <motion.div
           className="flex w-max"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 38, repeat: Infinity, ease: "linear" }}
+          animate={{ x: MARQUEE_X }}
+          transition={{ duration: DURATION.marquee, repeat: Infinity, ease: "linear" }}
         >
           {run("a")}
           {run("b")}
@@ -154,7 +172,7 @@ export function ParallaxBand({
     target: ref,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
+  const y = useTransform(scrollYProgress, [0, 1], PARALLAX_BAND);
 
   return (
     <div ref={ref} className="relative h-[34vh] min-h-[220px] overflow-hidden">
